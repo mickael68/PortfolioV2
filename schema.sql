@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS skills;
+DROP TABLE IF EXISTS projects;
 -- Création de la table des projets
 CREATE TABLE IF NOT EXISTS projects (
   id SERIAL PRIMARY KEY,
@@ -16,16 +18,15 @@ INSERT INTO projects (title, description, link) VALUES
 CREATE TABLE IF NOT EXISTS skills (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
-  level TEXT
+  level TEXT,
+  icon TEXT
 );
 
 -- Données d'exemple pour les compétences
-INSERT INTO skills (name, level) VALUES 
-('React', 'Expert'),
-('Next.js', 'Avancé'),
-('TypeScript', 'Intermédiaire'),
-('Tailwind CSS', 'Expert'),
-('Node.js', 'Intermédiaire'),
-('PostgreSQL', 'Débutant'),
-('Git', 'Avancé'),
-('Figma', 'Intermédiaire');
+INSERT INTO skills (name, level, icon) VALUES 
+('React', 'Expert', 'react.svg'),
+('Next.js', 'Avancé', 'next.svg'),
+('TypeScript', 'Intermédiaire', 'typescript.svg'),
+('Tailwind CSS', 'Expert', 'tailwind.svg'),
+('PostgreSQL', 'Débutant', 'postgresql.svg'),
+('Git', 'Avancé', 'git.svg');

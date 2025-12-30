@@ -1,65 +1,54 @@
-"use client";
+import Image from "next/image";
+import sql from "../../lib/db";
 
-import { useState } from "react";
+interface Skill {
+    id: number;
+    name: string;
+    level: string;
+    icon?: string;
+}
 
-type Category = "technologies" | "os" | "misc";
-
-const skillsData = {
-    technologies: [
-        "React",
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Node.js",
-        "Prisma",
-        "PostgreSQL",
-        "MongoDB",
-    ],
-    os: ["Windows", "WSL Ubuntu", "Linux Handlers"],
-    misc: ["Git", "GitHub", "LibreOffice", "Netlify", "Vercel", "Figma"],
-};
-
-export default function Skills() {
-    const [activeTab, setActiveTab] = useState<Category>("technologies");
-
-    const tabs: { id: Category; label: string }[] = [
-        { id: "technologies", label: "Technologies" },
-        { id: "os", label: "Systèmes d'exploitation" },
-        { id: "misc", label: "Divers" },
-    ];
+export default async function Skills() {
+    let skills: Skill[] = [];
+    try {
+        skills = (await sql`SELECT * FROM skills`) as any as Skill[];
+    } catch (error) {
+        console.error("Failed to fetch skills:", error);
+    }
 
     return (
         <div className="min-h-screen pt-24 px-4 bg-neutral-950">
             <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold text-white mb-8 text-center">
-                    Compétences
-                </h2>
+                <h2 className="text-3xl font-bold text-white mb-12 text-center">Compétences</h2>
 
-                <div className="flex flex-wrap justify-center gap-4 mb-12">
-                    {tabs.map((tab) => (
-                        <button
-                            key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
-                            className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === tab.id
-                                    ? "bg-cyan-500 text-white shadow-lg shadow-cyan-500/25"
-                                    : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
-                                }`}
-                        >
-                            {tab.label}
-                        </button>
-                    ))}
-                </div>
-
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {skillsData[activeTab].map((skill) => (
-                        <div
-                            key={skill}
-                            className="p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-cyan-500/50 transition-colors text-center font-medium text-neutral-200"
-                        >
-                            {skill}
-                        </div>
-                    ))}
-                </div>
+                {skills.length === 0 ? (
+                    <div className="text-center text-neutral-400">
+                        <p>Aucune compétence trouvée.</p>
+                        <p className="text-sm mt-2 opacity-50">(Assurez-vous d'avoir créé la table 'skills' dans Neon)</p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {skills.map((skill) => (
+                            <div
+                                key={skill.id}
+                                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-cyan-500/50 transition-colors text-center"
+                            >
+                                {skill.icon && (
+                                    <div className="mb-4 relative w-12 h-12">
+                                        <Image
+                                            src={`/${skill.icon}`}
+                                            alt={skill.name}
+                                            fill
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                )}
+                                <div className="text-lg font-medium text-white mb-1">{skill.name}</div>
+                                <div className="text-sm text-cyan-400">{skill.level}</div>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );
