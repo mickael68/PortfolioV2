@@ -1,11 +1,16 @@
 import postgres from "postgres";
 
-const connectionString = process.env.DATABASE_URL!;
+const connectionString = process.env.DATABASE_URL;
 
-if (!connectionString) {
-    throw new Error("DATABASE_URL is not defined");
-}
-
-const sql = postgres(connectionString);
+const sql = connectionString
+    ? postgres(connectionString)
+    : (() => {
+        // Mock function that returns empty array locally to prevent crash
+        const fn = () => {
+            console.warn("DATABASE_URL is not defined. Using empty mock data.");
+            return Promise.resolve([]);
+        };
+        return fn as any as postgres.Sql<{}>;
+    })();
 
 export default sql;

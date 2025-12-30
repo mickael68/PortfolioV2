@@ -1,10 +1,17 @@
 import sql from "../../lib/db";
 
+interface Project {
+    id: number;
+    title: string;
+    description: string;
+    link: string;
+}
+
 export default async function Projects() {
-    let projects = [];
+    let projects: Project[] = [];
     try {
         // NOTE: This table 'projects' must be created in Neon!
-        projects = await sql`SELECT * FROM projects`;
+        projects = (await sql`SELECT * FROM projects`) as any as Project[];
     } catch (error) {
         console.error("Failed to fetch projects:", error);
     }
@@ -21,13 +28,13 @@ export default async function Projects() {
                     </div>
                 ) : (
                     <div className="grid md:grid-cols-3 gap-8">
-                        {projects.map((project: any) => (
+                        {projects.map((project) => (
                             <div
-                                key={project.id || Math.random()}
+                                key={project.id}
                                 className="group relative overflow-hidden rounded-2xl bg-neutral-950 border border-white/10 hover:border-white/20 transition-colors"
                             >
                                 <div className="aspect-video bg-neutral-800 animate-pulse group-hover:bg-neutral-800/80 transition-colors">
-                                    {/* Placeholder pour image - à améliorer plus tard avec project.image_url */}
+                                    {/* Placeholder pour image */}
                                 </div>
                                 <div className="p-6">
                                     <h3 className="text-xl font-bold text-white mb-2">{project.title || "Titre du projet"}</h3>
