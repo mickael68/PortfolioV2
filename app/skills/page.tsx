@@ -1,5 +1,5 @@
-import Image from "next/image";
 import sql from "../../lib/db";
+import SkillsTabs from "./SkillsTabs";
 
 interface Skill {
     id: number;
@@ -11,44 +11,21 @@ interface Skill {
 export default async function Skills() {
     let skills: Skill[] = [];
     try {
+        console.log("Fetching skills...");
         skills = (await sql`SELECT * FROM skills`) as any as Skill[];
+        console.log("Skills fetched:", skills.length);
     } catch (error) {
-        console.error("Failed to fetch skills:", error);
+        console.warn("Erreur lors de la récupération des compétences.");
+        // console.error(error);
     }
 
     return (
-        <div className="min-h-screen pt-24 px-4 bg-neutral-950">
-            <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold text-white mb-12 text-center">Compétences</h2>
+        <div className="min-h-screen pt-24 px-4 bg-neutral-950 text-neutral-200 selection:bg-cyan-500/30">
+            <div className="max-w-6xl mx-auto">
+                <h2 className="text-4xl font-bold text-white mb-4 text-center">Mes Compétences</h2>
+                <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-purple-600 mx-auto rounded-full mb-12"></div>
 
-                {skills.length === 0 ? (
-                    <div className="text-center text-neutral-400">
-                        <p>Aucune compétence trouvée.</p>
-                        <p className="text-sm mt-2 opacity-50">(Assurez-vous d'avoir créé la table 'skills' dans Neon)</p>
-                    </div>
-                ) : (
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        {skills.map((skill) => (
-                            <div
-                                key={skill.id}
-                                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-cyan-500/50 transition-colors text-center"
-                            >
-                                {skill.icon && (
-                                    <div className="mb-4 relative w-12 h-12">
-                                        <Image
-                                            src={`/${skill.icon}`}
-                                            alt={skill.name}
-                                            fill
-                                            className="object-contain"
-                                        />
-                                    </div>
-                                )}
-                                <div className="text-lg font-medium text-white mb-1">{skill.name}</div>
-                                <div className="text-sm text-cyan-400">{skill.level}</div>
-                            </div>
-                        ))}
-                    </div>
-                )}
+                <SkillsTabs skills={skills} />
             </div>
         </div>
     );

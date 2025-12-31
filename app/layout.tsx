@@ -32,7 +32,7 @@ export default function RootLayout({
         {children}
         {/* Footer */}
         <footer className="py-8 border-t border-white/5 text-center text-sm text-neutral-500">
-          <p>&copy; {new Date().getFullYear()} Mon Portfolio. Fait avec Next.js & Tailwind.</p>
+          <p>&copy; {new Date().getFullYear()} Tous droits réservés. Mickaël MARCO. Version 1.</p>
         </footer>
       </body>
     </html>

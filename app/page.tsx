@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -9,7 +10,9 @@ export default function Home() {
           <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-400 to-purple-600 blur opacity-40"></div>
           <div className="relative w-32 h-32 overflow-hidden rounded-full border-2 border-white/10 bg-neutral-900">
             {/* Un placeholder d'avatar pour l'instant */}
-            <div className="flex items-center justify-center w-full h-full text-4xl">👋</div>
+            <div className="flex items-center justify-center w-full h-full text-4xl">
+              <Image src="/images/Mickaël_Marco.png" alt="Avatar" width={128} height={128} />
+            </div>
           </div>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
