@@ -50,11 +50,11 @@ export default function SkillsTabs({ skills }: SkillsTabsProps) {
     return (
         <div>
             {/* Tabs Navigation */}
-            <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12 px-2">
+            <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12 px-2 font-orbitron">
                 <button
                     onClick={() => setActiveTab("technologies")}
                     className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-medium transition-all ${activeTab === "technologies"
-                        ? "bg-cyan-500 text-black shadow-[0_0_15px_rgba(6,182,212,0.5)]"
+                        ? "bg-portal-green text-black shadow-[0_0_15px_rgba(0,255,26,0.5)]"
                         : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
                         }`}
                 >
@@ -63,7 +63,7 @@ export default function SkillsTabs({ skills }: SkillsTabsProps) {
                 <button
                     onClick={() => setActiveTab("os")}
                     className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-medium transition-all ${activeTab === "os"
-                        ? "bg-cyan-500 text-black shadow-[0_0_15px_rgba(6,182,212,0.5)]"
+                        ? "bg-portal-green text-black shadow-[0_0_15px_rgba(0,255,26,0.5)]"
                         : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
                         }`}
                 >
@@ -72,7 +72,7 @@ export default function SkillsTabs({ skills }: SkillsTabsProps) {
                 <button
                     onClick={() => setActiveTab("divers")}
                     className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-medium transition-all ${activeTab === "divers"
-                        ? "bg-cyan-500 text-black shadow-[0_0_15px_rgba(6,182,212,0.5)]"
+                        ? "bg-portal-green text-black shadow-[0_0_15px_rgba(0,255,26,0.5)]"
                         : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
                         }`}
                 >
@@ -90,7 +90,7 @@ export default function SkillsTabs({ skills }: SkillsTabsProps) {
                     {activeSkills.map((skill) => (
                         <div
                             key={skill.id}
-                            className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-cyan-500/50 hover:bg-white/10 transition-all group"
+                            className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-portal-green/50 hover:bg-white/10 transition-all group"
                         >
                             {skill.icon && (
                                 <div className="mb-4 relative w-12 h-12 transition-all duration-300">
@@ -103,7 +103,7 @@ export default function SkillsTabs({ skills }: SkillsTabsProps) {
                                 </div>
                             )}
                             <div className="text-lg font-medium text-white mb-1">{skill.name}</div>
-                            <div className="text-sm text-cyan-400">{skill.level}</div>
+                            <div className="text-sm text-portal-glow">{skill.level}</div>
                         </div>
                     ))}
                 </div>

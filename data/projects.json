@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Portfolio V1",
+        "description": "Portfolio personnel développé en HTML, CSS et JS.",
+        "link": "https://github.com/mickael68/PortfolioV1",
+        "type": "Personnel"
+    },
+    {
+        "id": 2,
+        "title": "Portfolio V2",
+        "description": "Portfolio personnel développé avec Next.js et Tailwind CSS.",
+        "link": "https://github.com/mickael68/PortfolioV2",
+        "type": "Personnel"
+    },
+    {
+        "id": 3,
+        "title": "E-Commerce Demo",
+        "description": "Une boutique en ligne fictive avec panier et paiement Stripe.",
+        "link": "https://github.com/mickael68/ecommerce-demo",
+        "type": "Formation"
+    },
+    {
+        "id": 4,
+        "title": "Task Manager",
+        "description": "Une application de gestion de tâches simple et intuitive.",
+        "link": "https://github.com/mickael68/task-manager",
+        "type": "Personnel"
+    }
+]

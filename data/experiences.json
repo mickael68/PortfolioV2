@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Développeur Magento 2 - Stage de 4 mois",
+        "company": "WebTotem",
+        "start_date": "2025-03-10",
+        "end_date": "2025-07-10",
+        "description": "Développement d'applications web avec Magento 2.",
+        "type": "Professionnel"
+    },
+    {
+        "id": 2,
+        "title": "Développeur Ruby on Rails - Stage de 5 mois",
+        "company": "CTAI",
+        "start_date": "2026-02-16",
+        "end_date": "2026-07-10",
+        "description": "Développement d'applications web avec Ruby on Rails.",
+        "type": "Professionnel"
+    },
+    {
+        "id": 3,
+        "title": "Baccalauréat Général",
+        "company": "Lycée",
+        "start_date": "2020-09-01",
+        "end_date": "2023-06-30",
+        "description": "Baccalauréat Général",
+        "type": "Académique"
+    },
+    {
+        "id": 4,
+        "title": "Étudiant en Informatique",
+        "company": "UHA 4.0",
+        "start_date": "2024-09-02",
+        "end_date": null,
+        "description": "Préparation à la Licence Professionnelle Métiers de l’Informatique en mode projets.",
+        "type": "Académique"
+    }
+]
