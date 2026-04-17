@@ -39,7 +39,7 @@ export default function Home() {
           Passionné par la création d'expériences numériques modernes, performantes et esthétiques, à travers toutes les dimensions.
         </p>
         
-        <div className="flex gap-4 relative z-10 font-orbitron">
+        <div className="flex gap-4 relative z-10 font-bangers tracking-wider">
           <Link
             href="/projets"
             className="px-8 py-3 rounded-full bg-portal-green text-space-dark font-bold hover:bg-rick-green transition-colors shadow-[0_0_15px_rgba(0,255,26,0.4)] hover:shadow-[0_0_25px_rgba(151,206,76,0.6)]"

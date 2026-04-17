@@ -34,7 +34,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
     return (
         <div>
             {/* Boutons de Filtre */}
-            <div className="flex flex-wrap justify-center gap-4 mb-12 font-orbitron">
+            <div className="flex flex-wrap justify-center gap-4 mb-12 font-bangers tracking-wide">
                 {filtres.map((f) => (
                     <button
                         key={f.value}
@@ -66,7 +66,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                     className="object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100"
                                 />
                             ) : (
-                                <div className="absolute inset-0 bg-neutral-800 flex items-center justify-center text-neutral-700 text-4xl font-bold opacity-30 select-none">
+                                <div className="absolute inset-0 bg-neutral-800 flex items-center justify-center text-neutral-700 text-4xl font-bold opacity-30 select-none font-bangers">
                                     {projet.titre.charAt(0)}
                                 </div>
                             )}
@@ -74,7 +74,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
 
                             {/* Badge Type */}
                             {projet.type && (
-                                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider font-orbitron z-10 ${projet.type === 'Professionnel' ? 'bg-portal-green/20 text-portal-green' :
+                                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider font-bangers z-10 ${projet.type === 'Professionnel' ? 'bg-portal-green/20 text-portal-green' :
                                     projet.type === 'Personnel' ? 'bg-rick-green/20 text-rick-green' :
                                         projet.type === 'Formation' ? 'bg-teal-500/20 text-teal-400' :
                                             'bg-neutral-500/20 text-neutral-400'
@@ -85,11 +85,11 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                         </div>
 
                         <div className="p-6 relative">
-                            <h4 className="text-xl font-bold text-white mb-2 group-hover:text-portal-green transition-colors">{projet.titre}</h4>
+                            <h4 className="text-xl font-bold text-white mb-2 group-hover:text-portal-green transition-colors font-bangers tracking-wide">{projet.titre}</h4>
                             <p className="text-sm text-neutral-400 mb-6 line-clamp-2">
                                 {projet.description || "Description du projet..."}
                             </p>
-                            <span className="inline-flex items-center text-portal-green text-sm font-medium gap-2 font-orbitron">
+                            <span className="inline-flex items-center text-portal-green text-sm font-medium gap-2 font-bangers tracking-wider">
                                 En savoir plus
                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -135,7 +135,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                             </button>
                             
                             <div className="flex flex-wrap gap-2 mb-4">
-                                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider font-orbitron ${
+                                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider font-bangers ${
                                     projetSelectionne.type === 'Professionnel' ? 'bg-portal-green/20 text-portal-green' :
                                     projetSelectionne.type === 'Personnel' ? 'bg-rick-green/20 text-rick-green' :
                                     'bg-teal-500/20 text-teal-400'
@@ -144,7 +144,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                 </span>
                             </div>
 
-                            <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 font-orbitron drop-shadow-lg">{projetSelectionne.titre}</h3>
+                            <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 font-bangers tracking-wider drop-shadow-lg">{projetSelectionne.titre}</h3>
                             
                             <div className="space-y-6 text-neutral-300 leading-relaxed">
                                 <p className="text-lg italic text-neutral-400">{projetSelectionne.description}</p>
@@ -155,10 +155,10 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                             {/* Technologies */}
                             {projetSelectionne.technologies && projetSelectionne.technologies.length > 0 && (
                                 <div className="mt-8">
-                                    <h4 className="text-sm font-bold text-portal-green uppercase tracking-widest mb-4 font-orbitron">Technologies utilisées</h4>
+                                    <h4 className="text-sm font-bold text-portal-green uppercase tracking-widest mb-4 font-bangers">Technologies utilisées</h4>
                                     <div className="flex flex-wrap gap-2">
                                         {projetSelectionne.technologies.map((tech) => (
-                                            <span key={tech} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-sm text-neutral-300">
+                                            <span key={tech} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs font-mono text-neutral-300">
                                                 {tech}
                                             </span>
                                         ))}
@@ -173,7 +173,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                         href={projetSelectionne.lien} 
                                         target="_blank" 
                                         rel="noopener noreferrer" 
-                                        className="px-8 py-3 rounded-xl bg-portal-green text-space-dark font-bold hover:bg-rick-green transition-all shadow-[0_0_20px_rgba(0,255,26,0.3)] hover:shadow-[0_0_30px_rgba(151,206,76,0.5)] font-orbitron flex items-center gap-2"
+                                        className="px-8 py-3 rounded-xl bg-portal-green text-space-dark font-bold hover:bg-rick-green transition-all shadow-[0_0_20px_rgba(0,255,26,0.3)] hover:shadow-[0_0_30px_rgba(151,206,76,0.5)] font-bangers tracking-wider flex items-center gap-2"
                                     >
                                         Consulter sur GitHub
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -16,12 +16,12 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0c10]/80 backdrop-blur-md border-b border-white/5">
       <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
-        <Link href="/" className="text-xl font-bold tracking-tighter text-white hover:text-portal-green transition-colors drop-shadow-[0_0_8px_var(--color-portal-green)] font-orbitron">
+        <Link href="/" className="text-2xl font-bold tracking-tighter text-white hover:text-portal-green transition-colors drop-shadow-[0_0_8px_var(--color-portal-green)] font-bangers">
           Portfolio
         </Link>
         
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-6 text-sm font-medium">
+        <ul className="hidden md:flex gap-6 text-xs font-mono uppercase tracking-widest">
           {navItems.map((item) => (
             <li key={item.name}>
               <Link href={item.href} className="text-neutral-200 hover:text-portal-green transition-colors">

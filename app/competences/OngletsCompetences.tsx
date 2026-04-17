@@ -43,7 +43,7 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
     return (
         <div>
             {/* Navigation des Onglets */}
-            <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12 px-2 font-orbitron">
+            <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12 px-2 font-bangers tracking-wide">
                 <button
                     onClick={() => setOngletActif("technologies")}
                     className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-medium transition-all ${ongletActif === "technologies"
@@ -95,8 +95,8 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
                                     />
                                 </div>
                             )}
-                            <div className="text-lg font-medium text-white mb-1 font-orbitron">{c.nom}</div>
-                            <div className="text-sm text-portal-glow">{c.niveau}</div>
+                            <div className="text-lg font-medium text-white mb-1 font-bangers tracking-wide">{c.nom}</div>
+                            <div className="text-xs text-portal-glow font-mono uppercase">{c.niveau}</div>
                         </div>
                     ))}
                 </div>

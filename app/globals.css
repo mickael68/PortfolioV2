@@ -13,7 +13,8 @@ html {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-space-grotesk);
-  --font-orbitron: var(--font-orbitron);
+  --font-bangers: var(--font-bangers);
+  --font-mono: var(--font-mono);
   
   /* Rick & Morty Theme Colors */
   --color-portal-green: #00ff1a;
@@ -38,13 +39,14 @@ body {
     radial-gradient(1px 1px at 190px 80px, #ffffff, rgba(0,0,0,0));
   background-size: 200px 200px;
   color: var(--foreground);
-  font-family: var(--font-space-grotesk), ui-sans-serif, system-ui;
+  font-family: var(--font-sans), ui-sans-serif, system-ui;
   min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-orbitron), sans-serif;
+  font-family: var(--font-bangers), sans-serif;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 @keyframes slideUpFade {

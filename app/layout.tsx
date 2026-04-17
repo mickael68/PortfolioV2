@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
-import { Orbitron, Space_Grotesk } from "next/font/google";
+import { Bangers, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 
-const orbitron = Orbitron({
-  variable: "--font-orbitron",
+const bangers = Bangers({
+  weight: "400",
+  variable: "--font-bangers",
   subsets: ["latin"],
 });
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -24,9 +30,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body
-        className={`${orbitron.variable} ${spaceGrotesk.variable} antialiased bg-[#0a0c10] text-neutral-200 selection:bg-portal-green/40 font-sans`}
+        className={`${bangers.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-[#0a0c10] text-neutral-200 selection:bg-portal-green/40 font-sans`}
       >
         <Navbar />
         {children}
