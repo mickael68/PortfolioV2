@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "titre": "Portfolio V1",
+        "description": "Portfolio personnel développé en HTML, CSS et JS.",
+        "descriptionLongue": "Ma toute première incursion dans le développement web. Ce projet m'a permis de comprendre les bases structurelles du web avant de passer à des frameworks plus complexes.",
+        "technologies": ["HTML5", "CSS3", "JavaScript"],
+        "lien": "https://github.com/mickael68/PortfolioV1",
+        "type": "Personnel",
+        "urlImage": ""
+    },
+    {
+        "id": 2,
+        "titre": "Portfolio V2",
+        "description": "Portfolio personnel développé avec Next.js et Tailwind CSS.",
+        "descriptionLongue": "Une version moderne de mon portfolio utilisant les dernières technologies du marché. Ce projet intègre le Server-Side Rendering (SSR) pour de meilleures performances SEO et Tailwind CSS pour une gestion flexible du design.",
+        "technologies": ["Next.js", "React", "Tailwind CSS", "TypeScript"],
+        "lien": "https://github.com/mickael68/PortfolioV2",
+        "type": "Personnel",
+        "urlImage": ""
+    },
+    {
+        "id": 3,
+        "titre": "Projet Agile « EPICUR »",
+        "description": "Application de la méthode Agile Scrum pour un projet collaboratif international.",
+        "descriptionLongue": "Travail de groupe réalisé en anglais avec des étudiants internationaux. L'objectif était la prise en main des outils de gestion de projet (Scrum, Slack, Confluence, Jira) à travers la création d'une vidéo de prévention.",
+        "technologies": ["Scrum", "Slack", "Confluence", "Jira"],
+        "lien": "",
+        "type": "Formation",
+        "urlImage": "images/Epicur.jpg"
+    },
+    {
+        "id": 4,
+        "titre": "Fil Rouge 1ère année",
+        "description": "Développement d'un site web dynamique complet avec système CRUD.",
+        "descriptionLongue": "Conception en autonomie d'un site web dynamique à l'UHA 4.0. Implémentation d'un système CRUD complet en PHP natif connecté à une base de données MySQL.",
+        "technologies": ["PHP", "JavaScript", "MySQL", "Bash", "HTML/CSS"],
+        "lien": "",
+        "type": "Formation",
+        "urlImage": "images/Logo.png"
+    },
+    {
+        "id": 5,
+        "titre": "Projet d'entreprise « Kageco »",
+        "description": "Développement d'un site e-commerce collaboratif avec Symfony.",
+        "descriptionLongue": "Premier projet en équipe consistant à développer une boutique en ligne pour l'entreprise Kageco. Utilisation du framework Symfony pour le back-end et intégration front-end moderne.",
+        "technologies": ["Symfony", "PHP", "MySQL", "JavaScript", "Agile"],
+        "lien": "",
+        "type": "Formation",
+        "urlImage": "images/Projet_Kageco.png"
+    },
+    {
+        "id": 6,
+        "titre": "Projet Lycéen « E-mersion »",
+        "description": "Application de covoiturage pour le lycée Henner d'Altkirch.",
+        "descriptionLongue": "Création d'une application de covoiturage destinée aux lycéens. Ce projet incluait une dimension pédagogique avec des présentations métier.",
+        "technologies": ["PHP", "JavaScript", "MySQL", "Jira", "Confluence"],
+        "lien": "",
+        "type": "Formation",
+        "urlImage": "images/Projet_E-mersion.png"
+    },
+    {
+        "id": 7,
+        "titre": "Fil Rouge 2ème année (Java)",
+        "description": "Application web dynamique avec Spring Boot et React.",
+        "descriptionLongue": "Développement d'une application complète utilisant Spring Boot pour le back-end et React pour le front-end. Intégration de tests unitaires JUnit, base de données H2 et conteneurisation via Docker.",
+        "technologies": ["Java", "Spring Boot", "React", "Docker", "JUnit", "SQL"],
+        "lien": "",
+        "type": "Formation",
+        "urlImage": ""
+    },
+    {
+        "id": 8,
+        "titre": "Fil Rouge 2ème année (Laravel)",
+        "description": "Développement d'une application web dynamique avec Laravel.",
+        "descriptionLongue": "Conception d'une application web structurée autour du framework Laravel. Focus sur la productivité, la sécurité et la propreté du code grâce à l'architecture MVC.",
+        "technologies": ["PHP", "Laravel", "MySQL", "JavaScript", "Blade"],
+        "lien": "",
+        "type": "Formation",
+        "urlImage": ""
+    },
+    {
+        "id": 9,
+        "titre": "Site Steiner (WebTotem)",
+        "description": "Développement d'un site e-commerce complexe sous Magento 2.",
+        "descriptionLongue": "Projet réalisé lors d'un stage de 4 mois en distanciel. Développement du site e-commerce pour le domaine Steiner utilisant Magento 2 et le thème Hyvä.",
+        "technologies": ["Magento 2", "PHP", "XML", "Tailwind CSS", "MySQL", "Git"],
+        "lien": "",
+        "type": "Professionnel",
+        "urlImage": "images/Steiner.jpg"
+    }
+]

@@ -81,3 +81,29 @@ h1, h2, h3, h4, h5, h6 {
 .animate-slide-up-fade {
   animation: slideUpFade 0.5s ease-out forwards;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-space-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-portal-green);
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--color-portal-green);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-rick-green);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-portal-green) var(--color-space-dark);
+}

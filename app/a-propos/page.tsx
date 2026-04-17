@@ -1,13 +1,10 @@
-import { getExperiences } from "@/lib/data";
+import { getExperiences } from "@/lib/donnees";
 
-export default async function About() {
+export default async function APropos() {
     const experiences = await getExperiences();
 
-    const professional = experiences.filter(exp => exp.type === 'Professionnel');
-    const academic = experiences.filter(exp => exp.type === 'Académique');
-
-    // fallback if no type is set (legacy data handling)
-    const others = experiences.filter(exp => !exp.type);
+    const professionnelles = experiences.filter(exp => exp.type === 'Professionnel');
+    const academiques = experiences.filter(exp => exp.type === 'Académique');
 
     return (
         <div className="min-h-screen pt-24 px-4 pb-20 bg-[#0a0c10]">
@@ -31,18 +28,18 @@ export default async function About() {
                             Expériences Pro
                         </h3>
                         <div className="space-y-8 border-l-2 border-neutral-800 pl-8 relative">
-                            {professional.map((exp) => (
+                            {professionnelles.map((exp) => (
                                 <div key={exp.id} className="relative group">
                                     <span className="absolute -left-[39px] top-1 w-5 h-5 rounded-full border-4 border-neutral-900 bg-portal-green group-hover:scale-125 transition-transform duration-300"></span>
                                     <div className="text-sm text-neutral-500 mb-1 font-mono">
-                                        {new Date(exp.start_date).getFullYear()} - {exp.end_date ? new Date(exp.end_date).getFullYear() : 'Présent'}
+                                        {new Date(exp.date_debut).getFullYear()} - {exp.date_fin ? new Date(exp.date_fin).getFullYear() : 'Présent'}
                                     </div>
-                                    <h4 className="text-xl font-bold text-white group-hover:text-portal-green transition-colors">{exp.title}</h4>
-                                    <div className="text-portal-glow mb-2">{exp.company}</div>
+                                    <h4 className="text-xl font-bold text-white group-hover:text-portal-green transition-colors">{exp.titre}</h4>
+                                    <div className="text-portal-glow mb-2">{exp.entreprise}</div>
                                     <p className="text-neutral-400 text-sm">{exp.description}</p>
                                 </div>
                             ))}
-                            {professional.length === 0 && <p className="text-neutral-500 italic">Aucune expérience professionnelle ajoutée.</p>}
+                            {professionnelles.length === 0 && <p className="text-neutral-500 italic">Aucune expérience professionnelle ajoutée.</p>}
                         </div>
                     </div>
 
@@ -56,33 +53,21 @@ export default async function About() {
                             Formation
                         </h3>
                         <div className="space-y-8 border-l-2 border-neutral-800 pl-8 relative">
-                            {academic.map((exp) => (
+                            {academiques.map((exp) => (
                                 <div key={exp.id} className="relative group">
                                     <span className="absolute -left-[39px] top-1 w-5 h-5 rounded-full border-4 border-neutral-900 bg-rick-green group-hover:scale-125 transition-transform duration-300"></span>
                                     <div className="text-sm text-neutral-500 mb-1 font-mono">
-                                        {exp.end_date ? `${new Date(exp.start_date).getFullYear()} - ${new Date(exp.end_date).getFullYear()}` : new Date(exp.start_date).getFullYear()}
+                                        {exp.date_fin ? `${new Date(exp.date_debut).getFullYear()} - ${new Date(exp.date_fin).getFullYear()}` : new Date(exp.date_debut).getFullYear()}
                                     </div>
-                                    <h4 className="text-xl font-bold text-white group-hover:text-rick-green transition-colors">{exp.title}</h4>
-                                    <div className="text-teal-400 mb-2">{exp.company}</div>
+                                    <h4 className="text-xl font-bold text-white group-hover:text-rick-green transition-colors">{exp.titre}</h4>
+                                    <div className="text-teal-400 mb-2">{exp.entreprise}</div>
                                     <p className="text-neutral-400 text-sm">{exp.description}</p>
                                 </div>
                             ))}
-                            {academic.length === 0 && <p className="text-neutral-500 italic">Aucune formation ajoutée.</p>}
+                            {academiques.length === 0 && <p className="text-neutral-500 italic">Aucune formation ajoutée.</p>}
                         </div>
                     </div>
                 </div>
-
-                {/* Fallback for others if any */}
-                {others.length > 0 && (
-                    <div className="mt-12 opacity-50">
-                        <h3 className="text-xl font-bold text-white mb-4">Autres</h3>
-                        <ul className="list-disc pl-5 text-neutral-400">
-                            {others.map(exp => (
-                                <li key={exp.id}>{exp.title} chez {exp.company}</li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
             </div>
         </div>
     );

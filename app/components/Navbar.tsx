@@ -4,9 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 
 const navItems = [
-  { name: "À propos", href: "/about" },
-  { name: "Compétences", href: "/skills" },
-  { name: "Projets", href: "/projects" },
+  { name: "À propos", href: "/a-propos" },
+  { name: "Compétences", href: "/competences" },
+  { name: "Projets", href: "/projets" },
   { name: "Contact", href: "/contact" },
 ];
 

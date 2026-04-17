@@ -1,12 +1,12 @@
-import { getProjects, Project } from "../../lib/data";
-import ProjectList from "./ProjectList";
+import { getProjets, Projet } from "../../lib/donnees";
+import ListeProjets from "./ListeProjets";
 
 export const dynamic = 'force-dynamic';
 
-export default async function Projects() {
-    let projects: Project[] = [];
+export default async function Projets() {
+    let projets: Projet[] = [];
     try {
-        projects = await getProjects();
+        projets = await getProjets();
     } catch (error) {
         console.warn("Erreur lors de la récupération des projets.", error);
     }
@@ -17,7 +17,7 @@ export default async function Projects() {
                 <h2 className="text-4xl font-bold text-white mb-4 text-center">Mes Projets</h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.3)] mx-auto rounded-full mb-12"></div>
 
-                <ProjectList projects={projects} />
+                <ListeProjets projets={projets} />
             </div>
         </div>
     );

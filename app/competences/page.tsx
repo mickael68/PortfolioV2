@@ -1,10 +1,10 @@
-import { getSkills, Skill } from "../../lib/data";
-import SkillsTabs from "./SkillsTabs";
+import { getCompetences, Competence } from "../../lib/donnees";
+import OngletsCompetences from "./OngletsCompetences";
 
-export default async function Skills() {
-    let skills: Skill[] = [];
+export default async function Competences() {
+    let competences: Competence[] = [];
     try {
-        skills = await getSkills();
+        competences = await getCompetences();
     } catch (error) {
         console.warn("Erreur lors de la récupération des compétences.", error);
     }
@@ -15,7 +15,7 @@ export default async function Skills() {
                 <h2 className="text-4xl font-bold text-white mb-4 text-center">Mes Compétences</h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.3)] mx-auto rounded-full mb-12"></div>
 
-                <SkillsTabs skills={skills} />
+                <OngletsCompetences competences={competences} />
             </div>
         </div>
     );
