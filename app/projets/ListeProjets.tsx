@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import { Projet } from "../../lib/donnees";
 import Image from "next/image";
 
-type TypeFiltre = 'All' | 'Formation' | 'Personnel' | 'Professionnel';
+type TypeFiltre = 'Formation' | 'Personnel' | 'Professionnel';
 
 export default function ListeProjets({ projets }: { projets: Projet[] }) {
-    const [filtre, setFiltre] = useState<TypeFiltre>('All');
+    const [filtre, setFiltre] = useState<TypeFiltre>('Professionnel');
     const [projetSelectionne, setProjetSelectionne] = useState<Projet | null>(null);
 
     // Gérer la touche Échap pour fermer la modale
@@ -20,12 +20,10 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
     }, []);
 
     const projetsFiltres = projets.filter(projet => {
-        if (filtre === 'All') return true;
         return projet.type === filtre;
     });
 
     const filtres: { label: string; value: TypeFiltre }[] = [
-        { label: "Tous", value: "All" },
         { label: "Projets Professionnels", value: "Professionnel" },
         { label: "Projets Personnels", value: "Personnel" },
         { label: "Projets Formation", value: "Formation" },
@@ -110,6 +108,16 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                         className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-space-dark border-2 border-portal-green/50 rounded-3xl shadow-[0_0_50px_rgba(0,255,26,0.2)] animate-in zoom-in-95 duration-300"
                         onClick={(e) => e.stopPropagation()}
                     >
+                        {/* Bouton de fermeture - Placé en haut à droite de la carte */}
+                        <button 
+                            onClick={() => setProjetSelectionne(null)}
+                            className="absolute top-6 right-6 p-2 rounded-full bg-black/60 text-white hover:text-portal-green transition-all border border-white/20 hover:border-portal-green/50 z-50 shadow-xl backdrop-blur-md"
+                        >
+                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+
                         {/* Image de couverture en haut de la modale si disponible */}
                         {projetSelectionne.urlImage && (
                             <div className="relative h-48 md:h-64 w-full overflow-hidden">
@@ -125,14 +133,6 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
 
                         {/* Contenu de la Modale */}
                         <div className={`p-8 md:p-12 relative z-10 ${projetSelectionne.urlImage ? '-mt-16' : ''}`}>
-                            <button 
-                                onClick={() => setProjetSelectionne(null)}
-                                className="absolute top-6 right-6 p-2 rounded-full bg-black/40 text-white hover:text-portal-green transition-all border border-white/10 hover:border-portal-green/50 z-20"
-                            >
-                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
                             
                             <div className="flex flex-wrap gap-2 mb-4">
                                 <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider font-bangers ${

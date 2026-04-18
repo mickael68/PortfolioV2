@@ -1,4 +1,5 @@
 import { getExperiences } from "@/lib/donnees";
+import InfosInteractives from "./InfosInteractives";
 
 export default async function APropos() {
     const experiences = await getExperiences();
@@ -12,11 +13,7 @@ export default async function APropos() {
                 <h2 className="text-4xl font-bold text-white mb-4 text-center">À propos</h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.3)] mx-auto rounded-full mb-12"></div>
 
-                <div className="prose prose-invert mx-auto text-neutral-300 mb-16">
-                    <p className="text-lg leading-relaxed text-center">
-                        Bonjour ! Je suis étudiant en informatique à l'UHA 4.0. Je suis passionné par la création de sites web ainsi que du développement logiciel. Je suis quelqu'un d'autonome, dynamique, organisé, sérieux, fait preuve d’initiative, de plus j'apprécie le travail en groupe.
-                    </p>
-                </div>
+                <InfosInteractives />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                     {/* Expériences Professionnelles */}

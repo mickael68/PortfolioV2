@@ -11,10 +11,10 @@
     {
         "id": 2,
         "titre": "Développeur Ruby on Rails - Stage de 5 mois",
-        "entreprise": "CTAI",
+        "entreprise": "CTAI Informatique",
         "date_debut": "2026-02-16",
         "date_fin": "2026-07-10",
-        "description": "Développement d'applications web avec Ruby on Rails.",
+        "description": "Développement d'applications web sous Ruby on Rails.",
         "type": "Professionnel"
     },
     {

@@ -25,6 +25,7 @@ html {
   /* Portal Animations */
   --animate-portal-spin: portalSpin 10s linear infinite;
   --animate-pulse-glow: pulseGlow 2s ease-in-out infinite;
+  --animate-spin-slow: portalSpin 6s linear infinite;
 }
 
 body {

@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import Signature from "./components/Signature";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#0a0c10] text-neutral-200">
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center min-h-screen px-4 text-center">
+      <section className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center">
         
         {/* Animated Portal Avatar Container */}
         <div className="relative mb-8 flex items-center justify-center group">
@@ -53,6 +54,7 @@ export default function Home() {
             Me contacter
           </Link>
         </div>
+        <Signature />
       </section>
     </div>
   );

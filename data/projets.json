@@ -5,9 +5,9 @@
         "description": "Portfolio personnel développé en HTML, CSS et JS.",
         "descriptionLongue": "Ma toute première incursion dans le développement web. Ce projet m'a permis de comprendre les bases structurelles du web avant de passer à des frameworks plus complexes.",
         "technologies": ["HTML5", "CSS3", "JavaScript"],
-        "lien": "https://github.com/mickael68/PortfolioV1",
+        "lien": "https://github.com/mickael68/Portfolio",
         "type": "Personnel",
-        "urlImage": ""
+        "urlImage": "images/PortfolioV1.png"
     },
     {
         "id": 2,
@@ -17,13 +17,13 @@
         "technologies": ["Next.js", "React", "Tailwind CSS", "TypeScript"],
         "lien": "https://github.com/mickael68/PortfolioV2",
         "type": "Personnel",
-        "urlImage": ""
+        "urlImage": "images/PortfolioV2.png"
     },
     {
         "id": 3,
         "titre": "Projet Agile « EPICUR »",
-        "description": "Application de la méthode Agile Scrum pour un projet collaboratif international.",
-        "descriptionLongue": "Travail de groupe réalisé en anglais avec des étudiants internationaux. L'objectif était la prise en main des outils de gestion de projet (Scrum, Slack, Confluence, Jira) à travers la création d'une vidéo de prévention.",
+        "description": "Projet de mise en application de la méthode de projet Agile « EPICUR » - Septembre 2024",
+        "descriptionLongue": "Il s'agit d'un travail de groupe en anglais avec des étudiants internationaux pour une prise en main des outils de gestion de projet. C'est un projet qui a duré une semaine et qui consiste à créer une vidéo de prévention contre l'abandon d'animaux. C'est un projet dans lequel j'ai appris à utiliser des outils collaboratifs de gestion de projet, à collaborer au sein d’une équipe pour atteindre les objectifs visés, et à exécuter les tâches attribuées en respectant les délais impartis.",
         "technologies": ["Scrum", "Slack", "Confluence", "Jira"],
         "lien": "",
         "type": "Formation",
@@ -32,9 +32,9 @@
     {
         "id": 4,
         "titre": "Fil Rouge 1ère année",
-        "description": "Développement d'un site web dynamique complet avec système CRUD.",
-        "descriptionLongue": "Conception en autonomie d'un site web dynamique à l'UHA 4.0. Implémentation d'un système CRUD complet en PHP natif connecté à une base de données MySQL.",
-        "technologies": ["PHP", "JavaScript", "MySQL", "Bash", "HTML/CSS"],
+        "description": "Projet en autonomie « fil rouge » 1ere année - Septembre à novembre 2024",
+        "descriptionLongue": "Développement d’un site web dynamique en autonomie en début d’année à l’UHA 4.0. J’ai conçu un site complet en créant un système CRUD en PHP connecté à une base de données MySQL via phpMyAdmin. J’ai utilisé HTML, CSS, JavaScript et PHP pour le front-end, et Bash pour cloner et déployer le projet. Ce projet m’a permis de structurer une application web, d’adapter les outils aux besoins, de travailler en autonomie, et de résoudre des problèmes techniques concrets.",
+        "technologies": ["PHP", "JavaScript", "MySQL", "Bash", "HTML/CSS", "GitLab"],
         "lien": "",
         "type": "Formation",
         "urlImage": "images/Logo.png"
@@ -42,9 +42,9 @@
     {
         "id": 5,
         "titre": "Projet d'entreprise « Kageco »",
-        "description": "Développement d'un site e-commerce collaboratif avec Symfony.",
-        "descriptionLongue": "Premier projet en équipe consistant à développer une boutique en ligne pour l'entreprise Kageco. Utilisation du framework Symfony pour le back-end et intégration front-end moderne.",
-        "technologies": ["Symfony", "PHP", "MySQL", "JavaScript", "Agile"],
+        "description": "Projet d’entreprise « Kageco » - Novembre à décembre 2024",
+        "descriptionLongue": "Développement d’un site e-commerce en groupe pour l’entreprise Kageco. C’était mon premier projet en équipe, où j’ai appris à collaborer efficacement avec d’autres développeurs pour atteindre nos objectifs. Nous avons utilisé Symfony pour le back-end (entités, contrôleurs, système CRUD) et HTML/CSS/JavaScript pour le front-end. Nous avons aussi utilisé Jira, Confluence et Slack pour la gestion des tâches, la documentation et la communication au sein du groupe. Ce projet m’a permis de renforcer mes compétences techniques tout en découvrant l'importance du travail collaboratif dans un projet structuré avec des objectifs concrets.",
+        "technologies": ["Symfony", "PHP", "MySQL", "JavaScript", "Agile", "Jira", "Confluence"],
         "lien": "",
         "type": "Formation",
         "urlImage": "images/Projet_Kageco.png"
@@ -52,9 +52,9 @@
     {
         "id": 6,
         "titre": "Projet Lycéen « E-mersion »",
-        "description": "Application de covoiturage pour le lycée Henner d'Altkirch.",
-        "descriptionLongue": "Création d'une application de covoiturage destinée aux lycéens. Ce projet incluait une dimension pédagogique avec des présentations métier.",
-        "technologies": ["PHP", "JavaScript", "MySQL", "Jira", "Confluence"],
+        "description": "Projet lycéen « E-mersion » - Janvier à février 2025",
+        "descriptionLongue": "Il s’agit d’un projet dont l’objectif était de créer une application de covoiturage pour le lycée Henner d'Altkirch. Nous nous sommes rendus sur place pour faire découvrir le métier de développeur aux lycéens. Nous n’avons pas utilisé de framework pour ce projet, mais avons travaillé avec HTML, CSS et JavaScript pour le front-end, et PHP pour le back-end. Nous avons également utilisé Jira, Confluence et Slack pour organiser les tâches, documenter le projet et communiquer en équipe. Ce projet m’a permis de renforcer mes compétences techniques, mais aussi de transmettre mes connaissances à des personnes qui n’avaient jamais programmé.",
+        "technologies": ["PHP", "JavaScript", "MySQL", "Jira", "Confluence", "Slack"],
         "lien": "",
         "type": "Formation",
         "urlImage": "images/Projet_E-mersion.png"
@@ -62,31 +62,51 @@
     {
         "id": 7,
         "titre": "Fil Rouge 2ème année (Java)",
-        "description": "Application web dynamique avec Spring Boot et React.",
-        "descriptionLongue": "Développement d'une application complète utilisant Spring Boot pour le back-end et React pour le front-end. Intégration de tests unitaires JUnit, base de données H2 et conteneurisation via Docker.",
+        "description": "Projet en autonomie « fil rouge » 2ème année - Septembre à novembre 2025",
+        "descriptionLongue": "Développement d’un site web dynamique en autonomie en début d’année à l’UHA 4.0. J’ai conçu une application web complète en Java avec un back-end développé avec Spring Boot et Maven, connecté à une base de données H2. J’ai utilisé React (JavaScript) pour le front-end et j’ai utilisé JUnit pour écrire des tests unitaires. Ce projet m’a permis de structurer une application web, d’adapter les outils aux besoins, de travailler en autonomie et de résoudre des problèmes techniques concrets.",
         "technologies": ["Java", "Spring Boot", "React", "Docker", "JUnit", "SQL"],
         "lien": "",
         "type": "Formation",
-        "urlImage": ""
+        "urlImage": "images/bataille navale.webp"
     },
     {
         "id": 8,
-        "titre": "Fil Rouge 2ème année (Laravel)",
-        "description": "Développement d'une application web dynamique avec Laravel.",
-        "descriptionLongue": "Conception d'une application web structurée autour du framework Laravel. Focus sur la productivité, la sécurité et la propreté du code grâce à l'architecture MVC.",
-        "technologies": ["PHP", "Laravel", "MySQL", "JavaScript", "Blade"],
+        "titre": "Mon école et moi",
+        "description": "Projet « Mon école et moi » (Laravel) - Novembre à décembre 2025",
+        "descriptionLongue": "Développement d’une application web dynamique avec Laravel. J'ai conçu une application web robuste en utilisant le framework PHP Laravel pour le back-end. Ce projet m’a permis de structurer une application web professionnelle, d’utiliser les outils de routing, d'authentification et d'ORM (Eloquent) adaptés aux besoins modernes.",
+        "technologies": ["PHP", "Laravel", "MySQL", "JavaScript", "HTML", "CSS"],
         "lien": "",
         "type": "Formation",
-        "urlImage": ""
+        "urlImage": "images/MonEcoleEtMoi.png"
     },
     {
         "id": 9,
-        "titre": "Site Steiner (WebTotem)",
-        "description": "Développement d'un site e-commerce complexe sous Magento 2.",
-        "descriptionLongue": "Projet réalisé lors d'un stage de 4 mois en distanciel. Développement du site e-commerce pour le domaine Steiner utilisant Magento 2 et le thème Hyvä.",
-        "technologies": ["Magento 2", "PHP", "XML", "Tailwind CSS", "MySQL", "Git"],
+        "titre": "Webtotem (Stage)",
+        "description": "Webtotem - Mars à juillet 2025 - Stage de 4 mois",
+        "descriptionLongue": "Le but de mon stage chez WebTotem était de développer un site e-commerce pour le domaine Steiner. Ce stage étant réalisé en distanciel, m'a permis de gagner en autonomie tout en développant mes compétences en communication au sein d'une équipe et avec le client.",
+        "technologies": ["Magento 2", "PHP", "XML", "Tailwind CSS", "MySQL", "Git", "Hyvä", "Jira", "Bitbucket"],
         "lien": "",
         "type": "Professionnel",
         "urlImage": "images/Steiner.jpg"
+    },
+    {
+        "id": 10,
+        "titre": "Schmidt Groupe",
+        "description": "Projet « Bon de commande » (Blazor) - Janvier à février 2026",
+        "descriptionLongue": "Projet « Bon de commande » (Blazor) - Janvier à février 2026",
+        "technologies": ["Blazor", "C#", ".NET", "Git"],
+        "lien": "",
+        "type": "Formation",
+        "urlImage": "images/SchmidtGroupe.png"
+    },
+    {
+        "id": 11,
+        "titre": "CTAI Informatique",
+        "description": "CTAI Informatique - Février à juillet 2026 - Stage de 5 mois",
+        "descriptionLongue": "Réalisations de plusieurs missions pour CTAI Informatique. Missions réalisé lors d'un stage de 5 mois en présentiel.",
+        "technologies": ["Ruby", "Ruby on Rails", "JavaScript", "Tailwind CSS", "MySQL", "Git"],
+        "lien": "",
+        "type": "Professionnel",
+        "urlImage": "images/logo-CTAI.png"
     }
 ]

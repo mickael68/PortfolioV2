@@ -202,5 +202,11 @@
         "nom": "Ruby on Rails",
         "niveau": "Débutant",
         "icone": "svg/rails-svgrepo-com.svg"
+    },
+    {
+        "id": 35,
+        "nom": ".NET",
+        "niveau": "Débutant",
+        "icone": "svg/dotnet-svgrepo-com.svg"
     }
 ]
