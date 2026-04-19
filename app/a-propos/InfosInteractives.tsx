@@ -32,6 +32,18 @@ export default function InfosInteractives() {
                                 Je suis quelqu'un d'autonome, dynamique, organisé, sérieux, fait preuve d’initiative, de plus j'apprécie le travail en groupe.
                             </p>
                         </div>
+                        <div className="pt-4">
+                            <a 
+                                href="/fichiers/MARCO_Mickael_CV.pdf" 
+                                download
+                                className="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-portal-green text-space-dark font-bold font-bangers tracking-wider hover:bg-rick-green transition-all shadow-lg"
+                            >
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                Télécharger mon CV
+                            </a>
+                        </div>
                     </div>
                 );
             case 'mobilite':
