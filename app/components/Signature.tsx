@@ -27,7 +27,7 @@ export default function Signature() {
     }, []);
 
     return (
-        <div className="mt-12 z-50 pointer-events-none select-none">
+        <div className="z-50 pointer-events-none select-none">
             <div className="relative flex items-center justify-center w-48 h-24">
                 {/* Effet de Portail */}
                 <div 

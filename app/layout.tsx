@@ -37,7 +37,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         {/* Footer */}
-        <footer className="py-8 border-t border-white/5 text-center text-sm text-neutral-500">
+        <footer className="py-4 border-t border-white/5 text-center text-sm text-neutral-500">
           <p>&copy; {new Date().getFullYear()} Tous droits réservés. Mickaël MARCO.</p>
         </footer>
       </body>
