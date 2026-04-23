@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bangers, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import ChatBot from "./components/ChatBot";
 
 const bangers = Bangers({
   weight: "400",
@@ -36,6 +37,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <ChatBot />
         {/* Footer */}
         <footer className="py-4 border-t border-white/5 text-center text-sm text-neutral-500">
           <p>&copy; {new Date().getFullYear()} Tous droits réservés. Mickaël MARCO.</p>

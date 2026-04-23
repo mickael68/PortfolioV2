@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navItems = [
   { name: "À propos", href: "/a-propos" },
@@ -12,6 +13,7 @@ const navItems = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0c10]/80 backdrop-blur-md border-b border-white/5">
@@ -21,14 +23,26 @@ export default function Navbar() {
         </Link>
         
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-6 text-xs font-mono uppercase tracking-widest">
-          {navItems.map((item) => (
-            <li key={item.name}>
-              <Link href={item.href} className="text-neutral-200 hover:text-portal-green transition-colors">
-                {item.name}
-              </Link>
-            </li>
-          ))}
+        <ul className="hidden md:flex gap-8 text-xs font-mono uppercase tracking-widest">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <li key={item.name} className="relative group">
+                <Link 
+                  href={item.href} 
+                  className={`transition-colors duration-300 ${
+                    isActive ? "text-portal-green font-bold" : "text-neutral-400 hover:text-portal-green"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+                {/* Underline for active state */}
+                {isActive && (
+                  <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-portal-green shadow-[0_0_10px_rgba(0,255,26,0.8)] rounded-full animate-in fade-in zoom-in duration-500" />
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         {/* Mobile Hamburger Button */}
@@ -47,17 +61,22 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-[#0a0c10] border-b border-white/5 px-6 py-4 flex flex-col gap-4">
-          {navItems.map((item) => (
-            <Link 
-              key={item.name} 
-              href={item.href} 
-              className="text-neutral-200 hover:text-portal-green transition-colors py-2"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[#0a0c10] border-b border-white/5 px-6 py-8 flex flex-col gap-6 animate-in slide-in-from-top duration-300">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link 
+                key={item.name} 
+                href={item.href} 
+                className={`text-lg font-bangers tracking-widest transition-colors py-2 px-4 rounded-lg ${
+                  isActive ? "bg-portal-green/10 text-portal-green" : "text-neutral-200 hover:text-portal-green hover:bg-white/5"
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
         </div>
       )}
     </nav>
