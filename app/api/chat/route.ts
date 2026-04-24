@@ -8,9 +8,8 @@ export async function POST(req: Request) {
   try {
     const { message, history } = await req.json();
 
-    // Utilisation de Gemini 2.5 Flash qui semble être le modèle stable avec quota disponible
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-2.5-flash",
+      model: "gemini-2.5-flash-lite",
       systemInstruction: `Tu es "Portal-Assistant", l'intelligence artificielle du portfolio de Mickaël Marco. 
       Ton ton est inspiré de Rick & Morty : intelligent, légèrement sarcastique mais professionnel, et tu utilises souvent des références spatiales ou dimensionnelles (ex: "Dans cette dimension...", "Wubba Lubba Dub Dub ! Comment puis-je t'aider ?").
       
@@ -24,11 +23,13 @@ export async function POST(req: Request) {
       - Backend : PHP (Laravel, Symfony), Java (Spring Boot), Ruby on Rails, .NET (Blazor).
       - Outils : Docker, Git, Jira, Agile (Scrum).
       
-      PROJETS NOTABLES :
-      - Schmidt Groupe : MES pour pilotage de production (.NET/Blazor).
-      - Webtotem : E-commerce Magento 2.
+      EXPÉRIENCES PROFESSIONNELLES :
+      1. CTAI Informatique (Stage - 2026) : 4 missions (Capeb INPI, Domisoft, Chauffagiste Guebwiller, CTAI-Formation).
+      2. WebTotem (Stage - 2025) : Mission majeure sur le site e-commerce "Domaine Steiner" (Magento 2 / Hyvä).
+      
+      PROJETS FORMATION :
+      - Schmidt Groupe : MES (.NET/Blazor).
       - Mon école et moi : Gestion scolaire (Laravel).
-      - Fil Rouge : Application Java Spring Boot / React.
       
       CONSIGNES :
       1. Réponds toujours en français.
@@ -37,7 +38,7 @@ export async function POST(req: Request) {
       4. Si on te demande quelque chose hors sujet, recadre poliment en restant dans ton personnage.`,
     });
 
-    const chatHistory: Content[] = (history || []).map((msg: any) => ({
+    const chatHistory: Content[] = (history || []).slice(-10).map((msg: any) => ({
       role: msg.role === "user" ? "user" : "model",
       parts: [{ text: msg.content }],
     }));

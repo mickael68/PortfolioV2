@@ -46,10 +46,10 @@ export default function ChatBot() {
       if (data.text) {
         setMessages((prev) => [...prev, { role: "assistant", content: data.text }]);
       } else {
-        setMessages((prev) => [...prev, { role: "assistant", content: "Erreur dimensionnelle. Vérifie ta clé API ou réessaie plus tard !" }]);
+        setMessages((prev) => [...prev, { role: "assistant", content: "Mince, une interférence dans le portail ! Réessaie dans quelques instants, Morty." }]);
       }
     } catch (error) {
-      setMessages((prev) => [...prev, { role: "assistant", content: "Le portail est fermé. Erreur de connexion." }]);
+      setMessages((prev) => [...prev, { role: "assistant", content: "Le portail est fermé pour maintenance dimensionnelle. Réessaie plus tard !" }]);
     } finally {
       setIsLoading(false);
     }
@@ -122,8 +122,9 @@ export default function ChatBot() {
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Écris ton message..."
-                  className="w-full bg-neutral-800 border border-neutral-700 rounded-full py-2.5 px-5 pr-12 text-sm focus:outline-none focus:border-portal-green transition-colors text-neutral-200"
+                  disabled={isLoading}
+                  placeholder={isLoading ? "Portail en cours d'ouverture..." : "Écris ton message..."}
+                  className="w-full bg-neutral-800 border border-neutral-700 rounded-full py-2.5 px-5 pr-12 text-sm focus:outline-none focus:border-portal-green transition-colors text-neutral-200 disabled:opacity-50"
                 />
                 <button 
                   type="submit"

@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mickaël MARCO | Développeur Web Interdimensionnel",
+  title: "Mickaël MARCO | Développeur Web Full Stack - Interdimensionnel",
   description: "Portfolio de Mickaël MARCO, développeur web passionné par les expériences numériques modernes et de haute performance.",
 };
 

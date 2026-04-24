@@ -9,7 +9,14 @@ export interface Projet {
     technologies?: string[];
     lien: string;
     type: 'Formation' | 'Personnel' | 'Professionnel';
+    entreprise?: string;
     urlImage?: string;
+    missions?: {
+        titre: string;
+        description: string;
+        technologies?: string[];
+        descriptionLongue?: string;
+    }[];
 }
 
 export interface Competence {

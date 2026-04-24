@@ -21,7 +21,7 @@
     },
     {
         "id": 3,
-        "titre": "Projet Agile « EPICUR »",
+        "titre": "EPICUR",
         "description": "Projet de mise en application de la méthode de projet Agile « EPICUR » - Septembre 2024",
         "descriptionLongue": "Il s'agit d'un travail de groupe en anglais avec des étudiants internationaux pour une prise en main des outils de gestion de projet. C'est un projet qui a duré une semaine et qui consiste à créer une vidéo de prévention contre l'abandon d'animaux. C'est un projet dans lequel j'ai appris à utiliser des outils collaboratifs de gestion de projet, à collaborer au sein d’une équipe pour atteindre les objectifs visés, et à exécuter les tâches attribuées en respectant les délais impartis.",
         "technologies": ["Scrum", "Slack", "Confluence", "Jira"],
@@ -41,7 +41,7 @@
     },
     {
         "id": 5,
-        "titre": "Projet d'entreprise « Kageco »",
+        "titre": "Kageco",
         "description": "Projet d’entreprise « Kageco » - Novembre à décembre 2024",
         "descriptionLongue": "Développement d’un site e-commerce en groupe pour l’entreprise Kageco. C’était mon premier projet en équipe, où j’ai appris à collaborer efficacement avec d’autres développeurs pour atteindre nos objectifs. Nous avons utilisé Symfony pour le back-end (entités, contrôleurs, système CRUD) et HTML/CSS/JavaScript pour le front-end. Nous avons aussi utilisé Jira, Confluence et Slack pour la gestion des tâches, la documentation et la communication au sein du groupe. Ce projet m’a permis de renforcer mes compétences techniques tout en découvrant l'importance du travail collaboratif dans un projet structuré avec des objectifs concrets.",
         "technologies": ["Symfony", "PHP", "MySQL", "JavaScript", "Agile", "Jira", "Confluence", "Git"],
@@ -51,7 +51,7 @@
     },
     {
         "id": 6,
-        "titre": "Projet Lycéen « E-mersion »",
+        "titre": "E-mersion",
         "description": "Projet lycéen « E-mersion » - Janvier à février 2025",
         "descriptionLongue": "Il s’agit d’un projet dont l’objectif était de créer une application de covoiturage pour le lycée Henner d'Altkirch. Nous nous sommes rendus sur place pour faire découvrir le métier de développeur aux lycéens. Nous n’avons pas utilisé de framework pour ce projet, mais avons travaillé avec HTML, CSS et JavaScript pour le front-end, et PHP pour le back-end. Nous avons également utilisé Jira, Confluence et Slack pour organiser les tâches, documenter le projet et communiquer en équipe. Ce projet m’a permis de renforcer mes compétences techniques, mais aussi de transmettre mes connaissances à des personnes qui n’avaient jamais programmé.",
         "technologies": ["PHP", "JavaScript", "MySQL", "Jira", "Confluence", "Slack", "Git"],
@@ -61,7 +61,7 @@
     },
     {
         "id": 7,
-        "titre": "Fil Rouge 2ème année (Java)",
+        "titre": "Fil Rouge 2ème année",
         "description": "Projet en autonomie « fil rouge » 2ème année - Septembre à novembre 2025",
         "descriptionLongue": "Développement d’un site web dynamique en autonomie en début d’année à l’UHA 4.0. J’ai conçu une application web complète en Java avec un back-end développé avec Spring Boot et Maven, connecté à une base de données H2. J’ai utilisé React (JavaScript) pour le front-end et j’ai utilisé JUnit pour écrire des tests unitaires. Ce projet m’a permis de structurer une application web, d’adapter les outils aux besoins, de travailler en autonomie et de résoudre des problèmes techniques concrets.",
         "technologies": ["Java", "Spring Boot", "React", "Docker", "JUnit", "SQL", "Git"],
@@ -80,24 +80,23 @@
         "urlImage": "images/MonEcoleEtMoi.png"
     },
     {
-        "id": 11,
-        "titre": "CTAI Informatique",
-        "description": "Stage Développeur Full Stack — Février à Juillet 2026",
-        "descriptionLongue": "Actuellement en stage de 5 mois en présentiel, je participe au développement et à la maintenance d'applications métiers. Mes missions incluent la conception de nouvelles fonctionnalités et l'optimisation de bases de données au sein d'un environnement Ruby on Rails.",
-        "technologies": ["Ruby", "Ruby on Rails", "JavaScript", "Tailwind CSS", "MySQL", "Git"],
-        "lien": "",
-        "type": "Professionnel",
-        "urlImage": "images/CTAI.png"
-    },
-    {
         "id": 9,
-        "titre": "Webtotem (Stage)",
-        "description": "Webtotem - Mars à juillet 2025 - Stage de 4 mois",
+        "titre": "Stage WebTotem",
+        "description": "Stage Développeur Magento 2 — 2025",
         "descriptionLongue": "Dans le cadre de mon cursus à l’UHA 4.0, j’ai rejoint l'équipe de WebTotem pour un stage de 4 mois. Cette expérience m'a permis de me spécialiser dans le développement e-commerce sur Magento 2.\n\nCe stage, effectué entièrement à distance, a été une excellente opportunité pour renforcer mon autonomie. J'y ai travaillé sur l'ensemble de la chaîne de développement (Full Stack) pour le site du domaine Steiner, en intervenant aussi bien sur le front-end que sur le back-end. J’ai mis en œuvre des technologies comme PHP, XML, JavaScript, TailwindCSS et Magento 2 (Hyvä). J’ai également géré la base de données MySQL et utilisé Git/Bitbucket pour le versioning. L'organisation du projet sous Jira m'a permis de suivre rigoureusement l'avancement des tâches et de respecter les priorités du client.\n\nCe stage a été une opportunité majeure pour renforcer mon autonomie, mes compétences techniques et ma compréhension des bonnes pratiques e-commerce (performance, ergonomie) dans un cadre professionnel concret.",
-        "technologies": ["Magento 2", "PHP", "XML", "Tailwind CSS", "MySQL", "Git", "Hyvä", "Jira", "Bitbucket"],
+        "technologies": ["Magento 2", "PHP", "XML", "Tailwind CSS", "MySQL", "Git", "Jira", "Bitbucket"],
         "lien": "",
         "type": "Professionnel",
-        "urlImage": "images/Steiner.jpg"
+        "entreprise": "WebTotem",
+        "urlImage": "images/Steiner.jpg",
+        "missions": [
+            {
+                "titre": "Domaine Steiner",
+                "description": "Développement Full Stack d'un site e-commerce viticole.",
+                "technologies": ["Magento 2", "Hyvä", "Tailwind CSS", "PHP"],
+                "descriptionLongue": "Intervention sur l'ensemble de la chaîne de développement pour le site du domaine Steiner. Optimisation des performances via Hyvä, gestion du catalogue et personnalisation du tunnel d'achat."
+            }
+        ]
     },
     {
         "id": 10,
@@ -107,6 +106,44 @@
         "technologies": ["Blazor", "C#", ".NET", "Git"],
         "lien": "",
         "type": "Formation",
+        "entreprise": "Schmidt Groupe",
         "urlImage": "images/SchmidtGroupe.png"
+    },
+    {
+        "id": 11,
+        "titre": "Stage CTAI Informatique",
+        "description": "Stage Développeur Full Stack Ruby on Rails — 2026",
+        "descriptionLongue": "Durant ce stage de 5 mois, j'ai eu l'opportunité de travailler sur 4 projets majeurs au sein de l'entreprise CTAI Informatique. Cette expérience a été cruciale pour approfondir mes compétences en Ruby on Rails et en gestion de bases de données MySQL.",
+        "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Tailwind CSS", "Git"],
+        "lien": "",
+        "type": "Professionnel",
+        "entreprise": "CTAI Informatique",
+        "urlImage": "images/CTAI.png",
+        "missions": [
+            {
+                "titre": "Capeb INPI",
+                "description": "Outil d'extraction de données légales via l'API de l'INPI.",
+                "technologies": ["Ruby on Rails", "API INPI", "PostgreSQL"],
+                "descriptionLongue": "Développement d'un outil spécifique pour la Capeb permettant d'extraire et de traiter des données provenant de l'API de l'INPI. Ce projet a nécessité une gestion rigoureuse des flux de données et une transformation efficace en formats exploitables."
+            },
+            {
+                "titre": "Domisoft",
+                "description": "Optimisation du système de facturation et devis.",
+                "technologies": ["Ruby on Rails", "JavaScript", "PostgreSQL"],
+                "descriptionLongue": "Amélioration fonctionnelle et technique du module de facturation et de devis de la solution Domisoft. Travail sur la précision des calculs, la génération de PDF et l'expérience utilisateur pour la gestion comptable."
+            },
+            {
+                "titre": "Chauffagiste Guebwiller",
+                "description": "Refonte du site avec carte interactive style AirBNB.",
+                "technologies": ["Ruby on Rails", "Google Maps API", "Tailwind CSS"],
+                "descriptionLongue": "Refonte complète du site web avec l'intégration d'une carte interactive (Google Maps) inspirée du style AirBNB pour localiser les artisans. Focus sur l'ergonomie et la recherche géographique."
+            },
+            {
+                "titre": "CTAI-Formation",
+                "description": "Refonte du site avec gestion des actualités.",
+                "technologies": ["Ruby on Rails", "JavaScript", "MySQL"],
+                "descriptionLongue": "Modernisation complète de la plateforme de formation de CTAI. Mise en place d'un système de gestion des actualités et optimisation du catalogue de formations pour un meilleur SEO et une navigation fluide."
+            }
+        ]
     }
 ]

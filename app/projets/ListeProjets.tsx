@@ -70,25 +70,37 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                             )}
                             <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 to-transparent opacity-60"></div>
 
-                            {/* Badge Type */}
-                            {projet.type && (
-                                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider font-bangers z-10 ${projet.type === 'Professionnel' ? 'bg-portal-green/20 text-portal-green' :
-                                    projet.type === 'Personnel' ? 'bg-rick-green/20 text-rick-green' :
-                                        projet.type === 'Formation' ? 'bg-teal-500/20 text-teal-400' :
-                                            'bg-neutral-500/20 text-neutral-400'
-                                    }`}>
-                                    {projet.type}
-                                </div>
-                            )}
+                            {/* Badge Type & Missions */}
+                            <div className="absolute top-4 right-4 flex flex-col items-end gap-2 z-10">
+                                {projet.type && (
+                                    <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider font-bangers ${projet.type === 'Professionnel' ? 'bg-portal-green/20 text-portal-green' :
+                                        projet.type === 'Personnel' ? 'bg-rick-green/20 text-rick-green' :
+                                            projet.type === 'Formation' ? 'bg-teal-500/20 text-teal-400' :
+                                                'bg-neutral-500/20 text-neutral-400'
+                                        }`}>
+                                        {projet.type}
+                                    </div>
+                                )}
+                                {projet.missions && (
+                                    <div className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider font-bangers bg-white/10 text-white border border-white/20 backdrop-blur-md">
+                                        {projet.missions.length} Mission{projet.missions.length > 1 ? 's' : ''}
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                         <div className="p-6 relative">
+                            {projet.entreprise && (
+                                <p className="text-[10px] uppercase tracking-[0.2em] text-portal-green/70 mb-1 font-bold">
+                                    {projet.entreprise}
+                                </p>
+                            )}
                             <h4 className="text-xl font-bold text-white mb-2 group-hover:text-portal-green transition-colors font-bangers tracking-wide">{projet.titre}</h4>
                             <p className="text-sm text-neutral-400 mb-6 line-clamp-2">
                                 {projet.description || "Description du projet..."}
                             </p>
                             <span className="inline-flex items-center text-portal-green text-sm font-medium gap-2 font-bangers tracking-wider">
-                                En savoir plus
+                                {projet.missions ? "Voir les missions" : "En savoir plus"}
                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
@@ -105,10 +117,10 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                     onClick={() => setProjetSelectionne(null)}
                 >
                     <div 
-                        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-space-dark border-2 border-portal-green/50 rounded-3xl shadow-[0_0_50px_rgba(0,255,26,0.2)] animate-in zoom-in-95 duration-300"
+                        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-space-dark border-2 border-portal-green/50 rounded-3xl shadow-[0_0_50px_rgba(0,255,26,0.2)] animate-in zoom-in-95 duration-300 scrollbar-thin scrollbar-thumb-portal-green"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        {/* Bouton de fermeture - Placé en haut à droite de la carte */}
+                        {/* Bouton de fermeture */}
                         <button 
                             onClick={() => setProjetSelectionne(null)}
                             className="absolute top-6 right-6 p-2 rounded-full bg-black/60 text-white hover:text-portal-green transition-all border border-white/20 hover:border-portal-green/50 z-50 shadow-xl backdrop-blur-md"
@@ -118,7 +130,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                             </svg>
                         </button>
 
-                        {/* Image de couverture en haut de la modale si disponible */}
+                        {/* Image de couverture */}
                         {projetSelectionne.urlImage && (
                             <div className="relative h-48 md:h-64 w-full overflow-hidden">
                                 <Image 
@@ -134,7 +146,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                         {/* Contenu de la Modale */}
                         <div className={`p-8 md:p-12 relative z-10 ${projetSelectionne.urlImage ? '-mt-16' : ''}`}>
                             
-                            <div className="flex flex-wrap gap-2 mb-4">
+                            <div className="flex flex-wrap items-center gap-3 mb-4">
                                 <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider font-bangers ${
                                     projetSelectionne.type === 'Professionnel' ? 'bg-portal-green/20 text-portal-green' :
                                     projetSelectionne.type === 'Personnel' ? 'bg-rick-green/20 text-rick-green' :
@@ -142,6 +154,11 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                 }`}>
                                     {projetSelectionne.type}
                                 </span>
+                                {projetSelectionne.entreprise && (
+                                    <span className="text-xs uppercase tracking-widest text-neutral-400 font-bold">
+                                        | {projetSelectionne.entreprise}
+                                    </span>
+                                )}
                             </div>
 
                             <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 font-bangers tracking-wider drop-shadow-lg">{projetSelectionne.titre}</h3>
@@ -152,10 +169,34 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                 <p className="whitespace-pre-wrap">{projetSelectionne.descriptionLongue || "Aucune description détaillée disponible pour le moment."}</p>
                             </div>
 
-                            {/* Technologies */}
+                            {/* Section Missions si elles existent */}
+                            {projetSelectionne.missions && (
+                                <div className="mt-12">
+                                    <h4 className="text-2xl font-bold text-portal-green mb-8 font-bangers tracking-widest uppercase">Missions réalisées</h4>
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        {projetSelectionne.missions.map((mission, index) => (
+                                            <div key={index} className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-portal-green/30 transition-all group">
+                                                <h5 className="text-lg font-bold text-white mb-3 group-hover:text-portal-green transition-colors font-bangers">{mission.titre}</h5>
+                                                <p className="text-sm text-neutral-400 mb-4">{mission.description}</p>
+                                                {mission.technologies && (
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {mission.technologies.map(t => (
+                                                            <span key={t} className="text-[10px] px-2 py-0.5 rounded bg-white/10 text-neutral-300 border border-white/5 font-mono">
+                                                                {t}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Technologies globales */}
                             {projetSelectionne.technologies && projetSelectionne.technologies.length > 0 && (
-                                <div className="mt-8">
-                                    <h4 className="text-sm font-bold text-portal-green uppercase tracking-widest mb-4 font-bangers">Technologies utilisées</h4>
+                                <div className="mt-12">
+                                    <h4 className="text-sm font-bold text-portal-green uppercase tracking-widest mb-4 font-bangers">Compétences</h4>
                                     <div className="flex flex-wrap gap-2">
                                         {projetSelectionne.technologies.map((tech) => (
                                             <span key={tech} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs font-mono text-neutral-300">
