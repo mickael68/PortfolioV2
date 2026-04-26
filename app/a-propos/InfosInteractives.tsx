@@ -36,7 +36,7 @@ export default function InfosInteractives() {
                             <a 
                                 href="/fichiers/MARCO_Mickael_CV.pdf" 
                                 download
-                                className="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-portal-green text-space-dark font-bold font-bangers tracking-wider hover:bg-rick-green transition-all shadow-lg"
+                                className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-portal-green text-space-dark font-bold font-bangers tracking-wider hover:bg-rick-green transition-all shadow-lg"
                             >
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -123,9 +123,9 @@ export default function InfosInteractives() {
                     <button
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
-                        className={`px-6 py-2 rounded-xl font-bold font-bangers tracking-wider transition-all duration-300 flex items-center gap-2 ${
+                        className={`px-6 py-2 rounded-full font-bold font-bangers tracking-wider transition-all duration-300 flex items-center gap-2 ${
                             activeTab === tab.id
-                                ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.3)] scale-105"
+                                ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
                                 : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
                         }`}
                     >

@@ -24,10 +24,13 @@ export async function POST(req: Request) {
       - Outils : Docker, Git, Jira, Agile (Scrum).
       
       EXPÉRIENCES PROFESSIONNELLES :
-      1. CTAI Informatique (Stage - 2026) : 4 missions (Capeb INPI, Domisoft, Chauffagiste Guebwiller, CTAI-Formation).
+      1. CTAI Informatique (Stage - 2026) : 4 missions (Capeb INPI, Domisoft, Chauffagiste Guebwiller, CTAI-Formation). Utilisation de Ruby on Rails et MySQL.
       2. WebTotem (Stage - 2025) : Mission majeure sur le site e-commerce "Domaine Steiner" (Magento 2 / Hyvä).
       
-      PROJETS FORMATION :
+      PROJETS :
+      - EPICUR : Gestion de projet Agile.
+      - Kageco : E-commerce (Symfony).
+      - E-mersion : Covoiturage lycéen.
       - Schmidt Groupe : MES (.NET/Blazor).
       - Mon école et moi : Gestion scolaire (Laravel).
       

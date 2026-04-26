@@ -88,13 +88,14 @@
         "lien": "",
         "type": "Professionnel",
         "entreprise": "WebTotem",
-        "urlImage": "images/Steiner.jpg",
+        "urlImage": "images/WebTotem.png",
         "missions": [
             {
                 "titre": "Domaine Steiner",
                 "description": "Développement Full Stack d'un site e-commerce viticole.",
                 "technologies": ["Magento 2", "Hyvä", "Tailwind CSS", "PHP"],
-                "descriptionLongue": "Intervention sur l'ensemble de la chaîne de développement pour le site du domaine Steiner. Optimisation des performances via Hyvä, gestion du catalogue et personnalisation du tunnel d'achat."
+                "descriptionLongue": "Intervention sur l'ensemble de la chaîne de développement pour le site du domaine Steiner. Optimisation des performances via Hyvä, gestion du catalogue et personnalisation du tunnel d'achat.",
+                "urlImage": "images/Steiner.jpg"
             }
         ]
     },
@@ -123,25 +124,25 @@
             {
                 "titre": "Capeb INPI",
                 "description": "Outil d'extraction de données légales via l'API de l'INPI.",
-                "technologies": ["Ruby on Rails", "API INPI", "PostgreSQL"],
+                "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "API INPI", "Bootstrap", "Git"],
                 "descriptionLongue": "Développement d'un outil spécifique pour la Capeb permettant d'extraire et de traiter des données provenant de l'API de l'INPI. Ce projet a nécessité une gestion rigoureuse des flux de données et une transformation efficace en formats exploitables."
             },
             {
                 "titre": "Domisoft",
                 "description": "Optimisation du système de facturation et devis.",
-                "technologies": ["Ruby on Rails", "JavaScript", "PostgreSQL"],
+                "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Tailwind CSS", "Git"],
                 "descriptionLongue": "Amélioration fonctionnelle et technique du module de facturation et de devis de la solution Domisoft. Travail sur la précision des calculs, la génération de PDF et l'expérience utilisateur pour la gestion comptable."
             },
             {
                 "titre": "Chauffagiste Guebwiller",
                 "description": "Refonte du site avec carte interactive style AirBNB.",
-                "technologies": ["Ruby on Rails", "Google Maps API", "Tailwind CSS"],
+                "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Google Maps API", "Tailwind CSS", "Git"],
                 "descriptionLongue": "Refonte complète du site web avec l'intégration d'une carte interactive (Google Maps) inspirée du style AirBNB pour localiser les artisans. Focus sur l'ergonomie et la recherche géographique."
             },
             {
                 "titre": "CTAI-Formation",
                 "description": "Refonte du site avec gestion des actualités.",
-                "technologies": ["Ruby on Rails", "JavaScript", "MySQL"],
+                "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Tailwind CSS", "Git"],
                 "descriptionLongue": "Modernisation complète de la plateforme de formation de CTAI. Mise en place d'un système de gestion des actualités et optimisation du catalogue de formations pour un meilleur SEO et une navigation fluide."
             }
         ]

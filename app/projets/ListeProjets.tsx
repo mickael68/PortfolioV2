@@ -37,8 +37,8 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                     <button
                         key={f.value}
                         onClick={() => setFiltre(f.value)}
-                        className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-medium transition-all ${filtre === f.value
-                            ? "bg-portal-green text-black shadow-[0_0_15px_rgba(0,255,26,0.5)]"
+                        className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-bold transition-all duration-300 ${filtre === f.value
+                            ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
                             : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
                             }`}
                     >
@@ -90,11 +90,6 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                         </div>
 
                         <div className="p-6 relative">
-                            {projet.entreprise && (
-                                <p className="text-[10px] uppercase tracking-[0.2em] text-portal-green/70 mb-1 font-bold">
-                                    {projet.entreprise}
-                                </p>
-                            )}
                             <h4 className="text-xl font-bold text-white mb-2 group-hover:text-portal-green transition-colors font-bangers tracking-wide">{projet.titre}</h4>
                             <p className="text-sm text-neutral-400 mb-6 line-clamp-2">
                                 {projet.description || "Description du projet..."}
@@ -154,11 +149,6 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                 }`}>
                                     {projetSelectionne.type}
                                 </span>
-                                {projetSelectionne.entreprise && (
-                                    <span className="text-xs uppercase tracking-widest text-neutral-400 font-bold">
-                                        | {projetSelectionne.entreprise}
-                                    </span>
-                                )}
                             </div>
 
                             <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 font-bangers tracking-wider drop-shadow-lg">{projetSelectionne.titre}</h3>
@@ -175,18 +165,30 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                     <h4 className="text-2xl font-bold text-portal-green mb-8 font-bangers tracking-widest uppercase">Missions réalisées</h4>
                                     <div className="grid md:grid-cols-2 gap-6">
                                         {projetSelectionne.missions.map((mission, index) => (
-                                            <div key={index} className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-portal-green/30 transition-all group">
-                                                <h5 className="text-lg font-bold text-white mb-3 group-hover:text-portal-green transition-colors font-bangers">{mission.titre}</h5>
-                                                <p className="text-sm text-neutral-400 mb-4">{mission.description}</p>
-                                                {mission.technologies && (
-                                                    <div className="flex flex-wrap gap-2">
-                                                        {mission.technologies.map(t => (
-                                                            <span key={t} className="text-[10px] px-2 py-0.5 rounded bg-white/10 text-neutral-300 border border-white/5 font-mono">
-                                                                {t}
-                                                            </span>
-                                                        ))}
+                                            <div key={index} className="overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-portal-green/30 transition-all group flex flex-col">
+                                                {mission.urlImage && (
+                                                    <div className="aspect-video relative overflow-hidden border-b border-white/10">
+                                                        <Image 
+                                                            src={`/${mission.urlImage}`} 
+                                                            alt={mission.titre}
+                                                            fill
+                                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                                        />
                                                     </div>
                                                 )}
+                                                <div className="p-6">
+                                                    <h5 className="text-lg font-bold text-white mb-3 group-hover:text-portal-green transition-colors font-bangers">{mission.titre}</h5>
+                                                    <p className="text-sm text-neutral-400 mb-4">{mission.description}</p>
+                                                    {mission.technologies && (
+                                                        <div className="flex flex-wrap gap-2">
+                                                            {mission.technologies.map(t => (
+                                                                <span key={t} className="text-[10px] px-2 py-0.5 rounded bg-white/10 text-neutral-300 border border-white/5 font-mono">
+                                                                    {t}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>

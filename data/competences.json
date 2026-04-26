@@ -25,9 +25,9 @@
     },
     {
         "id": 5,
-        "nom": "PostgreSQL",
+        "nom": "MySQL",
         "niveau": "Intermédiaire",
-        "icone": "svg/postgresql-logo-svgrepo-com.svg"
+        "icone": "svg/mysql-logo-svgrepo-com.svg"
     },
     {
         "id": 6,

@@ -46,8 +46,8 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
             <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12 px-2 font-bangers tracking-wide">
                 <button
                     onClick={() => setOngletActif("technologies")}
-                    className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-medium transition-all ${ongletActif === "technologies"
-                        ? "bg-portal-green text-black shadow-[0_0_15px_rgba(0,255,26,0.5)]"
+                    className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-bold transition-all duration-300 ${ongletActif === "technologies"
+                        ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
                         : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
                         }`}
                 >
@@ -55,8 +55,8 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
                 </button>
                 <button
                     onClick={() => setOngletActif("os")}
-                    className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-medium transition-all ${ongletActif === "os"
-                        ? "bg-portal-green text-black shadow-[0_0_15px_rgba(0,255,26,0.5)]"
+                    className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-bold transition-all duration-300 ${ongletActif === "os"
+                        ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
                         : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
                         }`}
                 >
@@ -64,8 +64,8 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
                 </button>
                 <button
                     onClick={() => setOngletActif("divers")}
-                    className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-medium transition-all ${ongletActif === "divers"
-                        ? "bg-portal-green text-black shadow-[0_0_15px_rgba(0,255,26,0.5)]"
+                    className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-bold transition-all duration-300 ${ongletActif === "divers"
+                        ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
                         : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
                         }`}
                 >

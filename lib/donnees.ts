@@ -16,6 +16,7 @@ export interface Projet {
         description: string;
         technologies?: string[];
         descriptionLongue?: string;
+        urlImage?: string;
     }[];
 }
 
