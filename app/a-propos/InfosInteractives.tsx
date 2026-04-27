@@ -18,7 +18,7 @@ export default function InfosInteractives() {
         switch (activeTab) {
             case 'moi':
                 return (
-                    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-4 text-left">
+                    <div className="space-y-4 text-left">
                         <div>
                             <h4 className="text-portal-green font-bold uppercase tracking-wider text-sm mb-1 font-bangers">Présentation</h4>
                             <p className="text-white">
@@ -48,7 +48,7 @@ export default function InfosInteractives() {
                 );
             case 'mobilite':
                 return (
-                    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-4">
+                    <div className="space-y-4">
                         <div>
                             <h4 className="text-portal-green font-bold uppercase tracking-wider text-sm mb-1 font-bangers">Mobilité</h4>
                             <p className="text-white">Véhicule personnel</p>
@@ -61,7 +61,7 @@ export default function InfosInteractives() {
                 );
             case 'langue':
                 return (
-                    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6">
+                    <div className="space-y-6">
                         <div className="flex items-center gap-4 group">
                             <div className="w-12 h-12 flex-shrink-0">
                                 <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-lg">
@@ -96,7 +96,7 @@ export default function InfosInteractives() {
                 );
             case 'centre_interet':
                 return (
-                    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div className="p-4 bg-white/5 rounded-xl border border-white/10">
                             <h4 className="text-rick-green font-bold uppercase tracking-wider text-xs mb-2 font-bangers">Veille Informatique</h4>
                             <p className="text-neutral-300 text-sm">Balade Mentale, Hugo Lisoir...</p>
@@ -134,7 +134,7 @@ export default function InfosInteractives() {
                 ))}
             </div>
 
-            <div className="relative p-8 md:p-10 bg-white/5 rounded-3xl border border-white/10 shadow-2xl backdrop-blur-sm overflow-hidden min-h-[200px] flex items-center justify-start text-left">
+            <div key={activeTab} className="relative p-8 md:p-10 bg-white/5 rounded-3xl border border-white/10 shadow-2xl backdrop-blur-sm overflow-hidden min-h-[200px] flex items-center justify-start text-left animate-slide-up-fade">
                 {/* Decorative element */}
                 <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-portal-green/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-32 h-32 bg-rick-green/10 rounded-full blur-3xl"></div>

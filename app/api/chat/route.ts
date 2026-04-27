@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       - Outils : Docker, Git, Jira, Agile (Scrum).
       
       EXPÉRIENCES PROFESSIONNELLES :
-      1. CTAI Informatique (Stage - 2026) : 4 missions (Capeb INPI, Domisoft, Chauffagiste Guebwiller, CTAI-Formation). Utilisation de Ruby on Rails et MySQL.
+      1. CTAI Informatique (Stage - 2026) : Développement d'applications web avec Ruby on Rails et MySQL.
       2. WebTotem (Stage - 2025) : Mission majeure sur le site e-commerce "Domaine Steiner" (Magento 2 / Hyvä).
       
       PROJETS :
