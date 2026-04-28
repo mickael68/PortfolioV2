@@ -48,7 +48,7 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
                     onClick={() => setOngletActif("technologies")}
                     className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-bold transition-all duration-300 ${ongletActif === "technologies"
                         ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
-                        : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
+                        : "bg-black/5 dark:bg-white/5 text-neutral-600 dark:text-neutral-400 hover:bg-black/10 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-white"
                         }`}
                 >
                     Technologies
@@ -57,7 +57,7 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
                     onClick={() => setOngletActif("os")}
                     className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-bold transition-all duration-300 ${ongletActif === "os"
                         ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
-                        : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
+                        : "bg-black/5 dark:bg-white/5 text-neutral-600 dark:text-neutral-400 hover:bg-black/10 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-white"
                         }`}
                 >
                     OS
@@ -66,7 +66,7 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
                     onClick={() => setOngletActif("divers")}
                     className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-bold transition-all duration-300 ${ongletActif === "divers"
                         ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
-                        : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
+                        : "bg-black/5 dark:bg-white/5 text-neutral-600 dark:text-neutral-400 hover:bg-black/10 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-white"
                         }`}
                 >
                     Divers
@@ -75,7 +75,7 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
 
             {/* Grille de Compétences */}
             {competencesActives.length === 0 ? (
-                <div className="text-center text-neutral-400 py-12">
+                <div className="text-center text-neutral-600 dark:text-neutral-400 py-12">
                     <p>Aucune compétence trouvée dans cette catégorie.</p>
                 </div>
             ) : (
@@ -83,7 +83,7 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
                     {competencesActives.map((c) => (
                         <div
                             key={c.id}
-                            className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-portal-green/50 hover:bg-white/10 transition-all group"
+                            className="flex flex-col items-center justify-center p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/5 hover:border-portal-green/50 hover:bg-black/10 dark:hover:bg-white/10 transition-all group"
                         >
                             {c.icone && (
                                 <div className="mb-4 relative w-12 h-12 transition-all duration-300">
@@ -95,7 +95,7 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
                                     />
                                 </div>
                             )}
-                            <div className="text-lg font-medium text-white mb-1 font-bangers tracking-wide">{c.nom}</div>
+                            <div className="text-lg font-medium text-neutral-900 dark:text-white mb-1 font-bangers tracking-wide">{c.nom}</div>
                             <div className="text-xs text-portal-glow font-mono uppercase">{c.niveau}</div>
                         </div>
                     ))}

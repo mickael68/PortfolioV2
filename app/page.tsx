@@ -34,12 +34,12 @@ export default function Home() {
 
             {/* Text and Buttons */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left z-10 max-w-2xl mt-8 md:mt-0">
-                <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-white mb-6">
+                <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-neutral-900 dark:text-white mb-6">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.5)]">
                     Développeur Web
                   </span>
                 </h1>
-                <p className="text-lg text-neutral-300 mb-10 max-w-xl">
+                <p className="text-lg text-neutral-700 dark:text-neutral-300 mb-10 max-w-xl">
                   Passionné par la création d'expériences numériques modernes, performantes et esthétiques, à travers toutes les dimensions.
                 </p>
                 

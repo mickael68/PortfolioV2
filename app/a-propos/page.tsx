@@ -11,7 +11,7 @@ export default async function APropos() {
             <div className="max-w-5xl mx-auto">
                 {/* En-tête */}
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl font-bold text-white mb-4 font-bangers tracking-wider">Mon Parcours</h2>
+                    <h2 className="text-5xl font-bold text-neutral-900 dark:text-white mb-4 font-bangers tracking-wider">Mon Parcours</h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.3)] mx-auto rounded-full"></div>
                 </div>
 
@@ -21,17 +21,17 @@ export default async function APropos() {
                     <div className="lg:col-span-8 space-y-12">
                         
                         {/* Section Présentation */}
-                        <div className="bg-white/10 rounded-3xl p-8 border border-white/20 backdrop-blur-md relative overflow-hidden group shadow-[0_0_40px_rgba(0,0,0,0.3)]">
+                        <div className="bg-black/5 dark:bg-white/10 rounded-3xl p-8 border border-black/10 dark:border-white/20 backdrop-blur-md relative overflow-hidden group shadow-[0_0_40px_rgba(0,0,0,0.1)] dark:shadow-[0_0_40px_rgba(0,0,0,0.3)]">
                             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-24 h-24 bg-portal-green/10 rounded-full blur-2xl group-hover:bg-portal-green/20 transition-colors"></div>
                             <h3 className="text-2xl font-bold text-portal-green mb-6 font-bangers tracking-widest uppercase">Qui suis-je ?</h3>
-                            <div className="space-y-6 text-neutral-300">
+                            <div className="space-y-6 text-neutral-700 dark:text-neutral-300">
                                 <p className="text-lg leading-relaxed">
                                     Je suis étudiant en informatique à l'UHA 4.0. 
                                     Je suis passionné par la création de sites web ainsi que du développement logiciel.
                                 </p>
                                 <div className="flex flex-wrap gap-3">
                                     {["Autonome", "Dynamique", "Organisé", "Sérieux", "Esprit d'initiative", "Travail d'équipe"].map((q) => (
-                                        <span key={q} className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-neutral-300">
+                                        <span key={q} className="px-4 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-sm font-medium text-neutral-700 dark:text-neutral-300">
                                             {q}
                                         </span>
                                     ))}
@@ -61,16 +61,16 @@ export default async function APropos() {
                                     </svg>
                                     Expériences Pro
                                 </h3>
-                                <div className="space-y-10 border-l-2 border-neutral-800 pl-8 relative ml-4">
+                                <div className="space-y-10 border-l-2 border-neutral-300 dark:border-neutral-800 pl-8 relative ml-4">
                                     {professionnelles.map((exp) => (
                                         <div key={exp.id} className="relative group">
                                             <span className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border-4 border-neutral-900 bg-portal-green group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(0,255,26,0.6)] transition-all duration-300"></span>
-                                            <div className="text-sm text-neutral-400 mb-2 font-mono font-bold tracking-widest bg-white/5 inline-block px-3 py-1 rounded-md">
+                                            <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-2 font-mono font-bold tracking-widest bg-black/5 dark:bg-white/5 inline-block px-3 py-1 rounded-md">
                                                 {new Date(exp.date_debut).getFullYear()} - {exp.date_fin ? new Date(exp.date_fin).getFullYear() : 'Présent'}
                                             </div>
-                                            <h4 className="text-xl font-bold text-white group-hover:text-portal-green transition-colors font-bangers tracking-wide">{exp.titre}</h4>
+                                            <h4 className="text-xl font-bold text-neutral-900 dark:text-white group-hover:text-portal-green transition-colors font-bangers tracking-wide">{exp.titre}</h4>
                                             <div className="text-portal-glow font-medium mb-3">{exp.entreprise}</div>
-                                            <p className="text-neutral-300 text-base leading-relaxed">{exp.description}</p>
+                                            <p className="text-neutral-700 dark:text-neutral-300 text-base leading-relaxed">{exp.description}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -85,16 +85,16 @@ export default async function APropos() {
                                     </svg>
                                     Formation
                                 </h3>
-                                <div className="space-y-10 border-l-2 border-neutral-800 pl-8 relative ml-4">
+                                <div className="space-y-10 border-l-2 border-neutral-300 dark:border-neutral-800 pl-8 relative ml-4">
                                     {academiques.map((exp) => (
                                         <div key={exp.id} className="relative group">
                                             <span className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border-4 border-neutral-900 bg-rick-green group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(151,206,76,0.6)] transition-all duration-300"></span>
-                                            <div className="text-sm text-neutral-400 mb-2 font-mono font-bold tracking-widest bg-white/5 inline-block px-3 py-1 rounded-md">
+                                            <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-2 font-mono font-bold tracking-widest bg-black/5 dark:bg-white/5 inline-block px-3 py-1 rounded-md">
                                                 {exp.date_fin ? `${new Date(exp.date_debut).getFullYear()} - ${new Date(exp.date_fin).getFullYear()}` : new Date(exp.date_debut).getFullYear()}
                                             </div>
-                                            <h4 className="text-xl font-bold text-white group-hover:text-rick-green transition-colors font-bangers tracking-wide">{exp.titre}</h4>
+                                            <h4 className="text-xl font-bold text-neutral-900 dark:text-white group-hover:text-rick-green transition-colors font-bangers tracking-wide">{exp.titre}</h4>
                                             <div className="text-teal-400 font-medium mb-3">{exp.entreprise}</div>
-                                            <p className="text-neutral-300 text-base leading-relaxed">{exp.description}</p>
+                                            <p className="text-neutral-700 dark:text-neutral-300 text-base leading-relaxed">{exp.description}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -106,8 +106,8 @@ export default async function APropos() {
                     <div className="lg:col-span-4 space-y-8">
                         
                         {/* Section Mobilité */}
-                        <div className="bg-white/10 rounded-3xl p-6 border border-white/20 shadow-lg">
-                            <h3 className="text-2xl font-bold text-white mb-6 font-bangers tracking-widest border-b border-white/10 pb-3">Mobilité</h3>
+                        <div className="bg-black/5 dark:bg-white/10 rounded-3xl p-6 border border-black/10 dark:border-white/20 shadow-lg">
+                            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-bangers tracking-widest border-b border-black/10 dark:border-white/10 pb-3">Mobilité</h3>
                             <div className="space-y-4">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 rounded-lg bg-portal-green/10 flex items-center justify-center text-portal-green">
@@ -116,8 +116,8 @@ export default async function APropos() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <div className="text-xl font-bold text-white font-bangers tracking-widest">Véhicule</div>
-                                        <div className="text-neutral-300 text-base mt-1">Véhicule personnel</div>
+                                        <div className="text-xl font-bold text-neutral-900 dark:text-white font-bangers tracking-widest">Véhicule</div>
+                                        <div className="text-neutral-700 dark:text-neutral-300 text-base mt-1">Véhicule personnel</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4">
@@ -127,16 +127,16 @@ export default async function APropos() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <div className="text-xl font-bold text-white font-bangers tracking-widest">Permis</div>
-                                        <div className="text-neutral-300 text-base mt-1">Permis B</div>
+                                        <div className="text-xl font-bold text-neutral-900 dark:text-white font-bangers tracking-widest">Permis</div>
+                                        <div className="text-neutral-700 dark:text-neutral-300 text-base mt-1">Permis B</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* Section Langues */}
-                        <div className="bg-white/10 rounded-3xl p-6 border border-white/20 shadow-lg">
-                            <h3 className="text-2xl font-bold text-white mb-6 font-bangers tracking-widest border-b border-white/10 pb-3">Langues</h3>
+                        <div className="bg-black/5 dark:bg-white/10 rounded-3xl p-6 border border-black/10 dark:border-white/20 shadow-lg">
+                            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-bangers tracking-widest border-b border-black/10 dark:border-white/10 pb-3">Langues</h3>
                             <div className="space-y-6">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 flex-shrink-0">
@@ -147,8 +147,8 @@ export default async function APropos() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <div className="text-xl font-bold text-white font-bangers tracking-widest">Français</div>
-                                        <div className="text-neutral-300 text-base mt-1">Langue maternelle</div>
+                                        <div className="text-xl font-bold text-neutral-900 dark:text-white font-bangers tracking-widest">Français</div>
+                                        <div className="text-neutral-700 dark:text-neutral-300 text-base mt-1">Langue maternelle</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4">
@@ -160,25 +160,25 @@ export default async function APropos() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <div className="text-xl font-bold text-white font-bangers tracking-widest">Anglais</div>
-                                        <div className="text-neutral-300 text-base mt-1">C1 - Maîtrise expérimentée</div>
+                                        <div className="text-xl font-bold text-neutral-900 dark:text-white font-bangers tracking-widest">Anglais</div>
+                                        <div className="text-neutral-700 dark:text-neutral-300 text-base mt-1">C1 - Maîtrise expérimentée</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* Section Intérêts */}
-                        <div className="bg-white/10 rounded-3xl p-6 border border-white/20 shadow-lg">
-                            <h3 className="text-2xl font-bold text-white mb-6 font-bangers tracking-widest border-b border-white/10 pb-3">Intérêts</h3>
+                        <div className="bg-black/5 dark:bg-white/10 rounded-3xl p-6 border border-black/10 dark:border-white/20 shadow-lg">
+                            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-bangers tracking-widest border-b border-black/10 dark:border-white/10 pb-3">Intérêts</h3>
                             <div className="grid grid-cols-1 gap-3">
                                 {[
                                     { label: "Veille Informatique", desc: "Hugo Lisoir, Balade Mentale" },
                                     { label: "Vélo", desc: "Activités de plein air" },
                                     { label: "Clash of Clans", desc: "Stratégie & Réflexion" }
                                 ].map((item) => (
-                                    <div key={item.label} className="p-3 bg-white/5 rounded-xl border border-white/5 hover:border-portal-green/30 transition-colors">
+                                    <div key={item.label} className="p-3 bg-black/5 dark:bg-white/5 rounded-xl border border-black/10 dark:border-white/5 hover:border-portal-green/30 transition-colors">
                                         <div className="text-lg font-bold text-rick-green font-bangers tracking-widest mb-2">{item.label}</div>
-                                        <div className="text-neutral-300 text-sm">{item.desc}</div>
+                                        <div className="text-neutral-700 dark:text-neutral-300 text-sm">{item.desc}</div>
                                     </div>
                                 ))}
                             </div>

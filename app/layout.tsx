@@ -3,6 +3,7 @@ import { Bangers, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import ChatBot from "./components/ChatBot";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 const bangers = Bangers({
   weight: "400",
@@ -31,17 +32,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
       <body
-        className={`${bangers.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-[#111827] text-neutral-200 selection:bg-portal-green/40 font-sans`}
+        className={`${bangers.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground selection:bg-portal-green/40 font-sans transition-colors duration-300`}
       >
-        <Navbar />
-        {children}
-        <ChatBot />
-        {/* Footer */}
-        <footer className="py-4 border-t border-white/5 text-center text-sm text-neutral-500">
-          <p>&copy; {new Date().getFullYear()} Tous droits réservés. Mickaël MARCO.</p>
-        </footer>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange={false}
+        >
+          <Navbar />
+          {children}
+          <ChatBot />
+          {/* Footer */}
+          <footer className="py-4 border-t border-black/10 dark:border-white/5 text-center text-sm text-neutral-500">
+            <p>&copy; {new Date().getFullYear()} Tous droits réservés. Mickaël MARCO.</p>
+          </footer>
+        </ThemeProvider>
       </body>
     </html>
   );

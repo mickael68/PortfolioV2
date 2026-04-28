@@ -63,7 +63,7 @@ export default function ChatBot() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="absolute bottom-20 right-0 w-[calc(100vw-3rem)] sm:w-80 md:w-96 h-[450px] bg-space-dark border-2 border-portal-green rounded-2xl flex flex-col overflow-hidden shadow-[0_0_30px_rgba(0,255,26,0.3)]"
+            className="absolute bottom-20 right-0 w-[calc(100vw-3rem)] sm:w-80 md:w-96 h-[450px] bg-background border-2 border-portal-green rounded-2xl flex flex-col overflow-hidden shadow-[0_0_30px_rgba(0,255,26,0.3)]"
           >
             {/* Header */}
             <div className="p-4 bg-portal-green/10 border-b border-portal-green/30 flex justify-between items-center">
@@ -84,7 +84,7 @@ export default function ChatBot() {
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-portal-green">
               {messages.length === 0 && (
-                <div className="text-center text-neutral-500 mt-10">
+                <div className="text-center text-neutral-500 dark:text-neutral-500 mt-10">
                   <p className="text-sm italic">"Wubba Lubba Dub Dub ! Pose-moi une question sur le parcours de Mickaël."</p>
                 </div>
               )}
@@ -93,8 +93,8 @@ export default function ChatBot() {
                   <div 
                     className={`max-w-[85%] p-3 rounded-2xl text-sm ${
                       msg.role === "user" 
-                        ? "bg-portal-green text-space-dark font-medium rounded-tr-none shadow-[0_0_10px_rgba(0,255,26,0.3)]" 
-                        : "bg-neutral-800 text-neutral-200 border border-neutral-700 rounded-tl-none"
+                        ? "bg-portal-green text-[#111827] font-medium rounded-tr-none shadow-[0_0_10px_rgba(0,255,26,0.3)]" 
+                        : "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700 rounded-tl-none"
                     }`}
                   >
                     {msg.content}
@@ -103,7 +103,7 @@ export default function ChatBot() {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-neutral-800 p-3 rounded-2xl rounded-tl-none border border-neutral-700">
+                  <div className="bg-neutral-100 dark:bg-neutral-800 p-3 rounded-2xl rounded-tl-none border border-neutral-200 dark:border-neutral-700">
                     <div className="flex gap-1">
                       <div className="w-1.5 h-1.5 bg-portal-green rounded-full animate-bounce"></div>
                       <div className="w-1.5 h-1.5 bg-portal-green rounded-full animate-bounce [animation-delay:0.2s]"></div>
@@ -116,7 +116,7 @@ export default function ChatBot() {
             </div>
 
             {/* Input */}
-            <form onSubmit={handleSubmit} className="p-4 bg-neutral-900/50 border-t border-portal-green/20">
+            <form onSubmit={handleSubmit} className="p-4 bg-white/50 dark:bg-neutral-900/50 border-t border-portal-green/20">
               <div className="relative">
                 <input
                   type="text"
@@ -124,7 +124,7 @@ export default function ChatBot() {
                   onChange={(e) => setInput(e.target.value)}
                   disabled={isLoading}
                   placeholder={isLoading ? "Portail en cours d'ouverture..." : "Écris ton message..."}
-                  className="w-full bg-neutral-800 border border-neutral-700 rounded-full py-2.5 px-5 pr-12 text-sm focus:outline-none focus:border-portal-green transition-colors text-neutral-200 disabled:opacity-50"
+                  className="w-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full py-2.5 px-5 pr-12 text-sm focus:outline-none focus:border-portal-green transition-colors text-neutral-800 dark:text-neutral-200 disabled:opacity-50"
                 />
                 <button 
                   type="submit"
@@ -150,7 +150,7 @@ export default function ChatBot() {
       >
         <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,rgba(0,255,26,0.2)_30%,rgba(0,255,26,0.8)_50%,rgba(151,206,76,0.8)_70%,transparent_100%)] animate-portal-spin opacity-0 group-hover:opacity-100 transition-opacity"></div>
         
-        <div className="relative z-10 text-space-dark">
+        <div className="relative z-10 text-[#111827]">
           {isOpen ? (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="w-6 h-6">
               <path d="M18 6L6 18M6 6l12 12" />

@@ -1,12 +1,25 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth;
 }
 
 :root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --scrollbar-track: #e2e8f0;
+  --scrollbar-border: #f8fafc;
+  --star-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark {
   --background: #111827;
   --foreground: #f0f4f8;
+  --scrollbar-track: #1a1f26;
+  --scrollbar-border: #1a1f26;
+  --star-color: rgba(255, 255, 255, 0.8);
 }
 
 @theme inline {
@@ -31,13 +44,13 @@ html {
 body {
   background: var(--background);
   background-image: 
-    radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 40px 70px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 50px 160px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 80px 120px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 110px 40px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 150px 150px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 190px 80px, #ffffff, rgba(0,0,0,0));
+    radial-gradient(1.5px 1.5px at 20px 30px, var(--star-color), rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 40px 70px, var(--star-color), rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 50px 160px, var(--star-color), rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 80px 120px, var(--star-color), rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 110px 40px, var(--star-color), rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 150px 150px, var(--star-color), rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 190px 80px, var(--star-color), rgba(0,0,0,0));
   background-size: 250px 250px;
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui;
@@ -96,13 +109,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1f26;
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-portal-green);
   border-radius: 10px;
-  border: 2px solid #1a1f26;
+  border: 2px solid var(--scrollbar-border);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -112,5 +125,5 @@ h1, h2, h3, h4, h5, h6 {
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-portal-green) #1a1f26;
+  scrollbar-color: var(--color-portal-green) var(--scrollbar-track);
 }

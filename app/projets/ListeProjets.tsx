@@ -39,7 +39,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                         onClick={() => setFiltre(f.value)}
                         className={`px-6 py-2 text-sm rounded-full font-bold transition-all duration-300 ${filtre === f.value
                             ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
-                            : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
+                            : "bg-black/5 dark:bg-white/5 text-neutral-600 dark:text-neutral-400 hover:bg-black/10 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-white"
                             }`}
                     >
                         {f.label}
@@ -53,9 +53,9 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                     <div
                         key={projet.id}
                         onClick={() => setProjetSelectionne(projet)}
-                        className="group relative overflow-hidden rounded-2xl bg-white/10 border border-white/10 hover:border-portal-green/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(0,255,26,0.15)] cursor-pointer flex flex-col"
+                        className="group relative overflow-hidden rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 hover:border-portal-green/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(0,255,26,0.15)] cursor-pointer flex flex-col"
                     >
-                        <div className="aspect-video bg-neutral-800 relative overflow-hidden">
+                        <div className="aspect-video bg-neutral-200 dark:bg-neutral-800 relative overflow-hidden">
                             {projet.urlImage ? (
                                 <Image 
                                     src={`/${projet.urlImage}`} 
@@ -64,7 +64,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                     className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
                                 />
                             ) : (
-                                <div className="absolute inset-0 bg-neutral-800 flex items-center justify-center text-neutral-700 text-5xl font-bold opacity-30 select-none font-bangers">
+                                <div className="absolute inset-0 bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center text-neutral-400 dark:text-neutral-700 text-5xl font-bold opacity-30 select-none font-bangers">
                                     {projet.titre.charAt(0)}
                                 </div>
                             )}
@@ -84,16 +84,16 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                         </div>
 
                         <div className="p-6 flex-grow flex flex-col">
-                            <h4 className="text-xl font-bold text-white mb-1 group-hover:text-portal-green transition-colors font-bangers tracking-wide line-clamp-1">{projet.titre}</h4>
+                            <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-1 group-hover:text-portal-green transition-colors font-bangers tracking-wide line-clamp-1">{projet.titre}</h4>
                             {projet.entreprise && (
                                 <p className="text-xs font-bold text-portal-glow mb-3 uppercase tracking-widest font-mono">
                                     {projet.entreprise}
                                 </p>
                             )}
-                            <p className="text-sm text-neutral-400 mb-6 line-clamp-2 leading-relaxed flex-grow">
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6 line-clamp-2 leading-relaxed flex-grow">
                                 {projet.description}
                             </p>
-                            <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+                            <div className="flex items-center justify-between mt-auto pt-4 border-t border-black/10 dark:border-white/5">
                                 <span className="inline-flex items-center text-portal-green text-sm font-bold gap-2 font-bangers tracking-widest group-hover:gap-3 transition-all">
                                     Détails
                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -114,13 +114,13 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                     onClick={() => setProjetSelectionne(null)}
                 >
                     <div 
-                        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#0d1117] border border-white/10 rounded-3xl shadow-[0_0_80px_rgba(0,255,26,0.1)] animate-in zoom-in-95 duration-300 scrollbar-thin scrollbar-thumb-portal-green"
+                        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#0d1117] border border-black/10 dark:border-white/10 rounded-3xl shadow-[0_0_80px_rgba(0,255,26,0.1)] animate-in zoom-in-95 duration-300 scrollbar-thin scrollbar-thumb-portal-green"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Bouton de fermeture */}
                         <button 
                             onClick={() => setProjetSelectionne(null)}
-                            className="absolute top-6 right-6 p-2 rounded-full bg-black/40 text-white hover:text-portal-green transition-all border border-white/10 hover:border-portal-green/50 z-50 shadow-xl"
+                            className="absolute top-6 right-6 p-2 rounded-full bg-black/10 dark:bg-black/40 text-neutral-900 dark:text-white hover:text-portal-green dark:hover:text-portal-green transition-all border border-black/10 dark:border-white/10 hover:border-portal-green/50 z-50 shadow-xl"
                         >
                             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -136,7 +136,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                     fill
                                     className="object-cover"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] via-[#0d1117]/20 to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0d1117] via-white/20 dark:via-[#0d1117]/20 to-transparent"></div>
                             </div>
                         )}
 
@@ -152,7 +152,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                     {projetSelectionne.type}
                                 </span>
                                 {projetSelectionne.entreprise && (
-                                    <span className="px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers bg-white/5 text-neutral-300 border border-white/10">
+                                    <span className="px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers bg-black/5 dark:bg-white/5 text-neutral-700 dark:text-neutral-300 border border-black/10 dark:border-white/10">
                                         {projetSelectionne.entreprise}
                                     </span>
                                 )}
@@ -161,10 +161,10 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                             <h2 className="mb-8 drop-shadow-2xl">{projetSelectionne.titre}</h2>
                             
                             <div className="space-y-8">
-                                <p className="text-xl italic text-neutral-400 leading-relaxed font-light">{projetSelectionne.description}</p>
-                                <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent w-full"></div>
+                                <p className="text-xl italic text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">{projetSelectionne.description}</p>
+                                <div className="h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/10 to-transparent w-full"></div>
                                 <div className="prose prose-invert max-w-none">
-                                    <p className="whitespace-pre-wrap text-neutral-300 leading-loose text-base">
+                                    <p className="whitespace-pre-wrap text-neutral-700 dark:text-neutral-300 leading-loose text-base">
                                         {projetSelectionne.descriptionLongue || "Aucune description détaillée disponible pour le moment."}
                                     </p>
                                 </div>
@@ -173,10 +173,10 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                             {/* Technologies globales */}
                             {projetSelectionne.technologies && projetSelectionne.technologies.length > 0 && (
                                 <div className="mt-12">
-                                    <h4 className="text-sm font-bold text-portal-green uppercase tracking-widest mb-6 font-bangers border-b border-white/5 pb-2 inline-block">Compétences techniques</h4>
+                                    <h4 className="text-sm font-bold text-portal-green uppercase tracking-widest mb-6 font-bangers border-b border-black/10 dark:border-white/5 pb-2 inline-block">Compétences techniques</h4>
                                     <div className="flex flex-wrap gap-3">
                                         {projetSelectionne.technologies.map((tech) => (
-                                            <span key={tech} className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-mono font-bold text-neutral-300 hover:border-portal-green/50 transition-colors">
+                                            <span key={tech} className="px-4 py-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl text-xs font-mono font-bold text-neutral-700 dark:text-neutral-300 hover:border-portal-green/50 transition-colors">
                                                 {tech}
                                             </span>
                                         ))}
@@ -186,7 +186,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
 
                             {/* Lien du Footer */}
                             {projetSelectionne.lien && (
-                                <div className="mt-16 pt-8 border-t border-white/5 flex justify-end">
+                                <div className="mt-16 pt-8 border-t border-black/10 dark:border-white/5 flex justify-end">
                                     <a 
                                         href={projetSelectionne.lien} 
                                         target="_blank" 
