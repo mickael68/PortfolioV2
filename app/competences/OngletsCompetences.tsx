@@ -79,7 +79,7 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
                     <p>Aucune compétence trouvée dans cette catégorie.</p>
                 </div>
             ) : (
-                <div key={ongletActif} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6 animate-slide-up-fade">
+                <div key={ongletActif} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
                     {competencesActives.map((c) => (
                         <div
                             key={c.id}

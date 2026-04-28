@@ -48,7 +48,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
             </div>
 
             {/* Grille de Projets */}
-            <div key={filtre} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 animate-slide-up-fade">
+            <div key={filtre} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {projetsFiltres.map((projet) => (
                     <div
                         key={projet.id}

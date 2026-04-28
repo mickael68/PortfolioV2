@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${bangers.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-[#0a0c10] text-neutral-200 selection:bg-portal-green/40 font-sans`}
+        className={`${bangers.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-[#111827] text-neutral-200 selection:bg-portal-green/40 font-sans`}
       >
         <Navbar />
         {children}

@@ -7,7 +7,7 @@ export default async function APropos() {
     const academiques = experiences.filter(exp => exp.type === 'Académique');
 
     return (
-        <div className="min-h-screen pt-24 px-4 pb-20 bg-background">
+        <div className="min-h-screen pt-24 px-4 pb-20">
             <div className="max-w-5xl mx-auto">
                 {/* En-tête */}
                 <div className="text-center mb-16">
