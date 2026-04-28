@@ -24,20 +24,20 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
     });
 
     const filtres: { label: string; value: TypeFiltre }[] = [
-        { label: "Projets Professionnels", value: "Professionnel" },
-        { label: "Projets Personnels", value: "Personnel" },
-        { label: "Projets Formation", value: "Formation" },
+        { label: "Professionnel", value: "Professionnel" },
+        { label: "Personnel", value: "Personnel" },
+        { label: "Formation", value: "Formation" },
     ];
 
     return (
         <div>
             {/* Boutons de Filtre */}
-            <div className="flex flex-wrap justify-center gap-4 mb-12 font-bangers tracking-wide">
+            <div className="flex flex-wrap justify-center gap-3 mb-12 font-bangers tracking-wider">
                 {filtres.map((f) => (
                     <button
                         key={f.value}
                         onClick={() => setFiltre(f.value)}
-                        className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-bold transition-all duration-300 ${filtre === f.value
+                        className={`px-6 py-2 text-sm rounded-full font-bold transition-all duration-300 ${filtre === f.value
                             ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
                             : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
                             }`}
@@ -48,12 +48,12 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
             </div>
 
             {/* Grille de Projets */}
-            <div key={filtre} className="grid md:grid-cols-3 gap-8 animate-slide-up-fade">
+            <div key={filtre} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 animate-slide-up-fade">
                 {projetsFiltres.map((projet) => (
                     <div
                         key={projet.id}
                         onClick={() => setProjetSelectionne(projet)}
-                        className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/5 hover:border-portal-green/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-portal-green/20 cursor-pointer"
+                        className="group relative overflow-hidden rounded-2xl bg-white/10 border border-white/10 hover:border-portal-green/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(0,255,26,0.15)] cursor-pointer flex flex-col"
                     >
                         <div className="aspect-video bg-neutral-800 relative overflow-hidden">
                             {projet.urlImage ? (
@@ -61,45 +61,47 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                     src={`/${projet.urlImage}`} 
                                     alt={projet.titre}
                                     fill
-                                    className="object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100"
+                                    className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
                                 />
                             ) : (
-                                <div className="absolute inset-0 bg-neutral-800 flex items-center justify-center text-neutral-700 text-4xl font-bold opacity-30 select-none font-bangers">
+                                <div className="absolute inset-0 bg-neutral-800 flex items-center justify-center text-neutral-700 text-5xl font-bold opacity-30 select-none font-bangers">
                                     {projet.titre.charAt(0)}
                                 </div>
                             )}
-                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 to-transparent opacity-60"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/20 to-transparent opacity-80"></div>
 
-                            {/* Badge Type & Missions */}
-                            <div className="absolute top-4 right-4 flex flex-col items-end gap-2 z-10">
+                            {/* Badge Type */}
+                            <div className="absolute top-4 right-4 flex flex-wrap justify-end gap-2 z-10">
                                 {projet.type && (
-                                    <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider font-bangers ${projet.type === 'Professionnel' ? 'bg-portal-green/20 text-portal-green' :
-                                        projet.type === 'Personnel' ? 'bg-rick-green/20 text-rick-green' :
-                                            projet.type === 'Formation' ? 'bg-teal-500/20 text-teal-400' :
-                                                'bg-neutral-500/20 text-neutral-400'
+                                    <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers ${projet.type === 'Professionnel' ? 'bg-portal-green/20 text-portal-green border border-portal-green/30' :
+                                        projet.type === 'Personnel' ? 'bg-rick-green/20 text-rick-green border border-rick-green/30' :
+                                        'bg-teal-500/20 text-teal-400 border border-teal-500/30'
                                         }`}>
                                         {projet.type}
-                                    </div>
-                                )}
-                                {projet.missions && (
-                                    <div className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider font-bangers bg-white/10 text-white border border-white/20 backdrop-blur-md">
-                                        {projet.missions.length} Mission{projet.missions.length > 1 ? 's' : ''}
                                     </div>
                                 )}
                             </div>
                         </div>
 
-                        <div className="p-6 relative">
-                            <h4 className="text-xl font-bold text-white mb-2 group-hover:text-portal-green transition-colors font-bangers tracking-wide">{projet.titre}</h4>
-                            <p className="text-sm text-neutral-400 mb-6 line-clamp-2">
-                                {projet.description || "Description du projet..."}
+                        <div className="p-6 flex-grow flex flex-col">
+                            <h4 className="text-xl font-bold text-white mb-1 group-hover:text-portal-green transition-colors font-bangers tracking-wide line-clamp-1">{projet.titre}</h4>
+                            {projet.entreprise && (
+                                <p className="text-xs font-bold text-portal-glow mb-3 uppercase tracking-widest font-mono">
+                                    {projet.entreprise}
+                                </p>
+                            )}
+                            <p className="text-sm text-neutral-400 mb-6 line-clamp-2 leading-relaxed flex-grow">
+                                {projet.description}
                             </p>
-                            <span className="inline-flex items-center text-portal-green text-sm font-medium gap-2 font-bangers tracking-wider">
-                                {projet.missions ? "Voir les missions" : "En savoir plus"}
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </span>
+                            <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+                                <span className="inline-flex items-center text-portal-green text-sm font-bold gap-2 font-bangers tracking-widest group-hover:gap-3 transition-all">
+                                    Détails
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </span>
+
+                            </div>
                         </div>
                     </div>
                 ))}
@@ -108,17 +110,17 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
             {/* Fenêtre Modale du Projet */}
             {projetSelectionne && (
                 <div 
-                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300"
+                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-300"
                     onClick={() => setProjetSelectionne(null)}
                 >
                     <div 
-                        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-space-dark border-2 border-portal-green/50 rounded-3xl shadow-[0_0_50px_rgba(0,255,26,0.2)] animate-in zoom-in-95 duration-300 scrollbar-thin scrollbar-thumb-portal-green"
+                        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#0d1117] border border-white/10 rounded-3xl shadow-[0_0_80px_rgba(0,255,26,0.1)] animate-in zoom-in-95 duration-300 scrollbar-thin scrollbar-thumb-portal-green"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Bouton de fermeture */}
                         <button 
                             onClick={() => setProjetSelectionne(null)}
-                            className="absolute top-6 right-6 p-2 rounded-full bg-black/60 text-white hover:text-portal-green transition-all border border-white/20 hover:border-portal-green/50 z-50 shadow-xl backdrop-blur-md"
+                            className="absolute top-6 right-6 p-2 rounded-full bg-black/40 text-white hover:text-portal-green transition-all border border-white/10 hover:border-portal-green/50 z-50 shadow-xl"
                         >
                             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -127,81 +129,54 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
 
                         {/* Image de couverture */}
                         {projetSelectionne.urlImage && (
-                            <div className="relative h-48 md:h-64 w-full overflow-hidden">
+                            <div className="relative h-48 md:h-80 w-full overflow-hidden">
                                 <Image 
                                     src={`/${projetSelectionne.urlImage}`} 
                                     alt={projetSelectionne.titre}
                                     fill
                                     className="object-cover"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-space-dark to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] via-[#0d1117]/20 to-transparent"></div>
                             </div>
                         )}
 
                         {/* Contenu de la Modale */}
                         <div className={`p-8 md:p-12 relative z-10 ${projetSelectionne.urlImage ? '-mt-16' : ''}`}>
                             
-                            <div className="flex flex-wrap items-center gap-3 mb-4">
-                                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider font-bangers ${
-                                    projetSelectionne.type === 'Professionnel' ? 'bg-portal-green/20 text-portal-green' :
-                                    projetSelectionne.type === 'Personnel' ? 'bg-rick-green/20 text-rick-green' :
-                                    'bg-teal-500/20 text-teal-400'
+                            <div className="flex flex-wrap items-center gap-3 mb-6">
+                                <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers border ${
+                                    projetSelectionne.type === 'Professionnel' ? 'bg-portal-green/10 text-portal-green border-portal-green/30' :
+                                    projetSelectionne.type === 'Personnel' ? 'bg-rick-green/10 text-rick-green border-rick-green/30' :
+                                    'bg-teal-500/10 text-teal-400 border-teal-500/30'
                                 }`}>
                                     {projetSelectionne.type}
                                 </span>
+                                {projetSelectionne.entreprise && (
+                                    <span className="px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers bg-white/5 text-neutral-300 border border-white/10">
+                                        {projetSelectionne.entreprise}
+                                    </span>
+                                )}
                             </div>
 
-                            <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 font-bangers tracking-wider drop-shadow-lg">{projetSelectionne.titre}</h3>
+                            <h2 className="mb-8 drop-shadow-2xl">{projetSelectionne.titre}</h2>
                             
-                            <div className="space-y-6 text-neutral-300 leading-relaxed">
-                                <p className="text-lg italic text-neutral-400">{projetSelectionne.description}</p>
-                                <div className="h-px bg-white/5 w-full"></div>
-                                <p className="whitespace-pre-wrap">{projetSelectionne.descriptionLongue || "Aucune description détaillée disponible pour le moment."}</p>
-                            </div>
-
-                            {/* Section Missions si elles existent */}
-                            {projetSelectionne.missions && (
-                                <div className="mt-12">
-                                    <h4 className="text-2xl font-bold text-portal-green mb-8 font-bangers tracking-widest uppercase">Missions réalisées</h4>
-                                    <div className="grid md:grid-cols-2 gap-6">
-                                        {projetSelectionne.missions.map((mission, index) => (
-                                            <div key={index} className="overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-portal-green/30 transition-all group flex flex-col">
-                                                {mission.urlImage && (
-                                                    <div className="aspect-video relative overflow-hidden border-b border-white/10">
-                                                        <Image 
-                                                            src={`/${mission.urlImage}`} 
-                                                            alt={mission.titre}
-                                                            fill
-                                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                                        />
-                                                    </div>
-                                                )}
-                                                <div className="p-6">
-                                                    <h5 className="text-lg font-bold text-white mb-3 group-hover:text-portal-green transition-colors font-bangers">{mission.titre}</h5>
-                                                    <p className="text-sm text-neutral-400 mb-4">{mission.description}</p>
-                                                    {mission.technologies && (
-                                                        <div className="flex flex-wrap gap-2">
-                                                            {mission.technologies.map(t => (
-                                                                <span key={t} className="text-[10px] px-2 py-0.5 rounded bg-white/10 text-neutral-300 border border-white/5 font-mono">
-                                                                    {t}
-                                                                </span>
-                                                            ))}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                            <div className="space-y-8">
+                                <p className="text-xl italic text-neutral-400 leading-relaxed font-light">{projetSelectionne.description}</p>
+                                <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent w-full"></div>
+                                <div className="prose prose-invert max-w-none">
+                                    <p className="whitespace-pre-wrap text-neutral-300 leading-loose text-base">
+                                        {projetSelectionne.descriptionLongue || "Aucune description détaillée disponible pour le moment."}
+                                    </p>
                                 </div>
-                            )}
+                            </div>
 
                             {/* Technologies globales */}
                             {projetSelectionne.technologies && projetSelectionne.technologies.length > 0 && (
                                 <div className="mt-12">
-                                    <h4 className="text-sm font-bold text-portal-green uppercase tracking-widest mb-4 font-bangers">Compétences</h4>
-                                    <div className="flex flex-wrap gap-2">
+                                    <h4 className="text-sm font-bold text-portal-green uppercase tracking-widest mb-6 font-bangers border-b border-white/5 pb-2 inline-block">Compétences techniques</h4>
+                                    <div className="flex flex-wrap gap-3">
                                         {projetSelectionne.technologies.map((tech) => (
-                                            <span key={tech} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs font-mono text-neutral-300">
+                                            <span key={tech} className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-mono font-bold text-neutral-300 hover:border-portal-green/50 transition-colors">
                                                 {tech}
                                             </span>
                                         ))}
@@ -211,14 +186,14 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
 
                             {/* Lien du Footer */}
                             {projetSelectionne.lien && (
-                                <div className="mt-12 pt-8 border-t border-white/5 flex justify-end">
+                                <div className="mt-16 pt-8 border-t border-white/5 flex justify-end">
                                     <a 
                                         href={projetSelectionne.lien} 
                                         target="_blank" 
                                         rel="noopener noreferrer" 
-                                        className="px-8 py-3 rounded-xl bg-portal-green text-space-dark font-bold hover:bg-rick-green transition-all shadow-[0_0_20px_rgba(0,255,26,0.3)] hover:shadow-[0_0_30px_rgba(151,206,76,0.5)] font-bangers tracking-wider flex items-center gap-2"
+                                        className="px-10 py-4 rounded-2xl bg-portal-green text-space-dark font-bold hover:bg-rick-green transition-all shadow-[0_0_30px_rgba(0,255,26,0.3)] hover:scale-105 font-bangers tracking-widest flex items-center gap-3"
                                     >
-                                        Consulter sur GitHub
+                                        Voir sur GitHub
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                         </svg>
@@ -231,8 +206,8 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
             )}
 
             {projetsFiltres.length === 0 && (
-                <div className="text-center py-20 text-neutral-500">
-                    <p>Aucun projet trouvé pour cette catégorie.</p>
+                <div className="text-center py-20">
+                    <p className="text-neutral-500 font-bangers tracking-widest text-xl">Aucun projet trouvé pour cette catégorie.</p>
                 </div>
             )}
         </div>

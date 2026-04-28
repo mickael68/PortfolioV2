@@ -81,30 +81,21 @@
     },
     {
         "id": 9,
-        "titre": "Stage WebTotem",
-        "description": "Stage Développeur Magento 2 — 2025",
-        "descriptionLongue": "Dans le cadre de mon cursus à l’UHA 4.0, j’ai rejoint l'équipe de WebTotem pour un stage de 4 mois. Cette expérience m'a permis de me spécialiser dans le développement e-commerce sur Magento 2.\n\nCe stage, effectué entièrement à distance, a été une excellente opportunité pour renforcer mon autonomie. J'y ai travaillé sur l'ensemble de la chaîne de développement (Full Stack) pour le site du domaine Steiner, en intervenant aussi bien sur le front-end que sur le back-end. J’ai mis en œuvre des technologies comme PHP, XML, JavaScript, TailwindCSS et Magento 2 (Hyvä). J’ai également géré la base de données MySQL et utilisé Git/Bitbucket pour le versioning. L'organisation du projet sous Jira m'a permis de suivre rigoureusement l'avancement des tâches et de respecter les priorités du client.\n\nCe stage a été une opportunité majeure pour renforcer mon autonomie, mes compétences techniques et ma compréhension des bonnes pratiques e-commerce (performance, ergonomie) dans un cadre professionnel concret.",
-        "technologies": ["Magento 2", "PHP", "XML", "Tailwind CSS", "MySQL", "Git", "Jira", "Bitbucket"],
+        "titre": "Domaine Steiner",
+        "description": "Développement Full Stack d'un site e-commerce viticole réalisé lors de mon stage chez WebTotem.",
+        "descriptionLongue": "Intervention sur l'ensemble de la chaîne de développement pour le site du domaine Steiner. Optimisation des performances via Hyvä, gestion du catalogue et personnalisation du tunnel d'achat. Ce projet, effectué en autonomie à distance, m'a permis de renforcer mes compétences sur Magento 2 et les bonnes pratiques e-commerce.",
+        "technologies": ["Magento 2", "Hyvä", "Tailwind CSS", "PHP", "MySQL", "Git"],
         "lien": "",
         "type": "Professionnel",
         "entreprise": "WebTotem",
-        "urlImage": "images/WebTotem.png",
-        "missions": [
-            {
-                "titre": "Domaine Steiner",
-                "description": "Développement Full Stack d'un site e-commerce viticole.",
-                "technologies": ["Magento 2", "Hyvä", "Tailwind CSS", "PHP"],
-                "descriptionLongue": "Intervention sur l'ensemble de la chaîne de développement pour le site du domaine Steiner. Optimisation des performances via Hyvä, gestion du catalogue et personnalisation du tunnel d'achat.",
-                "urlImage": "images/Steiner.jpg"
-            }
-        ]
+        "urlImage": "images/Steiner.jpg"
     },
     {
         "id": 10,
         "titre": "Schmidt Groupe",
-        "description": "Projet « Bon de commande » - Janvier à février 2026",
-        "descriptionLongue": "Réalisé en équipe, ce projet consistait à concevoir un MES (Manufacturing Execution System) pour piloter la gestion des bons de commande au sein de l’usine Schmidt Groupe de Sélestat. Développée avec .NET et Blazor, cette solution fluidifie les processus de production. Au-delà de l’aspect technique, cette expérience m’a permis de prendre des responsabilités en coordination d'équipe, d'affiner ma communication et d’appréhender les enjeux logistiques d’une entreprise d’envergure internationale.",
-        "technologies": ["Blazor", "C#", ".NET", "Git"],
+        "description": "Conception d’un MES (Manufacturing Execution System) pour la gestion des bons de commande.",
+        "descriptionLongue": "Réalisé en équipe pour l’usine Schmidt Groupe de Sélestat. Développée avec .NET et Blazor, cette solution fluidifie les processus de production en pilotant la gestion des bons de commande. Ce projet m'a permis de prendre des responsabilités en coordination d'équipe et d’appréhender les enjeux logistiques d’une entreprise internationale.",
+        "technologies": ["Blazor", "C#", ".NET", "Git", "SQL"],
         "lien": "",
         "type": "Formation",
         "entreprise": "Schmidt Groupe",
@@ -112,39 +103,46 @@
     },
     {
         "id": 11,
-        "titre": "Stage CTAI Informatique",
-        "description": "Stage Développeur Full Stack Ruby on Rails — 2026",
-        "descriptionLongue": "Durant ce stage de 5 mois, j'ai eu l'opportunité de travailler sur 4 projets majeurs au sein de l'entreprise CTAI Informatique. Cette expérience a été cruciale pour approfondir mes compétences en Ruby on Rails et en gestion de bases de données MySQL.",
+        "titre": "Capeb INPI",
+        "description": "Outil d'extraction de données légales via l'API de l'INPI réalisé chez CTAI Informatique.",
+        "descriptionLongue": "Développement d'un outil spécifique pour la Capeb permettant d'extraire et de traiter des données provenant de l'API de l'INPI. Ce projet a nécessité une gestion rigoureuse des flux de données et une transformation efficace en formats exploitables via Ruby on Rails.",
+        "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "API INPI", "Bootstrap", "Git"],
+        "lien": "",
+        "type": "Professionnel",
+        "entreprise": "CTAI Informatique",
+        "urlImage": "images/CTAI.png"
+    },
+    {
+        "id": 12,
+        "titre": "Domisoft",
+        "description": "Optimisation du système de facturation et devis pour la solution Domisoft.",
+        "descriptionLongue": "Amélioration fonctionnelle et technique du module de facturation et de devis. Travail sur la précision des calculs, la génération de PDF et l'expérience utilisateur pour la gestion comptable au sein de l'entreprise CTAI Informatique.",
         "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Tailwind CSS", "Git"],
         "lien": "",
         "type": "Professionnel",
         "entreprise": "CTAI Informatique",
-        "urlImage": "images/CTAI.png",
-        "missions": [
-            {
-                "titre": "Capeb INPI",
-                "description": "Outil d'extraction de données légales via l'API de l'INPI.",
-                "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "API INPI", "Bootstrap", "Git"],
-                "descriptionLongue": "Développement d'un outil spécifique pour la Capeb permettant d'extraire et de traiter des données provenant de l'API de l'INPI. Ce projet a nécessité une gestion rigoureuse des flux de données et une transformation efficace en formats exploitables."
-            },
-            {
-                "titre": "Domisoft",
-                "description": "Optimisation du système de facturation et devis.",
-                "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Tailwind CSS", "Git"],
-                "descriptionLongue": "Amélioration fonctionnelle et technique du module de facturation et de devis de la solution Domisoft. Travail sur la précision des calculs, la génération de PDF et l'expérience utilisateur pour la gestion comptable."
-            },
-            {
-                "titre": "Chauffagiste Guebwiller",
-                "description": "Refonte du site avec carte interactive style AirBNB.",
-                "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Google Maps API", "Tailwind CSS", "Git"],
-                "descriptionLongue": "Refonte complète du site web avec l'intégration d'une carte interactive (Google Maps) inspirée du style AirBNB pour localiser les artisans. Focus sur l'ergonomie et la recherche géographique."
-            },
-            {
-                "titre": "CTAI-Formation",
-                "description": "Refonte du site avec gestion des actualités.",
-                "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Tailwind CSS", "Git"],
-                "descriptionLongue": "Modernisation complète de la plateforme de formation de CTAI. Mise en place d'un système de gestion des actualités et optimisation du catalogue de formations pour un meilleur SEO et une navigation fluide."
-            }
-        ]
+        "urlImage": "images/CTAI.png"
+    },
+    {
+        "id": 13,
+        "titre": "Chauffagiste Guebwiller",
+        "description": "Refonte du site avec carte interactive style AirBNB.",
+        "descriptionLongue": "Refonte complète du site web avec l'intégration d'une carte interactive (Google Maps) inspirée du style AirBNB pour localiser les artisans. Focus sur l'ergonomie, la recherche géographique et l'intégration fluide des données.",
+        "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Google Maps API", "Tailwind CSS", "Git"],
+        "lien": "",
+        "type": "Professionnel",
+        "entreprise": "CTAI Informatique",
+        "urlImage": "images/CTAI.png"
+    },
+    {
+        "id": 14,
+        "titre": "CTAI-Formation",
+        "description": "Refonte de la plateforme de formation avec gestion des actualités.",
+        "descriptionLongue": "Modernisation complète de la plateforme de formation de CTAI. Mise en place d'un système de gestion des actualités et optimisation du catalogue de formations pour un meilleur SEO et une navigation fluide.",
+        "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Tailwind CSS", "Git"],
+        "lien": "",
+        "type": "Professionnel",
+        "entreprise": "CTAI Informatique",
+        "urlImage": "images/CTAI.png"
     }
 ]
