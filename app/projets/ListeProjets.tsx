@@ -57,8 +57,8 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                     >
                         <div className="aspect-video bg-neutral-200 dark:bg-neutral-800 relative overflow-hidden">
                             {projet.urlImage ? (
-                                <Image 
-                                    src={`/${projet.urlImage}`} 
+                                <Image
+                                    src={`/${projet.urlImage}`}
                                     alt={projet.titre}
                                     fill
                                     className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
@@ -75,7 +75,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                 {projet.type && (
                                     <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers ${projet.type === 'Professionnel' ? 'bg-portal-green/20 text-portal-green border border-portal-green/30' :
                                         projet.type === 'Personnel' ? 'bg-rick-green/20 text-rick-green border border-rick-green/30' :
-                                        'bg-teal-500/20 text-teal-400 border border-teal-500/30'
+                                            'bg-teal-500/20 text-teal-400 border border-teal-500/30'
                                         }`}>
                                         {projet.type}
                                     </div>
@@ -109,16 +109,16 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
 
             {/* Fenêtre Modale du Projet */}
             {projetSelectionne && (
-                <div 
+                <div
                     className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-300"
                     onClick={() => setProjetSelectionne(null)}
                 >
-                    <div 
+                    <div
                         className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#0d1117] border border-black/10 dark:border-white/10 rounded-3xl shadow-[0_0_80px_rgba(0,255,26,0.1)] animate-in zoom-in-95 duration-300 scrollbar-thin scrollbar-thumb-portal-green"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Bouton de fermeture */}
-                        <button 
+                        <button
                             onClick={() => setProjetSelectionne(null)}
                             className="absolute top-6 right-6 p-2 rounded-full bg-black/10 dark:bg-black/40 text-neutral-900 dark:text-white hover:text-portal-green dark:hover:text-portal-green transition-all border border-black/10 dark:border-white/10 hover:border-portal-green/50 z-50 shadow-xl"
                         >
@@ -130,8 +130,8 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                         {/* Image de couverture */}
                         {projetSelectionne.urlImage && (
                             <div className="relative h-48 md:h-80 w-full overflow-hidden">
-                                <Image 
-                                    src={`/${projetSelectionne.urlImage}`} 
+                                <Image
+                                    src={`/${projetSelectionne.urlImage}`}
                                     alt={projetSelectionne.titre}
                                     fill
                                     className="object-cover"
@@ -142,13 +142,12 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
 
                         {/* Contenu de la Modale */}
                         <div className={`p-8 md:p-12 relative z-10 ${projetSelectionne.urlImage ? '-mt-16' : ''}`}>
-                            
+
                             <div className="flex flex-wrap items-center gap-3 mb-6">
-                                <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers border ${
-                                    projetSelectionne.type === 'Professionnel' ? 'bg-portal-green/10 text-portal-green border-portal-green/30' :
-                                    projetSelectionne.type === 'Personnel' ? 'bg-rick-green/10 text-rick-green border-rick-green/30' :
-                                    'bg-teal-500/10 text-teal-400 border-teal-500/30'
-                                }`}>
+                                <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers border ${projetSelectionne.type === 'Professionnel' ? 'bg-portal-green/10 text-portal-green border-portal-green/30' :
+                                        projetSelectionne.type === 'Personnel' ? 'bg-rick-green/10 text-rick-green border-rick-green/30' :
+                                            'bg-teal-500/10 text-teal-400 border-teal-500/30'
+                                    }`}>
                                     {projetSelectionne.type}
                                 </span>
                                 {projetSelectionne.entreprise && (
@@ -159,7 +158,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                             </div>
 
                             <h2 className="mb-8 drop-shadow-2xl">{projetSelectionne.titre}</h2>
-                            
+
                             <div className="space-y-8">
                                 <p className="text-xl italic text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">{projetSelectionne.description}</p>
                                 <div className="h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/10 to-transparent w-full"></div>
@@ -187,10 +186,10 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                             {/* Lien du Footer */}
                             {projetSelectionne.lien && (
                                 <div className="mt-16 pt-8 border-t border-black/10 dark:border-white/5 flex justify-end">
-                                    <a 
-                                        href={projetSelectionne.lien} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer" 
+                                    <a
+                                        href={projetSelectionne.lien}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="px-10 py-4 rounded-2xl bg-portal-green text-space-dark font-bold hover:bg-rick-green transition-all shadow-[0_0_30px_rgba(0,255,26,0.3)] hover:scale-105 font-bangers tracking-widest flex items-center gap-3"
                                     >
                                         Voir sur GitHub
