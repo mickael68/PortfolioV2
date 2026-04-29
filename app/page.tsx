@@ -27,7 +27,7 @@ export default function Home() {
               <div className="relative w-40 h-40 md:w-56 md:h-56 overflow-hidden rounded-full border-4 border-portal-green bg-space-dark z-10 
                               group-hover:border-rick-green transition-colors duration-500 shadow-[inset_0_0_15px_rgba(0,255,26,0.8)]">
                 <div className="flex items-center justify-center w-full h-full">
-                  <Image src="/images/Mickaël_Marco.png" alt="Avatar" width={224} height={224} className="object-cover relative z-10" />
+                  <Image src="/images/avatar.png" alt="Avatar" width={224} height={224} className="object-cover relative z-10" />
                 </div>
               </div>
             </div>

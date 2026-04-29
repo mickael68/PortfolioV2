@@ -11,7 +11,7 @@ html {
   --foreground: #0f172a;
   --scrollbar-track: #e2e8f0;
   --scrollbar-border: #f8fafc;
-  --star-color: rgba(0, 0, 0, 0.1);
+  --star-color: #000000;
 }
 
 .dark {
