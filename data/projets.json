@@ -98,7 +98,6 @@
         "technologies": ["Blazor", "C#", ".NET", "Git", "SQL"],
         "lien": "",
         "type": "Formation",
-        "entreprise": "Schmidt Groupe",
         "urlImage": "images/SchmidtGroupe.png"
     },
     {

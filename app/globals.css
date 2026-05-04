@@ -12,6 +12,9 @@ html {
   --scrollbar-track: #e2e8f0;
   --scrollbar-border: #f8fafc;
   --star-color: #000000;
+  --portal-green: #059669;
+  --portal-glow: #10b981;
+  --rick-green: #65a30d;
 }
 
 .dark {
@@ -20,6 +23,9 @@ html {
   --scrollbar-track: #1a1f26;
   --scrollbar-border: #1a1f26;
   --star-color: rgba(255, 255, 255, 0.8);
+  --portal-green: #00ff1a;
+  --portal-glow: #10b981;
+  --rick-green: #97ce4c;
 }
 
 @theme inline {
@@ -30,9 +36,9 @@ html {
   --font-mono: var(--font-mono);
   
   /* Rick & Morty Theme Colors */
-  --color-portal-green: #00ff1a;
-  --color-portal-glow: #10b981;
-  --color-rick-green: #97ce4c;
+  --color-portal-green: var(--portal-green);
+  --color-portal-glow: var(--portal-glow);
+  --color-rick-green: var(--rick-green);
   --color-space-dark: #0a0c10;
   
   /* Portal Animations */
