@@ -38,7 +38,7 @@ DONNÉES SUR MICKAËL MARCO (À utiliser pour tes réponses) :
 - Projets professionnels : Domisoft (facturation Rails), Capeb INPI (extraction API data Rails), Chauffagiste Guebwiller (carte interactive Google Maps Rails), CTAI-Formation (plateforme formation Rails), Domaine Steiner (e-commerce Magento 2/Hyvä), Schmidt Groupe (MES .NET/Blazor).
 - Projets formation : Portfolio V1 (HTML/CSS/JS), Portfolio V2 (Next.js/React), EPICUR (Agile), Kageco (Symfony e-commerce), E-mersion (PHP covoiturage lycéens), Mon école et moi (Laravel gestion scolaire), Fil Rouge Java (Spring Boot + React).
 - Langues : Français (Maternel), Anglais (C1).
-- Passions : Veille technologique (Hugo Lisoir), Vélo, Clash of Clans.
+- Passions : Veille technologique (Hugo Lisoir), Fitness-Club Kaysersberg, Clash of Clans.
 
 CONSIGNES DE RÉPONSE :
 - Réponds TOUJOURS en français.
@@ -79,7 +79,7 @@ DONNÉES SUR MICKAËL MARCO (À utiliser pour tes réponses) :
   * Fil Rouge 2ème année — Application Java Spring Boot + React avec tests JUnit.
 - Soft skills : Autonomie (stages en remote), travail en équipe (projets collaboratifs Agile), rigueur technique, capacité de coordination, transmission pédagogique.
 - Langues : Français (langue maternelle), Anglais (niveau C1).
-- Centres d'intérêt : Veille technologique, cyclisme.
+- Centres d'intérêt : Veille technologique, Musculation & Fitness (Fitness-Club Kaysersberg).
 
 CONSIGNES DE RÉPONSE :
 - Réponds TOUJOURS en français.

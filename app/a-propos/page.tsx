@@ -173,7 +173,7 @@ export default async function APropos() {
                             <div className="grid grid-cols-1 gap-3">
                                 {[
                                     { label: "Veille Informatique", desc: "Hugo Lisoir, Balade Mentale" },
-                                    { label: "Vélo", desc: "Activités de plein air" },
+                                    { label: "Fitness-Club Kaysersberg", desc: "Musculation & Cardio" },
                                     { label: "Clash of Clans", desc: "Stratégie & Réflexion" }
                                 ].map((item) => (
                                     <div key={item.label} className="p-3 bg-black/5 dark:bg-white/5 rounded-xl border border-black/10 dark:border-white/5 hover:border-portal-green/30 transition-colors">

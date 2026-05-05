@@ -35,7 +35,7 @@ export default function ChatBot() {
       setMessages([
         {
           role: "assistant",
-          content: `**Salut et bienvenue !**\n\nPetit mot avant de commencer : pour pimenter ce portfolio et vous montrer ce que je sais faire avec les IA, j'ai donné à mon assistant un caractère de 'savant fou' avec un ego surdimensionné. Ne prenez pas ses remarques au sérieux, c'est 100 % fait exprès pour la démo technique ! Promis, en vrai, je suis quelqu'un de très posé et à l'écoute. Bonne visite !`,
+          content: `**Bonjour et bienvenue !**\n\nPetit mot avant de commencer : pour pimenter ce portfolio et vous montrer ce que je sais faire avec les IA, j'ai donné à mon assistant un caractère de 'savant fou' avec un ego surdimensionné. Ne prenez pas ses remarques au sérieux, c'est 100 % fait exprès pour la démo technique ! Promis, en vrai, je suis quelqu'un de très posé et à l'écoute. Bonne visite !`,
         },
       ]);
     } else {
