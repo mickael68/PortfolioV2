@@ -24,7 +24,7 @@ export default function Contact() {
                             </svg>
                         </div>
                         <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">LinkedIn</h3>
-                        <span className="text-neutral-600 dark:text-neutral-400 group-hover:text-portal-glow transition-colors">Voir mon profil</span>
+                        <span className="text-neutral-600 dark:text-neutral-400 group-hover:text-portal-glow transition-colors text-sm break-all text-center">linkedin.com/in/mickaël-marco-1430a5327/</span>
                     </a>
 
                     {/* Email */}
@@ -68,7 +68,7 @@ export default function Contact() {
                             </svg>
                         </div>
                         <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">GitHub</h3>
-                        <span className="text-neutral-600 dark:text-neutral-400 group-hover:text-portal-glow transition-colors">Voir mon profil</span>
+                        <span className="text-neutral-600 dark:text-neutral-400 group-hover:text-portal-glow transition-colors text-sm break-all text-center">github.com/mickael68</span>
                     </a>
                 </div>
             </div>
