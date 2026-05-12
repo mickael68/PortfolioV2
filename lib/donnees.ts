@@ -39,20 +39,20 @@ export interface Experience {
 
 const repertoireDonnees = path.join(process.cwd(), 'data');
 
-export async function getProjets(): Promise<Projet[]> {
-    const cheminFichier = path.join(repertoireDonnees, 'projets.json');
+export async function getProjets(locale: string = 'fr'): Promise<Projet[]> {
+    const cheminFichier = path.join(repertoireDonnees, locale, 'projets.json');
     const contenuFichier = await fs.readFile(cheminFichier, 'utf8');
     return JSON.parse(contenuFichier);
 }
 
-export async function getCompetences(): Promise<Competence[]> {
-    const cheminFichier = path.join(repertoireDonnees, 'competences.json');
+export async function getCompetences(locale: string = 'fr'): Promise<Competence[]> {
+    const cheminFichier = path.join(repertoireDonnees, locale, 'competences.json');
     const contenuFichier = await fs.readFile(cheminFichier, 'utf8');
     return JSON.parse(contenuFichier);
 }
 
-export async function getExperiences(): Promise<Experience[]> {
-    const cheminFichier = path.join(repertoireDonnees, 'experiences.json');
+export async function getExperiences(locale: string = 'fr'): Promise<Experience[]> {
+    const cheminFichier = path.join(repertoireDonnees, locale, 'experiences.json');
     const contenuFichier = await fs.readFile(cheminFichier, 'utf8');
     return JSON.parse(contenuFichier);
 }

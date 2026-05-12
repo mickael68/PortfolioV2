@@ -4,32 +4,37 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
-
-const navItems = [
-  { name: "À propos", href: "/a-propos" },
-  { name: "Compétences", href: "/competences" },
-  { name: "Projets", href: "/projets" },
-  { name: "Contact", href: "/contact" },
-];
+import { LanguageSelector } from "./LanguageSelector";
+import { useLocale } from "./LocaleProvider";
 
 export default function Navbar() {
+  const { locale, dictionary } = useLocale();
+  const navItems = [
+    { name: dictionary.navbar.about, href: `/${locale}/a-propos` },
+    { name: dictionary.navbar.skills, href: `/${locale}/competences` },
+    { name: dictionary.navbar.projects, href: `/${locale}/projets` },
+    { name: dictionary.navbar.contact, href: `/${locale}/contact` },
+  ];
+
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-lg border-b border-black/10 dark:border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.3)] transition-colors duration-300">
       <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
-        <Link href="/" className="text-2xl font-bold tracking-tighter text-neutral-900 dark:text-white hover:text-portal-green dark:hover:text-portal-green transition-colors drop-shadow-[0_0_8px_var(--color-portal-green)] font-bangers">
-          Portfolio
-        </Link>
+        {/* Logo Section */}
+        <div className="flex-1">
+          <Link href={`/${locale}`} className="text-2xl font-bold tracking-tighter text-neutral-900 dark:text-white hover:text-portal-green dark:hover:text-portal-green transition-colors drop-shadow-[0_0_8px_var(--color-portal-green)] font-bangers inline-block">
+            Portfolio
+          </Link>
+        </div>
         
-        <div className="flex items-center gap-4">
-          {/* Desktop Menu */}
-          <ul className="hidden md:flex gap-8 text-xs font-mono uppercase tracking-widest items-center">
+        {/* Desktop Menu Section - Centered */}
+        <ul className="hidden md:flex gap-8 text-xs font-mono uppercase tracking-widest items-center">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
-              <li key={item.name} className="relative group">
+              <li key={item.href} className="relative group">
                 <Link 
                   href={item.href} 
                   className={`transition-colors duration-300 ${
@@ -45,9 +50,14 @@ export default function Navbar() {
               </li>
             );
           })}
-          </ul>
+        </ul>
 
-          <ThemeToggle />
+        {/* Right Side Tools Section */}
+        <div className="flex-1 flex items-center justify-end gap-4">
+          <div className="flex items-center gap-2">
+            <LanguageSelector />
+            <ThemeToggle />
+          </div>
 
           {/* Mobile Hamburger Button */}
           <button 
@@ -71,7 +81,7 @@ export default function Navbar() {
             const isActive = pathname === item.href;
             return (
               <Link 
-                key={item.name} 
+                key={item.href} 
                 href={item.href} 
                 className={`text-lg font-bangers tracking-widest transition-colors py-2 px-4 rounded-lg ${
                   isActive ? "bg-portal-green/10 text-portal-green" : "text-neutral-600 dark:text-neutral-200 hover:text-portal-green dark:hover:text-portal-green hover:bg-neutral-100 dark:hover:bg-white/5"
@@ -87,3 +97,4 @@ export default function Navbar() {
     </nav>
   );
 }
+

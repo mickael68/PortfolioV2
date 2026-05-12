@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Competence } from "../../lib/donnees";
+import { Competence } from "@/lib/donnees";
 
 interface SkillsTabsProps {
     competences: Competence[];
@@ -15,14 +15,14 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
     const competencesTechnologies = competences.filter(
         (c) =>
             c.niveau !== "OS" &&
-            !["Logiciel", "CMS", "Hébergement Git", "Outil de travail"].includes(c.niveau) &&
+            !["Logiciel", "Software", "CMS", "Hébergement Git", "Git Hosting", "Outil de travail", "Working Tool"].includes(c.niveau) &&
             c.niveau !== ""
     );
 
     const competencesOS = competences.filter((c) => c.niveau === "OS");
 
     const competencesDivers = competences.filter((c) =>
-        ["Logiciel", "CMS", "Hébergement Git", "Outil de travail"].includes(c.niveau) || c.niveau === ""
+        ["Logiciel", "Software", "CMS", "Hébergement Git", "Git Hosting", "Outil de travail", "Working Tool"].includes(c.niveau) || c.niveau === ""
     );
 
     const obtenirCompetencesActives = () => {

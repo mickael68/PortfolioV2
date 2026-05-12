@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
 import { Bangers, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import ChatBot from "./components/ChatBot";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { LocaleProvider } from "./components/LocaleProvider";
+import Footer from "./components/Footer";
 
 const bangers = Bangers({
   weight: "400",
@@ -21,18 +22,29 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Mickaël MARCO | Développeur Web Full Stack - Interdimensionnel",
-  description: "Portfolio de Mickaël MARCO, développeur web passionné par les expériences numériques modernes et de haute performance.",
-};
+import { getDictionary } from "@/lib/dictionary";
 
-export default function RootLayout({
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const dictionary = await getDictionary(locale);
+  return {
+    title: dictionary.metadata.title,
+    description: dictionary.metadata.description,
+  };
+}
+
+export default async function RootLayout({
   children,
-}: Readonly<{
+  params
+}: {
   children: React.ReactNode;
-}>) {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: rawLocale } = await params;
+  const locale = rawLocale || 'fr';
+
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={`${bangers.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground selection:bg-portal-green/40 font-sans transition-colors duration-300`}
       >
@@ -42,15 +54,15 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange={false}
         >
-          <Navbar />
-          {children}
-          <ChatBot />
-          {/* Footer */}
-          <footer className="py-4 border-t border-black/10 dark:border-white/5 text-center text-sm text-neutral-500">
-            <p>&copy; {new Date().getFullYear()} Tous droits réservés. Mickaël MARCO.</p>
-          </footer>
+          <LocaleProvider initialLocale={locale}>
+            <Navbar />
+            {children}
+            <ChatBot />
+            <Footer />
+          </LocaleProvider>
         </ThemeProvider>
       </body>
     </html>
   );
 }
+

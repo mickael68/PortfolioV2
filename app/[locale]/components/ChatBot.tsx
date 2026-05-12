@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useLocale } from "./LocaleProvider";
 
 type Persona = "rick" | "pro" | null;
 
@@ -14,12 +15,57 @@ interface Message {
 }
 
 export default function ChatBot() {
+  const { locale } = useLocale();
+
   const [isOpen, setIsOpen] = useState(false);
   const [persona, setPersona] = useState<Persona>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const t = {
+    fr: {
+      welcome: "Bienvenue ! Ce portfolio intègre une",
+      ia_exp: "IA expérimentale",
+      conn_est: "Connexion établie. Choisissez votre interface :",
+      mode_inter: "Mode Interdimensionnel",
+      mode_pro: "Mode Professionnel",
+      mode_inter_desc: '"Portail stabilisé.<br/>Analyse du visiteur en cours…<br/>Tolérance au chaos détectée : acceptable."',
+      mode_pro_desc: '"Bonjour. Je peux vous guider rapidement à travers ce portfolio."',
+      disclaimer: "Cette IA démontre mes compétences en Prompt Engineering. Elle est configurée avec des personnalités distinctes pour illustrer la maîtrise du fine-tuning de modèles génératifs.",
+      input_placeholder: "Écris ton message...",
+      loading_rick: "Portail en cours d'ouverture...",
+      loading_pro: "Réponse en cours...",
+      error_msg: "Une erreur est survenue. Veuillez réessayer dans quelques instants.",
+      error_rick: "Mince, une interférence dans le portail ! Réessaie dans quelques instants, Morty.",
+      rick_init_msg: "**Bonjour et bienvenue !**\n\nPetit mot avant de commencer : pour pimenter ce portfolio et vous montrer ce que je sais faire avec les IA, j'ai donné à mon assistant un caractère de 'savant fou' avec un ego surdimensionné. Ne prenez pas ses remarques au sérieux, c'est 100 % fait exprès pour la démo technique ! Promis, en vrai, je suis quelqu'un de très posé et à l'écoute. Bonne visite !",
+      rick_greeting: "\"Wubba Lubba Dub Dub ! Salutations, voyageur de l'espace-temps corporate. Qu'est-ce que tu cherches ? Son parcours, ses projets, ou tu veux tester mes limites ?\"",
+      pro_greeting: "\"Bonjour ! Posez-moi vos questions sur le parcours, les compétences ou les projets de Mickaël.\"",
+      switch_mode: "Changer de mode",
+      interface_ia: "Interface IA"
+    },
+    en: {
+      welcome: "Welcome! This portfolio integrates an",
+      ia_exp: "experimental AI",
+      conn_est: "Connection established. Choose your interface:",
+      mode_inter: "Interdimensional Mode",
+      mode_pro: "Professional Mode",
+      mode_inter_desc: '"Portal stabilized.<br/>Analyzing visitor…<br/>Chaos tolerance detected: acceptable."',
+      mode_pro_desc: '"Hello. I can quickly guide you through this portfolio."',
+      disclaimer: "This AI demonstrates my skills in Prompt Engineering. It is configured with distinct personalities to illustrate mastery of fine-tuning generative models.",
+      input_placeholder: "Write your message...",
+      loading_rick: "Portal opening...",
+      loading_pro: "Responding...",
+      error_msg: "An error occurred. Please try again in a few moments.",
+      error_rick: "Damn, portal interference! Try again in a few moments, Morty.",
+      rick_init_msg: "**Hello and welcome!**\n\nA quick note before we start: to spice up this portfolio and show what I can do with AIs, I've given my assistant a 'mad scientist' character with an oversized ego. Don't take his remarks seriously, it's 100% intentional for the technical demo! I promise, in real life, I'm a very calm and attentive person. Enjoy your visit!",
+      rick_greeting: "\"Wubba Lubba Dub Dub! Greetings, corporate space-time traveler. What are you looking for? His journey, his projects, or do you want to test my limits?\"",
+      pro_greeting: "\"Hello! Ask me your questions about Mickaël's background, skills, or projects.\"",
+      switch_mode: "Change mode",
+      interface_ia: "AI Interface"
+    }
+  }[locale === 'en' ? 'en' : 'fr'];
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -35,7 +81,7 @@ export default function ChatBot() {
       setMessages([
         {
           role: "assistant",
-          content: `**Bonjour et bienvenue !**\n\nPetit mot avant de commencer : pour pimenter ce portfolio et vous montrer ce que je sais faire avec les IA, j'ai donné à mon assistant un caractère de 'savant fou' avec un ego surdimensionné. Ne prenez pas ses remarques au sérieux, c'est 100 % fait exprès pour la démo technique ! Promis, en vrai, je suis quelqu'un de très posé et à l'écoute. Bonne visite !`,
+          content: t.rick_init_msg,
         },
       ]);
     } else {
@@ -71,6 +117,7 @@ export default function ChatBot() {
           message: input,
           history: messages,
           persona,
+          locale
         }),
       });
 
@@ -79,14 +126,14 @@ export default function ChatBot() {
         setMessages((prev) => [...prev, { role: "assistant", content: data.text }]);
       } else {
         setMessages((prev) => [...prev, { role: "assistant", content: persona === "rick" 
-          ? "Mince, une interférence dans le portail ! Réessaie dans quelques instants, Morty." 
-          : "Une erreur est survenue. Veuillez réessayer dans quelques instants." 
+          ? t.error_rick 
+          : t.error_msg 
         }]);
       }
     } catch {
       setMessages((prev) => [...prev, { role: "assistant", content: persona === "rick" 
-        ? "Le portail est fermé pour maintenance dimensionnelle. Réessaie plus tard !" 
-        : "Le service est temporairement indisponible. Veuillez réessayer ultérieurement."
+        ? t.error_rick 
+        : t.error_msg
       }]);
     } finally {
       setIsLoading(false);
@@ -94,7 +141,7 @@ export default function ChatBot() {
   };
 
   const isRick = persona === "rick";
-  const headerTitle = isRick ? "Portal Assistant" : "Assistant Portfolio";
+  const headerTitle = isRick ? (locale === 'en' ? "Portal Assistant" : "Portal Assistant") : (locale === 'en' ? "Portfolio Assistant" : "Assistant Portfolio");
   const accentColor = isRick ? "portal-green" : "blue-400";
   const accentHex = isRick ? "rgba(0,255,26," : "rgba(96,165,250,";
 
@@ -127,7 +174,7 @@ export default function ChatBot() {
                 <h3 className={`font-bangers tracking-wider text-xl uppercase ${
                   isRick || !persona ? "text-portal-green" : "text-blue-400"
                 }`}>
-                  {persona ? headerTitle : "Portal Assistant"}
+                  {persona ? headerTitle : t.interface_ia}
                 </h3>
               </div>
               <div className="flex items-center gap-1">
@@ -135,7 +182,7 @@ export default function ChatBot() {
                 {persona && (
                   <button
                     onClick={handleSwitchPersona}
-                    title="Changer de mode"
+                    title={t.switch_mode}
                     className={`p-1.5 rounded-lg transition-colors ${
                       isRick
                         ? "text-neutral-400 hover:text-portal-green hover:bg-portal-green/10"
@@ -166,13 +213,20 @@ export default function ChatBot() {
             {/* Persona Selection Screen */}
             {!persona && (
               <div className="flex-1 overflow-y-auto p-4 flex flex-col">
-                <div className="text-center mb-4">
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
-                    Bienvenue ! Ce portfolio intègre une <span className="font-semibold text-portal-green">IA expérimentale</span>.
-                  </p>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
-                    Choisissez votre mode d&apos;interaction :
-                  </p>
+                <div className="shrink-0 mb-4 bg-black/5 dark:bg-white/5 border border-portal-green/20 rounded-lg p-3 text-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-portal-green/5 animate-pulse"></div>
+                  <div className="relative z-10">
+                    <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed font-medium">
+                      {t.welcome} <span className="text-portal-green font-bold">{t.ia_exp}</span>.
+                    </p>
+                    <div className="mt-2 text-xs text-neutral-500 dark:text-neutral-400 font-mono">
+                      <span className="inline-block relative h-2 w-2 mr-2 mb-[1px]">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-portal-green opacity-75"></span>
+                        <span className="absolute inline-flex rounded-full h-2 w-2 bg-portal-green"></span>
+                      </span>
+                      <span>{t.conn_est}</span>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Rick Mode */}
@@ -182,13 +236,10 @@ export default function ChatBot() {
                 >
                   <div className="flex items-center gap-3 mb-2">
                     <h4 className="font-bangers text-portal-green tracking-wider text-lg uppercase group-hover:drop-shadow-[0_0_8px_rgba(0,255,26,0.5)] transition-all">
-                      Mode Interdimensionnel
+                      {t.mode_inter}
                     </h4>
                   </div>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
-                    Personnalité satirique inspirée de la Pop Culture. Réponses décalées mais efficaces.
-                    <span className="block mt-1 italic text-portal-green/70">À tes risques et périls.</span>
-                  </p>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed italic font-mono" dangerouslySetInnerHTML={{ __html: t.mode_inter_desc }} />
                 </button>
 
                 {/* Pro Mode */}
@@ -198,19 +249,16 @@ export default function ChatBot() {
                 >
                   <div className="flex items-center gap-3 mb-2">
                     <h4 className="font-bangers text-blue-400 tracking-wider text-lg uppercase group-hover:drop-shadow-[0_0_8px_rgba(96,165,250,0.5)] transition-all">
-                      Mode Professionnel
+                      {t.mode_pro}
                     </h4>
                   </div>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
-                    Un assistant clair, concis et droit au but. Idéal pour les recruteurs pressés.
-                  </p>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed italic" dangerouslySetInnerHTML={{ __html: t.mode_pro_desc }} />
                 </button>
 
                 {/* Disclaimer */}
                 <div className="mt-auto pt-3 border-t border-neutral-200 dark:border-neutral-700">
                   <p className="text-[10px] text-neutral-400 dark:text-neutral-500 text-center leading-relaxed">
-                    Cette IA démontre mes compétences en <span className="font-semibold">Prompt Engineering</span>. 
-                    Elle est configurée avec des personnalités distinctes pour illustrer la maîtrise du fine-tuning de modèles génératifs.
+                    {t.disclaimer}
                   </p>
                 </div>
               </div>
@@ -224,8 +272,8 @@ export default function ChatBot() {
                     <div className="text-center text-neutral-500 dark:text-neutral-500 mt-10">
                       <p className="text-sm italic">
                         {isRick
-                          ? "\"Wubba Lubba Dub Dub ! Salutations, voyageur de l'espace-temps corporate. Qu'est-ce que tu cherches ? Son parcours, ses projets, ou tu veux tester mes limites ?\""
-                          : "\"Bonjour ! Posez-moi vos questions sur le parcours, les compétences ou les projets de Mickaël.\""
+                          ? t.rick_greeting
+                          : t.pro_greeting
                         }
                       </p>
                     </div>
@@ -280,8 +328,8 @@ export default function ChatBot() {
                       onChange={(e) => setInput(e.target.value)}
                       disabled={isLoading}
                       placeholder={isLoading 
-                        ? (isRick ? "Portail en cours d'ouverture..." : "Réponse en cours...") 
-                        : "Écris ton message..."
+                        ? (isRick ? t.loading_rick : t.loading_pro) 
+                        : t.input_placeholder
                       }
                       className={`w-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full py-2.5 px-5 pr-12 text-sm focus:outline-none transition-colors text-neutral-800 dark:text-neutral-200 disabled:opacity-50 ${
                         isRick ? "focus:border-portal-green" : "focus:border-blue-400"

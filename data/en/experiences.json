@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "titre": "Magento 2 Developer - 4-month Internship",
+        "entreprise": "WebTotem",
+        "date_debut": "2025-03-10",
+        "date_fin": "2025-07-10",
+        "description": "Developing web applications with Magento 2.",
+        "type": "Professional"
+    },
+    {
+        "id": 2,
+        "titre": "Ruby on Rails Developer - 5-month Internship",
+        "entreprise": "CTAI Informatique",
+        "date_debut": "2026-02-16",
+        "date_fin": "2026-07-10",
+        "description": "Developing web applications with Ruby on Rails.",
+        "type": "Professional"
+    },
+    {
+        "id": 3,
+        "titre": "General Baccalaureate",
+        "entreprise": "High School",
+        "date_debut": "2020-09-01",
+        "date_fin": "2023-06-30",
+        "description": "General Baccalaureate",
+        "type": "Academic"
+    },
+    {
+        "id": 4,
+        "titre": "Computer Science Student",
+        "entreprise": "UHA 4.0",
+        "date_debut": "2024-09-02",
+        "date_fin": null,
+        "description": "Preparing for a Professional License in Computer Science through project-based learning.",
+        "type": "Academic"
+    }
+]

@@ -1,14 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Projet } from "../../lib/donnees";
+import { Projet } from "@/lib/donnees";
 import Image from "next/image";
 
-type TypeFiltre = 'Formation' | 'Personnel' | 'Professionnel';
-
-export default function ListeProjets({ projets }: { projets: Projet[] }) {
-    const [filtre, setFiltre] = useState<TypeFiltre>('Professionnel');
+export default function ListeProjets({ projets, dictionary, locale }: { projets: Projet[], dictionary: any, locale: string }) {
+    const [filtre, setFiltre] = useState<string>(locale === 'en' ? 'Professional' : 'Professionnel');
     const [projetSelectionne, setProjetSelectionne] = useState<Projet | null>(null);
+
+    // Sync default filter when locale changes
+    useEffect(() => {
+        setFiltre(locale === 'en' ? 'Professional' : 'Professionnel');
+    }, [locale]);
 
     // Gérer la touche Échap pour fermer la modale
     useEffect(() => {
@@ -23,10 +26,10 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
         return projet.type === filtre;
     });
 
-    const filtres: { label: string; value: TypeFiltre }[] = [
-        { label: "Professionnel", value: "Professionnel" },
-        { label: "Personnel", value: "Personnel" },
-        { label: "Formation", value: "Formation" },
+    const filtres = [
+        { label: dictionary.projects.filters.professional, value: locale === 'en' ? 'Professional' : 'Professionnel' },
+        { label: dictionary.projects.filters.personal, value: locale === 'en' ? 'Personal' : 'Personnel' },
+        { label: dictionary.projects.filters.education, value: locale === 'en' ? 'Education' : 'Formation' },
     ];
 
     return (
@@ -73,8 +76,8 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                             {/* Badge Type */}
                             <div className="absolute top-4 right-4 flex flex-wrap justify-end gap-2 z-10">
                                 {projet.type && (
-                                    <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers ${projet.type === 'Professionnel' ? 'bg-portal-green/20 text-portal-green border border-portal-green/30' :
-                                        projet.type === 'Personnel' ? 'bg-rick-green/20 text-rick-green border border-rick-green/30' :
+                                    <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers ${projet.type === (locale === 'en' ? 'Professional' : 'Professionnel') ? 'bg-portal-green/20 text-portal-green border border-portal-green/30' :
+                                        projet.type === (locale === 'en' ? 'Personal' : 'Personnel') ? 'bg-rick-green/20 text-rick-green border border-rick-green/30' :
                                             'bg-teal-500/20 text-teal-400 border border-teal-500/30'
                                         }`}>
                                         {projet.type}
@@ -95,7 +98,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                             </p>
                             <div className="flex items-center justify-between mt-auto pt-4 border-t border-black/10 dark:border-white/5">
                                 <span className="inline-flex items-center text-portal-green text-sm font-bold gap-2 font-bangers tracking-widest group-hover:gap-3 transition-all">
-                                    Détails
+                                    {dictionary.projects.details}
                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                     </svg>
@@ -144,8 +147,8 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                         <div className={`p-8 md:p-12 relative z-10 ${projetSelectionne.urlImage ? '-mt-16' : ''}`}>
 
                             <div className="flex flex-wrap items-center gap-3 mb-6">
-                                <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers border ${projetSelectionne.type === 'Professionnel' ? 'bg-portal-green/10 text-portal-green border-portal-green/30' :
-                                        projetSelectionne.type === 'Personnel' ? 'bg-rick-green/10 text-rick-green border-rick-green/30' :
+                                <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers border ${projetSelectionne.type === (locale === 'en' ? 'Professional' : 'Professionnel') ? 'bg-portal-green/10 text-portal-green border-portal-green/30' :
+                                        projetSelectionne.type === (locale === 'en' ? 'Personal' : 'Personnel') ? 'bg-rick-green/10 text-rick-green border-rick-green/30' :
                                             'bg-teal-500/10 text-teal-400 border-teal-500/30'
                                     }`}>
                                     {projetSelectionne.type}
@@ -164,7 +167,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                 <div className="h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/10 to-transparent w-full"></div>
                                 <div className="prose prose-invert max-w-none">
                                     <p className="whitespace-pre-wrap text-neutral-700 dark:text-neutral-300 leading-loose text-base">
-                                        {projetSelectionne.descriptionLongue || "Aucune description détaillée disponible pour le moment."}
+                                        {projetSelectionne.descriptionLongue || (locale === 'en' ? "No detailed description available at the moment." : "Aucune description détaillée disponible pour le moment.")}
                                     </p>
                                 </div>
                             </div>
@@ -172,9 +175,9 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                             {/* Technologies globales */}
                             {projetSelectionne.technologies && projetSelectionne.technologies.length > 0 && (
                                 <div className="mt-12">
-                                    <h4 className="text-sm font-bold text-portal-green uppercase tracking-widest mb-6 font-bangers border-b border-black/10 dark:border-white/5 pb-2 inline-block">Compétences techniques</h4>
+                                    <h4 className="text-sm font-bold text-portal-green uppercase tracking-widest mb-6 font-bangers border-b border-black/10 dark:border-white/5 pb-2 inline-block">{locale === 'en' ? 'Technical Skills' : 'Compétences techniques'}</h4>
                                     <div className="flex flex-wrap gap-3">
-                                        {projetSelectionne.technologies.map((tech) => (
+                                        {projetSelectionne.technologies.map((tech: string) => (
                                             <span key={tech} className="px-4 py-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl text-xs font-mono font-bold text-neutral-700 dark:text-neutral-300 hover:border-portal-green/50 transition-colors">
                                                 {tech}
                                             </span>
@@ -192,7 +195,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
                                         rel="noopener noreferrer"
                                         className="px-10 py-4 rounded-2xl bg-portal-green text-space-dark font-bold hover:bg-rick-green transition-all shadow-[0_0_30px_rgba(0,255,26,0.3)] hover:scale-105 font-bangers tracking-widest flex items-center gap-3"
                                     >
-                                        Voir sur GitHub
+                                        {dictionary.projects.viewOnGithub}
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                         </svg>
@@ -206,7 +209,7 @@ export default function ListeProjets({ projets }: { projets: Projet[] }) {
 
             {projetsFiltres.length === 0 && (
                 <div className="text-center py-20">
-                    <p className="text-neutral-500 font-bangers tracking-widest text-xl">Aucun projet trouvé pour cette catégorie.</p>
+                    <p className="text-neutral-500 font-bangers tracking-widest text-xl">{dictionary.projects.noProjects}</p>
                 </div>
             )}
         </div>

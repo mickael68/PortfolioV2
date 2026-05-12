@@ -1,17 +1,30 @@
-import { getExperiences } from "@/lib/donnees";
+"use client";
 
-export default async function APropos() {
-    const experiences = await getExperiences();
+import { useState, useEffect } from "react";
+import { useLocale } from "@/app/[locale]/components/LocaleProvider";
+import type { Experience } from "@/lib/donnees";
 
-    const professionnelles = experiences.filter(exp => exp.type === 'Professionnel');
-    const academiques = experiences.filter(exp => exp.type === 'Académique');
+export default function APropos() {
+    const { locale, dictionary } = useLocale();
+    const [experiences, setExperiences] = useState<Experience[]>([]);
+
+    useEffect(() => {
+        fetch(`/api/experiences?locale=${locale}`)
+            .then(res => res.json())
+            .then(data => setExperiences(data))
+            .catch(() => setExperiences([]));
+    }, [locale]);
+
+    const professionnelles = experiences.filter(exp => exp.type === (locale === 'en' ? 'Professional' : 'Professionnel'));
+    const academiques = experiences.filter(exp => exp.type === (locale === 'en' ? 'Academic' : 'Académique'));
+
 
     return (
         <div className="min-h-screen pt-24 px-4 pb-20">
             <div className="max-w-5xl mx-auto">
                 {/* En-tête */}
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl font-bold text-neutral-900 dark:text-white mb-4 font-bangers tracking-wider">Mon Parcours</h2>
+                    <h2 className="text-5xl font-bold text-neutral-900 dark:text-white mb-4 font-bangers tracking-wider">{dictionary.about.title}</h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.3)] mx-auto rounded-full"></div>
                 </div>
 
@@ -23,14 +36,13 @@ export default async function APropos() {
                         {/* Section Présentation */}
                         <div className="bg-black/5 dark:bg-white/10 rounded-3xl p-8 border border-black/10 dark:border-white/20 backdrop-blur-md relative overflow-hidden group shadow-[0_0_40px_rgba(0,0,0,0.1)] dark:shadow-[0_0_40px_rgba(0,0,0,0.3)]">
                             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-24 h-24 bg-portal-green/10 rounded-full blur-2xl group-hover:bg-portal-green/20 transition-colors"></div>
-                            <h3 className="text-2xl font-bold text-portal-green mb-6 font-bangers tracking-widest uppercase">Qui suis-je ?</h3>
+                            <h3 className="text-2xl font-bold text-portal-green mb-6 font-bangers tracking-widest uppercase">{dictionary.about.whoAmI}</h3>
                             <div className="space-y-6 text-neutral-700 dark:text-neutral-300">
                                 <p className="text-lg leading-relaxed">
-                                    Je suis étudiant en informatique à l'UHA 4.0. 
-                                    Je suis passionné par la création de sites web ainsi que du développement logiciel.
+                                    {dictionary.about.description}
                                 </p>
                                 <div className="flex flex-wrap gap-3">
-                                    {["Autonome", "Dynamique", "Organisé", "Sérieux", "Esprit d'initiative", "Travail d'équipe"].map((q) => (
+                                    {dictionary.about.qualities.map((q: string) => (
                                         <span key={q} className="px-4 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-sm font-medium text-neutral-700 dark:text-neutral-300">
                                             {q}
                                         </span>
@@ -45,7 +57,7 @@ export default async function APropos() {
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                         </svg>
-                                        Télécharger mon CV (PDF)
+                                        {dictionary.about.downloadCV}
                                     </a>
                                 </div>
                             </div>
@@ -59,14 +71,18 @@ export default async function APropos() {
                                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
-                                    Expériences Pro
+                                    {dictionary.about.proExp}
                                 </h3>
                                 <div className="space-y-10 border-l-2 border-neutral-300 dark:border-neutral-800 pl-8 relative ml-4">
                                     {professionnelles.map((exp) => (
                                         <div key={exp.id} className="relative group">
                                             <span className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border-4 border-neutral-900 bg-portal-green group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(0,255,26,0.6)] transition-all duration-300"></span>
                                             <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-2 font-mono font-bold tracking-widest bg-black/5 dark:bg-white/5 inline-block px-3 py-1 rounded-md">
-                                                {new Date(exp.date_debut).getFullYear()} - {exp.date_fin ? new Date(exp.date_fin).getFullYear() : 'Présent'}
+                                                {(() => {
+                                                    const startYear = new Date(exp.date_debut).getFullYear();
+                                                    const endYear = exp.date_fin ? new Date(exp.date_fin).getFullYear() : dictionary.about.present;
+                                                    return startYear === endYear ? startYear : `${startYear} - ${endYear}`;
+                                                })()}
                                             </div>
                                             <h4 className="text-xl font-bold text-neutral-900 dark:text-white group-hover:text-portal-green transition-colors font-bangers tracking-wide">{exp.titre}</h4>
                                             <div className="text-portal-glow font-medium mb-3">{exp.entreprise}</div>
@@ -83,14 +99,19 @@ export default async function APropos() {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                                     </svg>
-                                    Formation
+                                    {dictionary.about.education}
                                 </h3>
                                 <div className="space-y-10 border-l-2 border-neutral-300 dark:border-neutral-800 pl-8 relative ml-4">
                                     {academiques.map((exp) => (
                                         <div key={exp.id} className="relative group">
                                             <span className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border-4 border-neutral-900 bg-rick-green group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(151,206,76,0.6)] transition-all duration-300"></span>
                                             <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-2 font-mono font-bold tracking-widest bg-black/5 dark:bg-white/5 inline-block px-3 py-1 rounded-md">
-                                                {exp.date_fin ? `${new Date(exp.date_debut).getFullYear()} - ${new Date(exp.date_fin).getFullYear()}` : new Date(exp.date_debut).getFullYear()}
+                                                {(() => {
+                                                    const startYear = new Date(exp.date_debut).getFullYear();
+                                                    const endYear = exp.date_fin ? new Date(exp.date_fin).getFullYear() : null;
+                                                    if (!endYear) return startYear;
+                                                    return startYear === endYear ? startYear : `${startYear} - ${endYear}`;
+                                                })()}
                                             </div>
                                             <h4 className="text-xl font-bold text-neutral-900 dark:text-white group-hover:text-rick-green transition-colors font-bangers tracking-wide">{exp.titre}</h4>
                                             <div className="text-teal-400 font-medium mb-3">{exp.entreprise}</div>
@@ -107,7 +128,7 @@ export default async function APropos() {
                         
                         {/* Section Mobilité */}
                         <div className="bg-black/5 dark:bg-white/10 rounded-3xl p-6 border border-black/10 dark:border-white/20 shadow-lg">
-                            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-bangers tracking-widest border-b border-black/10 dark:border-white/10 pb-3">Mobilité</h3>
+                            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-bangers tracking-widest border-b border-black/10 dark:border-white/10 pb-3">{dictionary.about.mobility}</h3>
                             <div className="space-y-4">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 rounded-lg bg-portal-green/10 flex items-center justify-center text-portal-green">
@@ -116,8 +137,8 @@ export default async function APropos() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <div className="text-xl font-bold text-neutral-900 dark:text-white font-bangers tracking-widest">Véhicule</div>
-                                        <div className="text-neutral-700 dark:text-neutral-300 text-base mt-1">Véhicule personnel</div>
+                                        <div className="text-xl font-bold text-neutral-900 dark:text-white font-bangers tracking-widest">{dictionary.about.vehicle}</div>
+                                        <div className="text-neutral-700 dark:text-neutral-300 text-base mt-1">{dictionary.about.vehicleDesc}</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4">
@@ -127,8 +148,8 @@ export default async function APropos() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <div className="text-xl font-bold text-neutral-900 dark:text-white font-bangers tracking-widest">Permis</div>
-                                        <div className="text-neutral-700 dark:text-neutral-300 text-base mt-1">Permis B</div>
+                                        <div className="text-xl font-bold text-neutral-900 dark:text-white font-bangers tracking-widest">{dictionary.about.license}</div>
+                                        <div className="text-neutral-700 dark:text-neutral-300 text-base mt-1">{dictionary.about.licenseDesc}</div>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +157,7 @@ export default async function APropos() {
 
                         {/* Section Langues */}
                         <div className="bg-black/5 dark:bg-white/10 rounded-3xl p-6 border border-black/10 dark:border-white/20 shadow-lg">
-                            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-bangers tracking-widest border-b border-black/10 dark:border-white/10 pb-3">Langues</h3>
+                            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-bangers tracking-widest border-b border-black/10 dark:border-white/10 pb-3">{dictionary.about.languages}</h3>
                             <div className="space-y-6">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 flex-shrink-0">
@@ -147,8 +168,8 @@ export default async function APropos() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <div className="text-xl font-bold text-neutral-900 dark:text-white font-bangers tracking-widest">Français</div>
-                                        <div className="text-neutral-700 dark:text-neutral-300 text-base mt-1">Langue maternelle</div>
+                                        <div className="text-xl font-bold text-neutral-900 dark:text-white font-bangers tracking-widest">{dictionary.about.french}</div>
+                                        <div className="text-neutral-700 dark:text-neutral-300 text-base mt-1">{dictionary.about.frenchLevel}</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4">
@@ -160,8 +181,8 @@ export default async function APropos() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <div className="text-xl font-bold text-neutral-900 dark:text-white font-bangers tracking-widest">Anglais</div>
-                                        <div className="text-neutral-700 dark:text-neutral-300 text-base mt-1">C1 - Maîtrise expérimentée</div>
+                                        <div className="text-xl font-bold text-neutral-900 dark:text-white font-bangers tracking-widest">{dictionary.about.english}</div>
+                                        <div className="text-neutral-700 dark:text-neutral-300 text-base mt-1">{dictionary.about.englishLevel}</div>
                                     </div>
                                 </div>
                             </div>
@@ -169,12 +190,12 @@ export default async function APropos() {
 
                         {/* Section Intérêts */}
                         <div className="bg-black/5 dark:bg-white/10 rounded-3xl p-6 border border-black/10 dark:border-white/20 shadow-lg">
-                            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-bangers tracking-widest border-b border-black/10 dark:border-white/10 pb-3">Intérêts</h3>
+                            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-bangers tracking-widest border-b border-black/10 dark:border-white/10 pb-3">{dictionary.about.interests}</h3>
                             <div className="grid grid-cols-1 gap-3">
                                 {[
-                                    { label: "Veille Informatique", desc: "Hugo Lisoir, Balade Mentale" },
-                                    { label: "Fitness-Club Kaysersberg", desc: "Musculation & Cardio" },
-                                    { label: "Clash of Clans", desc: "Stratégie & Réflexion" }
+                                    { label: dictionary.about.interestTech, desc: dictionary.about.interestTechDesc },
+                                    { label: dictionary.about.interestFitness, desc: dictionary.about.interestFitnessDesc },
+                                    { label: dictionary.about.interestGaming, desc: dictionary.about.interestGamingDesc }
                                 ].map((item) => (
                                     <div key={item.label} className="p-3 bg-black/5 dark:bg-white/5 rounded-xl border border-black/10 dark:border-white/5 hover:border-portal-green/30 transition-colors">
                                         <div className="text-lg font-bold text-rick-green font-bangers tracking-widest mb-2">{item.label}</div>

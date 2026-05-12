@@ -1,13 +1,17 @@
+"use client";
+
+import { useLocale } from "@/app/[locale]/components/LocaleProvider";
+
 export default function Contact() {
+    const { locale, dictionary } = useLocale();
+
     return (
-        <div className="min-h-screen pt-24 px-4">
+        <div className="min-h-screen pt-24 pb-24 px-4">
             <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-4xl font-bold text-neutral-900 dark:text-white mb-4 text-center">Contactez-moi</h2>
+                <h2 className="text-4xl font-bold text-neutral-900 dark:text-white mb-4 text-center font-bangers tracking-wider">{dictionary.contact.title}</h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.3)] mx-auto rounded-full mb-12"></div>
                 <p className="text-neutral-600 dark:text-neutral-400 mb-12 max-w-2xl mx-auto text-lg leading-relaxed">
-                    Je suis toujours ouvert aux nouvelles opportunités et aux collaborations intéressantes.
-                    Que vous ayez une question, une proposition de projet, ou simplement envie dire bonjour,
-                    n'hésitez pas à me contacter via les moyens ci-dessous.
+                    {dictionary.contact.subtitle}
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -48,10 +52,10 @@ export default function Contact() {
                     >
                         <div className="w-12 h-12 mb-4 text-neutral-600 dark:text-neutral-400 group-hover:text-portal-green transition-colors">
                             <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
                             </svg>
                         </div>
-                        <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">Téléphone</h3>
+                        <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">{dictionary.contact.phone}</h3>
                         <span className="text-neutral-600 dark:text-neutral-400 group-hover:text-portal-glow transition-colors">06 23 82 91 84</span>
                     </a>
 

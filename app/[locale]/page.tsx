@@ -1,8 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-
+import { useLocale } from "@/app/[locale]/components/LocaleProvider";
 
 export default function Home() {
+  const { locale, dictionary } = useLocale();
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -36,25 +40,25 @@ export default function Home() {
             <div className="flex flex-col items-center md:items-start text-center md:text-left z-10 max-w-2xl mt-8 md:mt-0">
                 <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-neutral-900 dark:text-white mb-6">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.5)]">
-                    Développeur Web
+                    {dictionary.hero.title}
                   </span>
                 </h1>
                 <p className="text-lg text-neutral-700 dark:text-neutral-300 mb-10 max-w-xl">
-                  Passionné par la création d'expériences numériques modernes, performantes et esthétiques, à travers toutes les dimensions.
+                  {dictionary.hero.subtitle}
                 </p>
                 
                 <div className="flex flex-wrap justify-center md:justify-start gap-4 font-bangers tracking-wider">
                   <Link
-                    href="/projets"
+                    href={`/${locale}/projets`}
                     className="px-8 py-3 rounded-full bg-portal-green text-space-dark font-bold hover:bg-rick-green transition-colors shadow-[0_0_15px_rgba(0,255,26,0.4)] hover:shadow-[0_0_25px_rgba(151,206,76,0.6)]"
                   >
-                    Voir mes projets
+                    {dictionary.hero.viewProjects}
                   </Link>
                   <Link
-                    href="/contact"
+                    href={`/${locale}/contact`}
                     className="px-8 py-3 rounded-full border-2 border-portal-green/50 text-portal-green font-semibold hover:bg-portal-green/10 transition-colors"
                   >
-                    Me contacter
+                    {dictionary.hero.contactMe}
                   </Link>
                 </div>
             </div>
@@ -65,3 +69,4 @@ export default function Home() {
     </div>
   );
 }
+

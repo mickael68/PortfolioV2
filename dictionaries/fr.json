@@ -1,0 +1,65 @@
+{
+  "navbar": {
+    "about": "À propos",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Développeur Web",
+    "subtitle": "Passionné par la création d'expériences numériques modernes, performantes et esthétiques, à travers toutes les dimensions.",
+    "viewProjects": "Voir mes projets",
+    "contactMe": "Me contacter"
+  },
+  "about": {
+    "title": "Mon Parcours",
+    "whoAmI": "Qui suis-je ?",
+    "description": "Je suis étudiant en informatique à l'UHA 4.0. Je suis passionné par la création de sites web ainsi que du développement logiciel.",
+    "qualities": ["Autonome", "Dynamique", "Organisé", "Sérieux", "Esprit d'initiative", "Travail d'équipe"],
+    "downloadCV": "Télécharger mon CV (PDF)",
+    "proExp": "Expériences Pro",
+    "education": "Formation",
+    "present": "Présent",
+    "mobility": "Mobilité",
+    "vehicle": "Véhicule",
+    "vehicleDesc": "Véhicule personnel",
+    "license": "Permis",
+    "licenseDesc": "Permis B",
+    "languages": "Langues",
+    "french": "Français",
+    "frenchLevel": "Langue maternelle",
+    "english": "Anglais",
+    "englishLevel": "C1 - Maîtrise expérimentée",
+    "interests": "Intérêts",
+    "interestTech": "Veille Informatique",
+    "interestTechDesc": "Hugo Lisoir, Balade Mentale",
+    "interestFitness": "Fitness-Club Kaysersberg",
+    "interestFitnessDesc": "Musculation & Cardio",
+    "interestGaming": "Clash of Clans",
+    "interestGamingDesc": "Stratégie & Réflexion"
+  },
+  "projects": {
+    "title": "Mes Projets",
+    "filters": {
+      "professional": "Professionnel",
+      "personal": "Personnel",
+      "education": "Formation"
+    },
+    "details": "Détails",
+    "viewOnGithub": "Voir sur GitHub",
+    "noProjects": "Aucun projet trouvé pour cette catégorie."
+  },
+  "contact": {
+    "title": "Me Contacter",
+    "subtitle": "Un projet ? Une question ? N'hésitez pas à m'envoyer un message via mes réseaux ou par email.",
+    "socials": "Réseaux Sociaux",
+    "phone": "Téléphone"
+  },
+  "skills": {
+    "title": "Mes Compétences"
+  },
+  "metadata": {
+    "title": "Mickaël MARCO | Développeur Web Full Stack - Interdimensionnel",
+    "description": "Portfolio de Mickaël MARCO, développeur web passionné par les expériences numériques modernes et de haute performance."
+  }
+}

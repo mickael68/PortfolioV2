@@ -1,0 +1,65 @@
+{
+  "navbar": {
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Web Developer",
+    "subtitle": "Passionate about creating modern, high-performance, and aesthetic digital experiences across all dimensions.",
+    "viewProjects": "View my projects",
+    "contactMe": "Contact me"
+  },
+  "about": {
+    "title": "My Journey",
+    "whoAmI": "Who am I?",
+    "description": "I am a computer science student at UHA 4.0. I am passionate about web creation and software development.",
+    "qualities": ["Autonomous", "Dynamic", "Organized", "Serious", "Initiative", "Team Player"],
+    "downloadCV": "Download my CV (PDF)",
+    "proExp": "Pro Experience",
+    "education": "Education",
+    "present": "Present",
+    "mobility": "Mobility",
+    "vehicle": "Vehicle",
+    "vehicleDesc": "Personal vehicle",
+    "license": "License",
+    "licenseDesc": "B License",
+    "languages": "Languages",
+    "french": "French",
+    "frenchLevel": "Native speaker",
+    "english": "English",
+    "englishLevel": "C1 - Experienced Mastery",
+    "interests": "Interests",
+    "interestTech": "Tech Watch",
+    "interestTechDesc": "Hugo Lisoir, Balade Mentale",
+    "interestFitness": "Fitness-Club Kaysersberg",
+    "interestFitnessDesc": "Bodybuilding & Cardio",
+    "interestGaming": "Clash of Clans",
+    "interestGamingDesc": "Strategy & Thinking"
+  },
+  "projects": {
+    "title": "My Projects",
+    "filters": {
+      "professional": "Professional",
+      "personal": "Personal",
+      "education": "Education"
+    },
+    "details": "Details",
+    "viewOnGithub": "View on GitHub",
+    "noProjects": "No projects found for this category."
+  },
+  "contact": {
+    "title": "Contact Me",
+    "subtitle": "A project? A question? Feel free to send me a message via my networks or by email.",
+    "socials": "Social Networks",
+    "phone": "Phone"
+  },
+  "skills": {
+    "title": "My Skills"
+  },
+  "metadata": {
+    "title": "Mickaël MARCO | Full Stack Web Developer - Interdimensional",
+    "description": "Portfolio of Mickaël MARCO, a web developer passionate about modern and high-performance digital experiences."
+  }
+}

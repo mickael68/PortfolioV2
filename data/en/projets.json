@@ -1,0 +1,147 @@
+[
+    {
+        "id": 1,
+        "titre": "Portfolio V1",
+        "description": "Personal portfolio developed with HTML, CSS, and JS.",
+        "descriptionLongue": "My very first foray into web development. This project allowed me to understand the structural basics of the web before moving on to more complex frameworks.",
+        "technologies": ["HTML5", "CSS3", "JavaScript", "Git"],
+        "lien": "https://github.com/mickael68/Portfolio",
+        "type": "Personal",
+        "urlImage": "images/PortfolioV1.png"
+    },
+    {
+        "id": 2,
+        "titre": "Portfolio V2",
+        "description": "Personal portfolio developed with Next.js and Tailwind CSS.",
+        "descriptionLongue": "A modern version of my portfolio using the latest market technologies. This project integrates Server-Side Rendering (SSR) for better SEO performance and Tailwind CSS for flexible design management.",
+        "technologies": ["Next.js", "React", "Tailwind CSS", "TypeScript", "Git"],
+        "lien": "https://github.com/mickael68/PortfolioV2",
+        "type": "Personal",
+        "urlImage": "images/PortfolioV2.png"
+    },
+    {
+        "id": 3,
+        "titre": "EPICUR",
+        "description": "Implementation project of the Agile project method « EPICUR » - September 2024",
+        "descriptionLongue": "This is a group work in English with international students to get hands-on experience with project management tools. It was a week-long project focused on creating a video for pet abandonment prevention. In this project, I learned to use collaborative project management tools, collaborate within a team to reach targeted goals, and execute assigned tasks within given deadlines.",
+        "technologies": ["Scrum", "Slack", "Confluence", "Jira"],
+        "lien": "",
+        "type": "Education",
+        "urlImage": "images/Epicur.jpg"
+    },
+    {
+        "id": 4,
+        "titre": "1st Year 'Fil Rouge'",
+        "description": "1st year autonomous « fil rouge » project - September to November 2024",
+        "descriptionLongue": "Development of a dynamic web site autonomously at the beginning of the year at UHA 4.0. I designed a complete site by creating a CRUD system in PHP connected to a MySQL database via phpMyAdmin. I used HTML, CSS, JavaScript, and PHP for the front-end, and Bash to clone and deploy the project. This project allowed me to structure a web application, adapt tools to needs, work independently, and solve concrete technical problems.",
+        "technologies": ["PHP", "JavaScript", "MySQL", "Bash", "HTML/CSS", "GitLab", "Git"],
+        "lien": "",
+        "type": "Education",
+        "urlImage": "images/Logo.png"
+    },
+    {
+        "id": 5,
+        "titre": "Kageco",
+        "description": "Enterprise project « Kageco » - November to December 2024",
+        "descriptionLongue": "Development of an e-commerce site in a group for the company Kageco. This was my first team project, where I learned to collaborate effectively with other developers to reach our goals. We used Symfony for the back-end (entities, controllers, CRUD system) and HTML/CSS/JavaScript for the front-end. We also used Jira, Confluence, and Slack for task management, documentation, and communication within the group. This project allowed me to strengthen my technical skills while discovering the importance of collaborative work in a structured project with concrete objectives.",
+        "technologies": ["Symfony", "PHP", "MySQL", "JavaScript", "Agile", "Jira", "Confluence", "Git"],
+        "lien": "",
+        "type": "Education",
+        "urlImage": "images/Projet_Kageco.png"
+    },
+    {
+        "id": 6,
+        "titre": "E-mersion",
+        "description": "High school project « E-mersion » - January to February 2025",
+        "descriptionLongue": "This was a project aimed at creating a carpooling application for the Henner High School in Altkirch. We visited the site to introduce high school students to the profession of developer. We did not use a framework for this project but worked with HTML, CSS, and JavaScript for the front-end, and PHP for the back-end. We also used Jira, Confluence, and Slack to organize tasks, document the project, and communicate as a team. This project allowed me to strengthen my technical skills and share my knowledge with people who had never programmed before.",
+        "technologies": ["PHP", "JavaScript", "MySQL", "Jira", "Confluence", "Slack", "Git"],
+        "lien": "",
+        "type": "Education",
+        "urlImage": "images/Projet_E-mersion.png"
+    },
+    {
+        "id": 7,
+        "titre": "2nd Year 'Fil Rouge'",
+        "description": "2nd year autonomous « fil rouge » project - September to November 2025",
+        "descriptionLongue": "Development of a dynamic web site autonomously at the beginning of the year at UHA 4.0. I designed a complete web application in Java with a back-end developed using Spring Boot and Maven, connected to an H2 database. I used React (JavaScript) for the front-end and JUnit for writing unit tests. This project allowed me to structure a web application, adapt tools to needs, work independently, and solve concrete technical problems.",
+        "technologies": ["Java", "Spring Boot", "React", "Docker", "JUnit", "SQL", "Git"],
+        "lien": "",
+        "type": "Education",
+        "urlImage": "images/bataille navale.webp"
+    },
+    {
+        "id": 8,
+        "titre": "My school and me",
+        "description": "« My school and me » project (Laravel) - November to December 2025",
+        "descriptionLongue": "« My school and me » is a web solution under Laravel dedicated to school management. The application centralizes the administration of students, teachers, and services within a modern and secure interface. This project allowed me to deeply understand how registration systems work in private school environments, while entrusting me with increased responsibilities in team coordination and back-end structuring.",
+        "technologies": ["PHP", "Laravel", "MySQL", "JavaScript", "HTML", "CSS", "Git"],
+        "lien": "",
+        "type": "Education",
+        "urlImage": "images/MonEcoleEtMoi.png"
+    },
+    {
+        "id": 9,
+        "titre": "Domaine Steiner",
+        "description": "Full Stack development of a winery e-commerce site carried out during my internship at WebTotem.",
+        "descriptionLongue": "Involved across the entire development chain for the Domaine Steiner site. Performance optimization via Hyvä, catalog management, and customization of the checkout process. This project, conducted independently and remotely, allowed me to strengthen my skills on Magento 2 and e-commerce best practices.",
+        "technologies": ["Magento 2", "Hyvä", "Tailwind CSS", "PHP", "MySQL", "Git"],
+        "lien": "",
+        "type": "Professional",
+        "entreprise": "WebTotem",
+        "urlImage": "images/Steiner.jpg"
+    },
+    {
+        "id": 10,
+        "titre": "Schmidt Groupe",
+        "description": "Design of an MES (Manufacturing Execution System) for order management.",
+        "descriptionLongue": "Carried out in a team for the Schmidt Groupe plant in Sélestat. Developed with .NET and Blazor, this solution streamlines production processes by driving order management. This project allowed me to take on responsibilities in team coordination and understand the logistical challenges of an international company.",
+        "technologies": ["Blazor", "C#", ".NET", "Git", "SQL"],
+        "lien": "",
+        "type": "Education",
+        "urlImage": "images/SchmidtGroupe.png"
+    },
+    {
+        "id": 11,
+        "titre": "Capeb INPI",
+        "description": "Legal data extraction tool via the INPI API developed at CTAI Informatique.",
+        "descriptionLongue": "Development of a specific tool for Capeb to extract and process data from the INPI API. This project required rigorous management of data flows and efficient transformation into usable formats via Ruby on Rails.",
+        "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "API INPI", "Bootstrap", "Git"],
+        "lien": "",
+        "type": "Professional",
+        "entreprise": "CTAI Informatique",
+        "urlImage": "images/Capeb.png"
+    },
+    {
+        "id": 12,
+        "titre": "Domisoft",
+        "description": "Optimization of the billing and quoting system for the Domisoft solution.",
+        "descriptionLongue": "Functional and technical improvement of the billing and quoting module. Work on calculation accuracy, PDF generation, and user experience for accounting management within the company CTAI Informatique.",
+        "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Tailwind CSS", "Git"],
+        "lien": "",
+        "type": "Professional",
+        "entreprise": "CTAI Informatique",
+        "urlImage": "images/CTAI.png"
+    },
+    {
+        "id": 13,
+        "titre": "Guebwiller Heating Engineer",
+        "description": "Site redesign with an interactive map in AirBNB style.",
+        "descriptionLongue": "Complete redesign of the website with the integration of an interactive map (Google Maps) inspired by the AirBNB style to locate artisans. Focus on ergonomics, geographical search, and fluid data integration.",
+        "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Google Maps API", "Tailwind CSS", "Git"],
+        "lien": "",
+        "type": "Professional",
+        "entreprise": "CTAI Informatique",
+        "urlImage": "images/chauffagiste.png"
+    },
+    {
+        "id": 14,
+        "titre": "CTAI-Formation",
+        "description": "Redesign of the training platform with news management.",
+        "descriptionLongue": "Complete modernization of the CTAI training platform. Implementation of a news management system and optimization of the training catalog for better SEO and fluid navigation.",
+        "technologies": ["Ruby on Rails", "MySQL", "JavaScript", "Tailwind CSS", "Git"],
+        "lien": "",
+        "type": "Professional",
+        "entreprise": "CTAI Informatique",
+        "urlImage": "images/CTAI-FORMATION.png"
+    }
+]

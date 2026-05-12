@@ -1,0 +1,212 @@
+[
+    {
+        "id": 1,
+        "nom": "React",
+        "niveau": "Beginner",
+        "icone": "svg/react-svgrepo-com.svg"
+    },
+    {
+        "id": 2,
+        "nom": "Next",
+        "niveau": "Beginner",
+        "icone": "svg/next-dot-js-svgrepo-com.svg"
+    },
+    {
+        "id": 3,
+        "nom": "TypeScript",
+        "niveau": "Beginner",
+        "icone": "svg/typescript-icon-svgrepo-com.svg"
+    },
+    {
+        "id": 4,
+        "nom": "Tailwind CSS",
+        "niveau": "Intermediate",
+        "icone": "svg/tailwind-svgrepo-com.svg"
+    },
+    {
+        "id": 5,
+        "nom": "MySQL",
+        "niveau": "Intermediate",
+        "icone": "svg/mysql-logo-svgrepo-com.svg"
+    },
+    {
+        "id": 6,
+        "nom": "Git",
+        "niveau": "Working Tool",
+        "icone": "svg/git-svgrepo-com.svg"
+    },
+    {
+        "id": 7,
+        "nom": "JavaScript",
+        "niveau": "Beginner",
+        "icone": "svg/javascript-svgrepo-com.svg"
+    },
+    {
+        "id": 8,
+        "nom": "Java",
+        "niveau": "Beginner",
+        "icone": "svg/java-svgrepo-com.svg"
+    },
+    {
+        "id": 9,
+        "nom": "Symfony",
+        "niveau": "Beginner",
+        "icone": "svg/symfony-svgrepo-com.svg"
+    },
+    {
+        "id": 10,
+        "nom": "HTML",
+        "niveau": "Advanced",
+        "icone": "svg/html-5-svgrepo-com.svg"
+    },
+    {
+        "id": 11,
+        "nom": "CSS",
+        "niveau": "Advanced",
+        "icone": "svg/css-3-svgrepo-com.svg"
+    },
+    {
+        "id": 12,
+        "nom": "Bootstrap",
+        "niveau": "Advanced",
+        "icone": "svg/bootstrap-svgrepo-com.svg"
+    },
+    {
+        "id": 13,
+        "nom": "PHP",
+        "niveau": "Beginner",
+        "icone": "svg/php-svgrepo-com.svg"
+    },
+    {
+        "id": 14,
+        "nom": "Laravel",
+        "niveau": "Intermediate",
+        "icone": "svg/laravel-svgrepo-com.svg"
+    },
+    {
+        "id": 15,
+        "nom": "Magento 2",
+        "niveau": "Beginner",
+        "icone": "svg/magento-color-svgrepo-com.svg"
+    },
+    {
+        "id": 16,
+        "nom": "Windows",
+        "niveau": "OS",
+        "icone": "svg/windows-applications-svgrepo-com.svg"
+    },
+    {
+        "id": 17,
+        "nom": "WSL Ubuntu",
+        "niveau": "OS",
+        "icone": "svg/ubuntu-svgrepo-com.svg"
+    },
+    {
+        "id": 18,
+        "nom": "Office",
+        "niveau": "Software",
+        "icone": "svg/microsoft-svgrepo-com.svg"
+    },
+    {
+        "id": 19,
+        "nom": "Wordpress",
+        "niveau": "CMS",
+        "icone": "svg/wordpress-svgrepo-com.svg"
+    },
+    {
+        "id": 20,
+        "nom": "Jira",
+        "niveau": "Software",
+        "icone": "svg/jira-svgrepo-com.svg"
+    },
+    {
+        "id": 21,
+        "nom": "Confluence",
+        "niveau": "Software",
+        "icone": "svg/confluence-svgrepo-com.svg"
+    },
+    {
+        "id": 22,
+        "nom": "Canva",
+        "niveau": "Software",
+        "icone": "svg/canva-svgrepo-com.svg"
+    },
+    {
+        "id": 23,
+        "nom": "GitLab",
+        "niveau": "Git Hosting",
+        "icone": "svg/gitlab-svgrepo-com.svg"
+    },
+    {
+        "id": 24,
+        "nom": "GitHub",
+        "niveau": "Git Hosting",
+        "icone": "svg/github-142-svgrepo-com.svg"
+    },
+    {
+        "id": 25,
+        "nom": "Bitbucket",
+        "niveau": "Git Hosting",
+        "icone": "svg/bitbucket-svgrepo-com.svg"
+    },
+    {
+        "id": 26,
+        "nom": "Docker",
+        "niveau": "Software",
+        "icone": "svg/docker-svgrepo-com.svg"
+    },
+    {
+        "id": 27,
+        "nom": "Jetbrains",
+        "niveau": "Software",
+        "icone": "svg/jetbrains-svgrepo-com.svg"
+    },
+    {
+        "id": 28,
+        "nom": "Visual Studio",
+        "niveau": "Software",
+        "icone": "svg/visual-studio-svgrepo-com.svg"
+    },
+    {
+        "id": 29,
+        "nom": "Visual Studio Code",
+        "niveau": "Software",
+        "icone": "svg/visual-studio-code-svgrepo-com.svg"
+    },
+    {
+        "id": 30,
+        "nom": "C#",
+        "niveau": "Beginner",
+        "icone": "svg/csharp-svgrepo-com.svg"
+    },
+    {
+        "id": 31,
+        "nom": "Blazor",
+        "niveau": "Beginner",
+        "icone": "svg/blazor-svgrepo-com.svg"
+    },
+    {
+        "id": 32,
+        "nom": "Bash",
+        "niveau": "Beginner",
+        "icone": "svg/bash-icon-svgrepo-com.svg"
+    },
+    {
+        "id": 33,
+        "nom": "Ruby",
+        "niveau": "Beginner",
+        "icone": "svg/ruby-svgrepo-com.svg"
+    },
+    {
+        "id": 34,
+        "nom": "Ruby on Rails",
+        "niveau": "Beginner",
+        "icone": "svg/rails-svgrepo-com.svg"
+    },
+    {
+        "id": 35,
+        "nom": ".NET",
+        "niveau": "Beginner",
+        "icone": "svg/dotnet-svgrepo-com.svg"
+    }
+]
