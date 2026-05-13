@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { ChevronDown } from "lucide-react";
+import { Languages } from "lucide-react";
 import { useLocale } from "./LocaleProvider";
 
 const FranceFlag = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" className={className}>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" preserveAspectRatio="none" className={className}>
     <rect width="3" height="2" fill="#ED2939" />
     <rect width="2" height="2" fill="#fff" />
     <rect width="1" height="2" fill="#002395" />
@@ -14,7 +13,7 @@ const FranceFlag = ({ className }: { className?: string }) => (
 );
 
 const UKFlag = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" className={className}>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" preserveAspectRatio="none" className={className}>
     <clipPath id="s">
       <path d="M0,0 v30 h60 v-30 z" />
     </clipPath>
@@ -39,32 +38,19 @@ const languages = [
 export function LanguageSelector() {
   const { locale, setLocale } = useLocale();
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
   const selectedLang = languages.find(l => l.code === locale) || languages[0];
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const handleSwitch = (langCode: string) => {
-    setIsOpen(false);
+  const toggleLanguage = () => {
+    const nextLangCode = locale === "fr" ? "en" : "fr";
     
     // 1. Mettre à jour l'état React (change instantanément la langue à l'écran)
-    setLocale(langCode);
+    setLocale(nextLangCode);
     
     // 2. Mettre à jour l'URL sans déclencher la navigation serveur Next.js
     if (pathname) {
       const segments = pathname.split('/');
       if (segments.length >= 2) {
-        segments[1] = langCode;
+        segments[1] = nextLangCode;
       }
       const newUrl = segments.join('/');
       window.history.pushState(null, '', newUrl);
@@ -72,38 +58,17 @@ export function LanguageSelector() {
   };
 
   return (
-    <div className="relative" ref={dropdownRef}>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="relative inline-flex items-center justify-center h-9 px-2 gap-1.5 rounded-md transition-colors hover:bg-neutral-200 dark:hover:bg-white/10 text-neutral-600 dark:text-neutral-400 focus:outline-none"
-        aria-label="Select language"
-      >
-        <selectedLang.Flag className="w-[22px] h-[16px] rounded-[2px] shadow-sm border border-neutral-200 dark:border-neutral-700/50 object-cover" />
-        <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
-      </button>
-
-      {isOpen && (
-        <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-[#1f2937] border border-neutral-200 dark:border-neutral-700 rounded-lg shadow-lg overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-          <ul className="py-1">
-            {languages.map((lang) => (
-              <li key={lang.code}>
-                <button
-                  className={`w-full text-left px-4 py-2 text-sm flex items-center gap-2.5 hover:bg-neutral-100 dark:hover:bg-white/10 transition-colors ${
-                    selectedLang.code === lang.code
-                      ? "text-portal-green font-medium"
-                      : "text-neutral-700 dark:text-neutral-200"
-                  }`}
-                  onClick={() => handleSwitch(lang.code)}
-                >
-                  <lang.Flag className="w-[22px] h-[16px] rounded-[2px] shadow-sm border border-neutral-200 dark:border-neutral-700/50 object-cover" />
-                  {lang.name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+    <button
+      onClick={toggleLanguage}
+      className="group relative inline-flex items-center justify-center h-9 px-2 gap-1.5 rounded-md transition-colors hover:bg-neutral-200 dark:hover:bg-white/10 text-neutral-600 dark:text-neutral-400 focus:outline-none"
+      aria-label="Toggle language"
+      title={locale === "fr" ? "Switch to English" : "Passer en français"}
+    >
+      <div className="relative">
+        <selectedLang.Flag className="w-[20px] h-[14px] rounded-[2px] shadow-sm object-cover group-hover:scale-110 transition-transform" />
+      </div>
+      <Languages className="w-4 h-4 text-neutral-400 group-hover:text-portal-green transition-colors" />
+    </button>
   );
 }
 

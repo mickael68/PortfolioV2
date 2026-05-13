@@ -220,10 +220,6 @@ export default function ChatBot() {
                       {t.welcome} <span className="text-portal-green font-bold">{t.ia_exp}</span>.
                     </p>
                     <div className="mt-2 text-xs text-neutral-500 dark:text-neutral-400 font-mono">
-                      <span className="inline-block relative h-2 w-2 mr-2 mb-[1px]">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-portal-green opacity-75"></span>
-                        <span className="absolute inline-flex rounded-full h-2 w-2 bg-portal-green"></span>
-                      </span>
                       <span>{t.conn_est}</span>
                     </div>
                   </div>
