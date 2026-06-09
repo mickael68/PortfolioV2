@@ -52,7 +52,7 @@ export default function ListeProjets({ projets, dictionary, locale }: { projets:
 
             {/* Grille de Projets */}
             <div key={filtre} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {projetsFiltres.map((projet) => (
+                {projetsFiltres.map((projet, index) => (
                     <div
                         key={projet.id}
                         onClick={() => setProjetSelectionne(projet)}
@@ -64,6 +64,8 @@ export default function ListeProjets({ projets, dictionary, locale }: { projets:
                                     src={`/${projet.urlImage}`}
                                     alt={projet.titre}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    priority={index < 6}
                                     className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
                                 />
                             ) : (
@@ -137,6 +139,8 @@ export default function ListeProjets({ projets, dictionary, locale }: { projets:
                                     src={`/${projetSelectionne.urlImage}`}
                                     alt={projetSelectionne.titre}
                                     fill
+                                    sizes="(max-width: 1024px) 100vw, 1024px"
+                                    priority
                                     className="object-cover"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0d1117] via-white/20 dark:via-[#0d1117]/20 to-transparent"></div>
