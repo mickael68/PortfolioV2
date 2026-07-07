@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useLocale } from "@/app/[locale]/components/LocaleProvider";
 import type { Experience } from "@/lib/donnees";
+import { motion } from "framer-motion";
 
 export default function APropos() {
     const { locale, dictionary } = useLocale();
@@ -18,9 +19,13 @@ export default function APropos() {
     const professionnelles = experiences.filter(exp => exp.type === (locale === 'en' ? 'Professional' : 'Professionnel'));
     const academiques = experiences.filter(exp => exp.type === (locale === 'en' ? 'Academic' : 'Académique'));
 
+    const fadeUpVariant = {
+        hidden: { opacity: 0, y: 40 },
+        visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50, damping: 20 } }
+    };
 
     return (
-        <div className="min-h-screen pt-24 px-4 pb-20">
+        <div className="min-h-screen pt-24 px-4 pb-20 overflow-hidden">
             <div className="max-w-5xl mx-auto">
                 {/* En-tête */}
                 <div className="text-center mb-16">
@@ -34,7 +39,7 @@ export default function APropos() {
                     <div className="lg:col-span-8 space-y-12">
                         
                         {/* Section Présentation */}
-                        <div className="bg-black/5 dark:bg-white/10 rounded-3xl p-8 border border-black/10 dark:border-white/20 backdrop-blur-md relative overflow-hidden group shadow-[0_0_40px_rgba(0,0,0,0.1)] dark:shadow-[0_0_40px_rgba(0,0,0,0.3)]">
+                        <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="bg-black/5 dark:bg-white/10 rounded-3xl p-8 border border-black/10 dark:border-white/20 backdrop-blur-md relative overflow-hidden group shadow-[0_0_40px_rgba(0,0,0,0.1)] dark:shadow-[0_0_40px_rgba(0,0,0,0.3)]">
                             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-24 h-24 bg-portal-green/10 rounded-full blur-2xl group-hover:bg-portal-green/20 transition-colors"></div>
                             <h3 className="text-2xl font-bold text-portal-green mb-6 font-bangers tracking-widest uppercase">{dictionary.about.whoAmI}</h3>
                             <div className="space-y-6 text-neutral-700 dark:text-neutral-300">
@@ -61,12 +66,12 @@ export default function APropos() {
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Expériences & Formations en mode Timeline */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                             {/* Expériences Professionnelles */}
-                            <div>
+                            <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>
                                 <h3 className="text-2xl font-bold text-portal-green mb-8 flex items-center gap-3 font-bangers tracking-wider">
                                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -90,10 +95,10 @@ export default function APropos() {
                                         </div>
                                     ))}
                                 </div>
-                            </div>
+                            </motion.div>
 
                             {/* Parcours Académique */}
-                            <div>
+                            <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>
                                 <h3 className="text-2xl font-bold text-rick-green mb-8 flex items-center gap-3 font-bangers tracking-wider">
                                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -119,7 +124,7 @@ export default function APropos() {
                                         </div>
                                     ))}
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
 
@@ -127,7 +132,7 @@ export default function APropos() {
                     <div className="lg:col-span-4 space-y-8">
                         
                         {/* Section Mobilité */}
-                        <div className="bg-black/5 dark:bg-white/10 rounded-3xl p-6 border border-black/10 dark:border-white/20 shadow-lg">
+                        <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="bg-black/5 dark:bg-white/10 rounded-3xl p-6 border border-black/10 dark:border-white/20 shadow-lg">
                             <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-bangers tracking-widest border-b border-black/10 dark:border-white/10 pb-3">{dictionary.about.mobility}</h3>
                             <div className="space-y-4">
                                 <div className="flex items-center gap-4">
@@ -153,10 +158,10 @@ export default function APropos() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Section Langues */}
-                        <div className="bg-black/5 dark:bg-white/10 rounded-3xl p-6 border border-black/10 dark:border-white/20 shadow-lg">
+                        <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="bg-black/5 dark:bg-white/10 rounded-3xl p-6 border border-black/10 dark:border-white/20 shadow-lg">
                             <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-bangers tracking-widest border-b border-black/10 dark:border-white/10 pb-3">{dictionary.about.languages}</h3>
                             <div className="space-y-6">
                                 <div className="flex items-center gap-4">
@@ -186,10 +191,10 @@ export default function APropos() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Section Intérêts */}
-                        <div className="bg-black/5 dark:bg-white/10 rounded-3xl p-6 border border-black/10 dark:border-white/20 shadow-lg">
+                        <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="bg-black/5 dark:bg-white/10 rounded-3xl p-6 border border-black/10 dark:border-white/20 shadow-lg">
                             <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-bangers tracking-widest border-b border-black/10 dark:border-white/10 pb-3">{dictionary.about.interests}</h3>
                             <div className="grid grid-cols-1 gap-3">
                                 {[
@@ -203,7 +208,7 @@ export default function APropos() {
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </motion.div>
 
                     </div>
                 </div>

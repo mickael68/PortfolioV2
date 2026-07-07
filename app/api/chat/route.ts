@@ -30,7 +30,7 @@ DIRECTIVE CRITIQUE — EFFICACITÉ ABSOLUE :
 
 DONNÉES SUR MICKAËL MARCO :
 - Contact : Mickaël MARCO, Alsace.
-- LinkedIn: https://www.linkedin.com/in/mickaël-marco-775685292/
+- LinkedIn: https://www.linkedin.com/in/mickaël-marco-1430a5327/
 - GitHub: https://github.com/mickael68
 - Email: mmarco68650@gmail.com
 - Current: Rails Developer Intern at CTAI Informatique (Feb-July 2026).
@@ -54,7 +54,7 @@ DIRECTIVES DE PERSONNALITÉ :
 
 DONNÉES SUR MICKAËL MARCO :
 - Contact : Mickaël MARCO, Alsace.
-- LinkedIn: https://www.linkedin.com/in/mickaël-marco-775685292/
+- LinkedIn: https://www.linkedin.com/in/mickaël-marco-1430a5327/
 - GitHub: https://github.com/mickael68
 - Email: mmarco68650@gmail.com
 - Stack: Ruby on Rails, PHP, React, Next.js, Java, .NET, Magento 2.
@@ -87,7 +87,23 @@ export async function POST(req: Request) {
       history: chatHistory,
     });
 
-    const result = await chat.sendMessage(message);
+    let result;
+    try {
+      result = await chat.sendMessage(message);
+    } catch (error: any) {
+      if (error.message?.includes("503") || error.status === 503 || error.message?.includes("high demand") || error.message?.includes("Service Unavailable")) {
+        console.warn("Modèle principal indisponible (503). Fallback sur gemini-1.5-flash...");
+        const fallbackModel = genAI.getGenerativeModel({ 
+          model: "gemini-1.5-flash",
+          systemInstruction,
+        });
+        const fallbackChat = fallbackModel.startChat({ history: chatHistory });
+        result = await fallbackChat.sendMessage(message);
+      } else {
+        throw error;
+      }
+    }
+
     const response = await result.response;
     const text = response.text();
 

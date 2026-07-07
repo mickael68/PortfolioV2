@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { Projet } from "@/lib/donnees";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 
 export default function ListeProjets({ projets, dictionary, locale }: { projets: Projet[], dictionary: any, locale: string }) {
     const [filtre, setFiltre] = useState<string>(locale === 'en' ? 'Professional' : 'Professionnel');
@@ -13,8 +15,11 @@ export default function ListeProjets({ projets, dictionary, locale }: { projets:
         setFiltre(locale === 'en' ? 'Professional' : 'Professionnel');
     }, [locale]);
 
+    const [mounted, setMounted] = useState(false);
+
     // Gérer la touche Échap pour fermer la modale
     useEffect(() => {
+        setMounted(true);
         const gererToucheClavier = (e: KeyboardEvent) => {
             if (e.key === "Escape") setProjetSelectionne(null);
         };
@@ -53,10 +58,15 @@ export default function ListeProjets({ projets, dictionary, locale }: { projets:
             {/* Grille de Projets */}
             <div key={filtre} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {projetsFiltres.map((projet, index) => (
-                    <div
+                    <motion.div
                         key={projet.id}
                         onClick={() => setProjetSelectionne(projet)}
-                        className="group relative overflow-hidden rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 hover:border-portal-green/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(0,255,26,0.15)] cursor-pointer flex flex-col"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.05 }}
+                        whileHover={{ y: -5, scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="group relative overflow-hidden rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 hover:border-portal-green/40 hover:shadow-[0_0_30px_rgba(0,255,26,0.15)] transition-[border-color,box-shadow] duration-300 cursor-pointer flex flex-col"
                     >
                         <div className="aspect-video bg-neutral-200 dark:bg-neutral-800 relative overflow-hidden">
                             {projet.urlImage ? (
@@ -108,108 +118,125 @@ export default function ListeProjets({ projets, dictionary, locale }: { projets:
 
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
 
             {/* Fenêtre Modale du Projet */}
-            {projetSelectionne && (
-                <div
-                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-300"
-                    onClick={() => setProjetSelectionne(null)}
-                >
-                    <div
-                        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#0d1117] border border-black/10 dark:border-white/10 rounded-3xl shadow-[0_0_80px_rgba(0,255,26,0.1)] animate-in zoom-in-95 duration-300 scrollbar-thin scrollbar-thumb-portal-green"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        {/* Bouton de fermeture */}
-                        <button
+            {mounted && createPortal(
+                <AnimatePresence>
+                    {projetSelectionne && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
                             onClick={() => setProjetSelectionne(null)}
-                            className="absolute top-6 right-6 p-2 rounded-full bg-black/10 dark:bg-black/40 text-neutral-900 dark:text-white hover:text-portal-green dark:hover:text-portal-green transition-all border border-black/10 dark:border-white/10 hover:border-portal-green/50 z-50 shadow-xl"
                         >
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-
-                        {/* Image de couverture */}
-                        {projetSelectionne.urlImage && (
-                            <div className="relative h-48 md:h-80 w-full overflow-hidden">
-                                <Image
-                                    src={`/${projetSelectionne.urlImage}`}
-                                    alt={projetSelectionne.titre}
-                                    fill
-                                    sizes="(max-width: 1024px) 100vw, 1024px"
-                                    priority
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0d1117] via-white/20 dark:via-[#0d1117]/20 to-transparent"></div>
-                            </div>
-                        )}
-
-                        {/* Contenu de la Modale */}
-                        <div className={`p-8 md:p-12 relative z-10 ${projetSelectionne.urlImage ? '-mt-16' : ''}`}>
-
-                            <div className="flex flex-wrap items-center gap-3 mb-6">
-                                <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers border ${projetSelectionne.type === (locale === 'en' ? 'Professional' : 'Professionnel') ? 'bg-portal-green/10 text-portal-green border-portal-green/30' :
-                                        projetSelectionne.type === (locale === 'en' ? 'Personal' : 'Personnel') ? 'bg-rick-green/10 text-rick-green border-rick-green/30' :
-                                            'bg-teal-500/10 text-teal-400 border-teal-500/30'
-                                    }`}>
-                                    {projetSelectionne.type}
-                                </span>
-                                {projetSelectionne.entreprise && (
-                                    <span className="px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers bg-black/5 dark:bg-white/5 text-neutral-700 dark:text-neutral-300 border border-black/10 dark:border-white/10">
-                                        {projetSelectionne.entreprise}
-                                    </span>
-                                )}
-                            </div>
-
-                            <h2 className="mb-8 drop-shadow-2xl">{projetSelectionne.titre}</h2>
-
-                            <div className="space-y-8">
-                                <p className="text-xl italic text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">{projetSelectionne.description}</p>
-                                <div className="h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/10 to-transparent w-full"></div>
-                                <div className="prose prose-invert max-w-none">
-                                    <p className="whitespace-pre-wrap text-neutral-700 dark:text-neutral-300 leading-loose text-base">
-                                        {projetSelectionne.descriptionLongue || (locale === 'en' ? "No detailed description available at the moment." : "Aucune description détaillée disponible pour le moment.")}
-                                    </p>
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.9, y: 30 }}
+                                transition={{ type: "spring", damping: 25, stiffness: 220 }}
+                                className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-3xl shadow-[0_0_80px_rgba(0,255,26,0.15)] scrollbar-thin scrollbar-thumb-portal-green"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                {/* Portal effect background */}
+                                <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
+                                    <div className="absolute -inset-[50%] bg-[radial-gradient(circle_at_center,rgba(0,255,26,0.06)_0%,transparent_60%)] animate-[pulseGlow_2s_ease-in-out_infinite]"></div>
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[conic-gradient(from_0deg,transparent_0%,rgba(0,255,26,0.03)_30%,rgba(0,255,26,0.08)_50%,rgba(151,206,76,0.08)_70%,transparent_100%)] animate-[portalSpin_10s_linear_infinite] rounded-full opacity-60"></div>
                                 </div>
-                            </div>
+                            {/* Bouton de fermeture */}
+                            <button
+                                onClick={() => setProjetSelectionne(null)}
+                                className="absolute top-6 right-6 p-2 rounded-full bg-black/10 dark:bg-black/40 text-neutral-900 dark:text-white hover:text-portal-green dark:hover:text-portal-green transition-all border border-black/10 dark:border-white/10 hover:border-portal-green/50 z-50 shadow-xl"
+                            >
+                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
 
-                            {/* Technologies globales */}
-                            {projetSelectionne.technologies && projetSelectionne.technologies.length > 0 && (
-                                <div className="mt-12">
-                                    <h4 className="text-sm font-bold text-portal-green uppercase tracking-widest mb-6 font-bangers border-b border-black/10 dark:border-white/5 pb-2 inline-block">{locale === 'en' ? 'Technical Skills' : 'Compétences techniques'}</h4>
-                                    <div className="flex flex-wrap gap-3">
-                                        {projetSelectionne.technologies.map((tech: string) => (
-                                            <span key={tech} className="px-4 py-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl text-xs font-mono font-bold text-neutral-700 dark:text-neutral-300 hover:border-portal-green/50 transition-colors">
-                                                {tech}
-                                            </span>
-                                        ))}
+                            {/* Image de couverture */}
+                            {projetSelectionne.urlImage && (
+                                <div className="relative h-48 md:h-80 w-full overflow-hidden">
+                                    <Image
+                                        src={`/${projetSelectionne.urlImage}`}
+                                        alt={projetSelectionne.titre}
+                                        fill
+                                        sizes="(max-width: 1024px) 100vw, 1024px"
+                                        priority
+                                        className="object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0a0a0a] via-white/20 dark:via-[#0a0a0a]/20 to-transparent"></div>
+                                </div>
+                            )}
+
+                            {/* Contenu de la Modale */}
+                            <div className={`p-8 md:p-12 relative z-10 ${projetSelectionne.urlImage ? '-mt-16' : ''}`}>
+
+                                <div className="flex flex-wrap items-center gap-3 mb-6">
+                                    <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers border ${projetSelectionne.type === (locale === 'en' ? 'Professional' : 'Professionnel') ? 'bg-portal-green/10 text-portal-green border-portal-green/30' :
+                                            projetSelectionne.type === (locale === 'en' ? 'Personal' : 'Personnel') ? 'bg-rick-green/10 text-rick-green border-rick-green/30' :
+                                                'bg-teal-500/10 text-teal-400 border-teal-500/30'
+                                        }`}>
+                                        {projetSelectionne.type}
+                                    </span>
+                                    {projetSelectionne.entreprise && (
+                                        <span className="px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest font-bangers bg-black/5 dark:bg-white/5 text-neutral-700 dark:text-neutral-300 border border-black/10 dark:border-white/10">
+                                            {projetSelectionne.entreprise}
+                                        </span>
+                                    )}
+                                </div>
+
+                                <h2 className="mb-8 drop-shadow-2xl">{projetSelectionne.titre}</h2>
+
+                                <div className="space-y-8">
+                                    <p className="text-xl italic text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">{projetSelectionne.description}</p>
+                                    <div className="h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/10 to-transparent w-full"></div>
+                                    <div className="prose prose-invert max-w-none">
+                                        <p className="whitespace-pre-wrap text-neutral-700 dark:text-neutral-300 leading-loose text-base">
+                                            {projetSelectionne.descriptionLongue || (locale === 'en' ? "No detailed description available at the moment." : "Aucune description détaillée disponible pour le moment.")}
+                                        </p>
                                     </div>
                                 </div>
-                            )}
 
-                            {/* Lien du Footer */}
-                            {projetSelectionne.lien && (
-                                <div className="mt-16 pt-8 border-t border-black/10 dark:border-white/5 flex justify-end">
-                                    <a
-                                        href={projetSelectionne.lien}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="px-10 py-4 rounded-2xl bg-portal-green text-space-dark font-bold hover:bg-rick-green transition-all shadow-[0_0_30px_rgba(0,255,26,0.3)] hover:scale-105 font-bangers tracking-widest flex items-center gap-3"
-                                    >
-                                        {dictionary.projects.viewOnGithub}
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            )}
+                                {/* Technologies globales */}
+                                {projetSelectionne.technologies && projetSelectionne.technologies.length > 0 && (
+                                    <div className="mt-12">
+                                        <h4 className="text-sm font-bold text-portal-green uppercase tracking-widest mb-6 font-bangers border-b border-black/10 dark:border-white/5 pb-2 inline-block">{locale === 'en' ? 'Technical Skills' : 'Compétences techniques'}</h4>
+                                        <div className="flex flex-wrap gap-3">
+                                            {projetSelectionne.technologies.map((tech: string) => (
+                                                <span key={tech} className="px-4 py-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl text-xs font-mono font-bold text-neutral-700 dark:text-neutral-300 hover:border-portal-green/50 transition-colors">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Lien du Footer */}
+                                {projetSelectionne.lien && (
+                                    <div className="mt-16 pt-8 border-t border-black/10 dark:border-white/5 flex justify-end">
+                                        <a
+                                            href={projetSelectionne.lien}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-10 py-4 rounded-2xl bg-portal-green text-space-dark font-bold hover:bg-rick-green transition-all shadow-[0_0_30px_rgba(0,255,26,0.3)] hover:scale-105 font-bangers tracking-widest flex items-center gap-3"
+                                        >
+                                            {dictionary.projects.viewOnGithub}
+                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                )}
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>,
+            document.body
+        )}
 
             {projetsFiltres.length === 0 && (
                 <div className="text-center py-20">

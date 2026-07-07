@@ -18,14 +18,14 @@ html {
 }
 
 .dark {
-  --background: #111827;
+  --background: #0a0a0a;
   --foreground: #f0f4f8;
   --scrollbar-track: #1a1f26;
   --scrollbar-border: #1a1f26;
   --star-color: rgba(255, 255, 255, 0.8);
-  --portal-green: #00ff1a;
-  --portal-glow: #10b981;
-  --rick-green: #97ce4c;
+  --portal-green: #22c55e;
+  --portal-glow: #4ade80;
+  --rick-green: #a3e635;
 }
 
 @theme inline {
@@ -49,15 +49,6 @@ html {
 
 body {
   background: var(--background);
-  background-image: 
-    radial-gradient(1.5px 1.5px at 20px 30px, var(--star-color), rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 40px 70px, var(--star-color), rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 50px 160px, var(--star-color), rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 80px 120px, var(--star-color), rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 110px 40px, var(--star-color), rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 150px 150px, var(--star-color), rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 190px 80px, var(--star-color), rgba(0,0,0,0));
-  background-size: 250px 250px;
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui;
   min-height: 100vh;
@@ -132,4 +123,10 @@ h1, h2, h3, h4, h5, h6 {
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--color-portal-green) var(--scrollbar-track);
+}
+
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
 }

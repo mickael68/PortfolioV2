@@ -280,7 +280,7 @@ export default function ChatBot() {
                         className={`max-w-[85%] p-3 rounded-2xl text-sm ${
                           msg.role === "user" 
                             ? isRick
-                              ? "bg-portal-green text-[#111827] font-medium rounded-tr-none shadow-[0_0_10px_rgba(0,255,26,0.3)]"
+                              ? "bg-portal-green text-[#0a0a0a] font-medium rounded-tr-none shadow-[0_0_10px_rgba(0,255,26,0.3)]"
                               : "bg-blue-500 text-white font-medium rounded-tr-none shadow-[0_0_10px_rgba(96,165,250,0.3)]"
                             : "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700 rounded-tl-none"
                         }`}
@@ -359,7 +359,7 @@ export default function ChatBot() {
       >
         <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,rgba(0,255,26,0.2)_30%,rgba(0,255,26,0.8)_50%,rgba(151,206,76,0.8)_70%,transparent_100%)] animate-portal-spin opacity-0 group-hover:opacity-100 transition-opacity"></div>
         
-        <div className="relative z-10 text-[#111827]">
+        <div className="relative z-10 text-[#0a0a0a]">
           {isOpen ? (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="w-6 h-6">
               <path d="M18 6L6 18M6 6l12 12" />

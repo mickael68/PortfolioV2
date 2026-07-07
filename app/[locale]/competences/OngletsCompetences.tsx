@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Competence } from "@/lib/donnees";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface SkillsTabsProps {
     competences: Competence[];
@@ -79,11 +80,26 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
                     <p>Aucune compétence trouvée dans cette catégorie.</p>
                 </div>
             ) : (
-                <div key={ongletActif} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+                <motion.div 
+                    key={ongletActif}
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                        hidden: { opacity: 0 },
+                        visible: { opacity: 1, transition: { staggerChildren: 0.05 } }
+                    }}
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6"
+                >
                     {competencesActives.map((c) => (
-                        <div
+                        <motion.div
                             key={c.id}
-                            className="flex flex-col items-center justify-center p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/5 hover:border-portal-green/50 hover:bg-black/10 dark:hover:bg-white/10 transition-all group"
+                            variants={{
+                                hidden: { opacity: 0, scale: 0.8 },
+                                visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 100 } }
+                            }}
+                            whileHover={{ scale: 1.05, y: -5 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex flex-col items-center justify-center p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/5 hover:border-portal-green/50 hover:bg-black/10 dark:hover:bg-white/10 transition-colors cursor-pointer group"
                         >
                             {c.icone && (
                                 <div className="mb-4 relative w-12 h-12 transition-all duration-300">
@@ -91,15 +107,15 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
                                         src={`/${c.icone}`}
                                         alt={c.nom}
                                         fill
-                                        className="object-contain"
+                                        className="object-contain group-hover:drop-shadow-[0_0_8px_rgba(0,255,26,0.6)]"
                                     />
                                 </div>
                             )}
                             <div className="text-lg font-medium text-neutral-900 dark:text-white mb-1 font-bangers tracking-wide">{c.nom}</div>
                             <div className="text-xs text-portal-glow font-mono uppercase">{c.niveau}</div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             )}
         </div>
     );

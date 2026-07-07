@@ -1,26 +1,43 @@
 "use client";
 
 import { useLocale } from "@/app/[locale]/components/LocaleProvider";
+import { motion } from "framer-motion";
 
 export default function Contact() {
     const { locale, dictionary } = useLocale();
 
-    return (
-        <div className="min-h-screen pt-24 pb-24 px-4">
-            <div className="max-w-5xl mx-auto text-center">
-                <h2 className="text-4xl font-bold text-neutral-900 dark:text-white mb-4 text-center font-bangers tracking-wider">{dictionary.contact.title}</h2>
-                <div className="w-20 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.3)] mx-auto rounded-full mb-12"></div>
-                <p className="text-neutral-600 dark:text-neutral-400 mb-12 max-w-2xl mx-auto text-lg leading-relaxed">
-                    {dictionary.contact.subtitle}
-                </p>
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: { staggerChildren: 0.1 }
+        }
+    };
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } }
+    };
+
+    return (
+        <div className="min-h-screen pt-24 pb-24 px-4 overflow-hidden">
+            <div className="max-w-5xl mx-auto text-center">
+                <motion.h2 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl font-bold text-neutral-900 dark:text-white mb-4 text-center font-bangers tracking-wider">{dictionary.contact.title}</motion.h2>
+                <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} className="w-20 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.3)] mx-auto rounded-full mb-12"></motion.div>
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-neutral-600 dark:text-neutral-400 mb-12 max-w-2xl mx-auto text-lg leading-relaxed">
+                    {dictionary.contact.subtitle}
+                </motion.p>
+
+                <motion.div variants={containerVariants} initial="hidden" animate="show" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {/* LinkedIn */}
-                    <a
+                    <motion.a
+                        variants={itemVariants}
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        whileTap={{ scale: 0.95 }}
                         href="https://www.linkedin.com/in/micka%C3%ABl-marco-1430a5327/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex flex-col items-center justify-center h-full p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-portal-green/50 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300"
+                        className="group flex flex-col items-center justify-center h-full p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-portal-green/50 hover:bg-black/10 dark:hover:bg-white/10 transition-colors duration-300"
                     >
                         <div className="w-12 h-12 mb-4 flex items-center justify-center text-neutral-600 dark:text-neutral-400 group-hover:text-portal-green transition-colors">
                             <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -29,12 +46,15 @@ export default function Contact() {
                         </div>
                         <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2 font-bangers tracking-wide">LinkedIn</h3>
                         <span className="text-neutral-600 dark:text-neutral-400 group-hover:text-portal-glow transition-colors text-sm break-all text-center">linkedin.com/in/mickael-marco</span>
-                    </a>
+                    </motion.a>
 
                     {/* Email */}
-                    <a
+                    <motion.a
+                        variants={itemVariants}
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        whileTap={{ scale: 0.95 }}
                         href="mailto:mmarco68650@gmail.com"
-                        className="group flex flex-col items-center justify-center h-full p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-portal-green/50 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300"
+                        className="group flex flex-col items-center justify-center h-full p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-portal-green/50 hover:bg-black/10 dark:hover:bg-white/10 transition-colors duration-300"
                     >
                         <div className="w-12 h-12 mb-4 flex items-center justify-center text-neutral-600 dark:text-neutral-400 group-hover:text-portal-green transition-colors">
                             <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
@@ -43,12 +63,15 @@ export default function Contact() {
                         </div>
                         <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2 font-bangers tracking-wide">Email</h3>
                         <span className="text-neutral-600 dark:text-neutral-400 group-hover:text-portal-glow transition-colors text-sm break-all text-center">mmarco68650@gmail.com</span>
-                    </a>
+                    </motion.a>
 
                     {/* Téléphone */}
-                    <a
+                    <motion.a
+                        variants={itemVariants}
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        whileTap={{ scale: 0.95 }}
                         href="tel:0623829184"
-                        className="group flex flex-col items-center justify-center h-full p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-portal-green/50 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300"
+                        className="group flex flex-col items-center justify-center h-full p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-portal-green/50 hover:bg-black/10 dark:hover:bg-white/10 transition-colors duration-300"
                     >
                         <div className="w-12 h-12 mb-4 flex items-center justify-center text-neutral-600 dark:text-neutral-400 group-hover:text-portal-green transition-colors">
                             <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
@@ -57,14 +80,17 @@ export default function Contact() {
                         </div>
                         <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2 font-bangers tracking-wide">{dictionary.contact.phone}</h3>
                         <span className="text-neutral-600 dark:text-neutral-400 group-hover:text-portal-glow transition-colors text-sm break-all text-center">06 23 82 91 84</span>
-                    </a>
+                    </motion.a>
 
                     {/* GitHub */}
-                    <a
+                    <motion.a
+                        variants={itemVariants}
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        whileTap={{ scale: 0.95 }}
                         href="https://github.com/mickael68"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex flex-col items-center justify-center h-full p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-portal-green/50 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300"
+                        className="group flex flex-col items-center justify-center h-full p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-portal-green/50 hover:bg-black/10 dark:hover:bg-white/10 transition-colors duration-300"
                     >
                         <div className="w-12 h-12 mb-4 flex items-center justify-center text-neutral-600 dark:text-neutral-400 group-hover:text-portal-green transition-colors">
                             <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -73,8 +99,8 @@ export default function Contact() {
                         </div>
                         <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2 font-bangers tracking-wide">GitHub</h3>
                         <span className="text-neutral-600 dark:text-neutral-400 group-hover:text-portal-glow transition-colors text-sm break-all text-center">github.com/mickael68</span>
-                    </a>
-                </div>
+                    </motion.a>
+                </motion.div>
             </div>
         </div>
     );

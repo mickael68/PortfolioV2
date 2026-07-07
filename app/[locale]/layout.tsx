@@ -5,6 +5,7 @@ import ChatBot from "./components/ChatBot";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { LocaleProvider } from "./components/LocaleProvider";
 import Footer from "./components/Footer";
+import StarParticles from "./components/StarParticles";
 
 const bangers = Bangers({
   weight: "400",
@@ -33,6 +34,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+import CustomCursor from "./components/CustomCursor";
+
 export default async function RootLayout({
   children,
   params
@@ -54,6 +57,8 @@ export default async function RootLayout({
           enableSystem={false}
           disableTransitionOnChange={false}
         >
+          <CustomCursor />
+          <StarParticles />
           <LocaleProvider initialLocale={locale}>
             <Navbar />
             {children}
