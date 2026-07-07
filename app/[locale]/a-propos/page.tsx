@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useLocale } from "@/app/[locale]/components/LocaleProvider";
 import type { Experience } from "@/lib/donnees";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 export default function APropos() {
     const { locale, dictionary } = useLocale();
@@ -19,7 +19,7 @@ export default function APropos() {
     const professionnelles = experiences.filter(exp => exp.type === (locale === 'en' ? 'Professional' : 'Professionnel'));
     const academiques = experiences.filter(exp => exp.type === (locale === 'en' ? 'Academic' : 'Académique'));
 
-    const fadeUpVariant = {
+    const fadeUpVariant: Variants = {
         hidden: { opacity: 0, y: 40 },
         visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50, damping: 20 } }
     };
