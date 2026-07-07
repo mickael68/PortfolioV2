@@ -87,20 +87,41 @@ export async function POST(req: Request) {
       history: chatHistory,
     });
 
+    const fallbackModels = ["gemini-2.0-flash-lite", "gemini-2.5-flash"];
+
     let result;
     try {
       result = await chat.sendMessage(message);
-    } catch (error: any) {
-      if (error.message?.includes("503") || error.status === 503 || error.message?.includes("high demand") || error.message?.includes("Service Unavailable")) {
-        console.warn("Modèle principal indisponible (503). Fallback sur gemini-1.5-flash...");
-        const fallbackModel = genAI.getGenerativeModel({ 
-          model: "gemini-1.5-flash",
-          systemInstruction,
-        });
-        const fallbackChat = fallbackModel.startChat({ history: chatHistory });
-        result = await fallbackChat.sendMessage(message);
-      } else {
-        throw error;
+    } catch (primaryError: any) {
+      const isRetryable = primaryError.message?.includes("503") || primaryError.message?.includes("429") || primaryError.message?.includes("high demand") || primaryError.message?.includes("Service Unavailable") || primaryError.message?.includes("Too Many Requests") || primaryError.message?.includes("quota");
+      
+      if (!isRetryable) throw primaryError;
+
+      console.warn(`Modèle principal indisponible. Tentative de fallback...`);
+
+      let lastError = primaryError;
+      for (const fallbackModelName of fallbackModels) {
+        try {
+          console.warn(`Essai avec ${fallbackModelName}...`);
+          const fallbackModel = genAI.getGenerativeModel({ 
+            model: fallbackModelName,
+            systemInstruction,
+          });
+          const fallbackChat = fallbackModel.startChat({ history: chatHistory });
+          result = await fallbackChat.sendMessage(message);
+          break;
+        } catch (fallbackError: any) {
+          console.warn(`${fallbackModelName} échoué: ${fallbackError.message?.substring(0, 100)}`);
+          lastError = fallbackError;
+        }
+      }
+
+      if (!result) {
+        console.error("Tous les modèles ont échoué:", lastError);
+        const retryMsg = locale === 'en'
+          ? "The AI service is temporarily overloaded. Please try again in about a minute."
+          : "Le service IA est temporairement surchargé. Veuillez réessayer dans environ une minute.";
+        return NextResponse.json({ text: retryMsg });
       }
     }
 
