@@ -61,7 +61,7 @@ export default function CustomCursor() {
     >
       <motion.div
         animate={{
-          scale: isClicking ? 0.8 : isHovering ? 2 : 1,
+          scale: isClicking ? 0.8 : isHovering ? 1.4 : 1,
           backgroundColor: isHovering ? "rgba(0, 255, 26, 0.2)" : "rgba(0, 255, 26, 1)",
           borderColor: "rgba(0, 255, 26, 1)",
         }}
@@ -69,7 +69,7 @@ export default function CustomCursor() {
         className="w-6 h-6 rounded-full border-[1.5px] flex items-center justify-center shadow-[0_0_10px_rgba(0,255,26,0.5)] relative"
       >
         <motion.div 
-          animate={{ opacity: isHovering ? 0 : 1 }}
+          animate={{ opacity: 1 }}
           className="w-1.5 h-1.5 bg-portal-green rounded-full shadow-[0_0_5px_rgba(0,255,26,1)]"
         />
       </motion.div>

@@ -29,7 +29,7 @@ export default function Navbar() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Link href={`/${locale}`} className="text-2xl font-bold tracking-tighter text-neutral-900 dark:text-white hover:text-portal-green dark:hover:text-portal-green transition-colors drop-shadow-[0_0_8px_var(--color-portal-green)] font-bangers inline-block">
+          <Link href={`/${locale}`} className="text-2xl font-bold tracking-wider text-neutral-900 dark:text-white hover:text-portal-green dark:hover:text-portal-green transition-colors drop-shadow-[0_0_8px_var(--color-portal-green)] font-bangers inline-block p-2 -m-2 leading-normal">
             Mickaël Marco
           </Link>
         </motion.div>

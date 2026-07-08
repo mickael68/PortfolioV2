@@ -8,12 +8,15 @@ import OngletsCompetences from "./OngletsCompetences";
 export default function Competences() {
     const { locale, dictionary } = useLocale();
     const [competences, setCompetences] = useState<Competence[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsLoading(true);
         fetch(`/api/competences?locale=${locale}`)
             .then(res => res.json())
             .then(data => setCompetences(data))
-            .catch(() => setCompetences([]));
+            .catch(() => setCompetences([]))
+            .finally(() => setIsLoading(false));
     }, [locale]);
 
     return (
@@ -22,7 +25,7 @@ export default function Competences() {
                 <h2 className="text-4xl font-bold text-neutral-900 dark:text-white mb-4 text-center font-bangers tracking-wider">{dictionary.skills.title}</h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.3)] mx-auto rounded-full mb-12"></div>
 
-                <OngletsCompetences competences={competences} />
+                <OngletsCompetences competences={competences} isLoading={isLoading} />
             </div>
         </div>
     );

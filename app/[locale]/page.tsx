@@ -57,8 +57,8 @@ export default function Home() {
 
             {/* Text and Buttons */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left z-10 max-w-2xl mt-8 md:mt-0">
-                <motion.h1 variants={itemVariants} className="text-5xl md:text-6xl font-bold tracking-tight text-neutral-900 dark:text-white mb-6">
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.5)]">
+                <motion.h1 variants={itemVariants} className="text-5xl md:text-6xl font-bold tracking-tight text-neutral-900 dark:text-white mb-6 leading-normal md:leading-normal">
+                  <span className="inline-block p-4 -m-4 bg-clip-text text-transparent bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.5)]">
                     {dictionary.hero.title}
                   </span>
                 </motion.h1>

@@ -4,12 +4,16 @@ import { useState } from "react";
 import Image from "next/image";
 import { Competence } from "@/lib/donnees";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocale } from "@/app/[locale]/components/LocaleProvider";
+import PortalLoader from "../components/PortalLoader";
 
 interface SkillsTabsProps {
     competences: Competence[];
+    isLoading?: boolean;
 }
 
-export default function OngletsCompetences({ competences }: SkillsTabsProps) {
+export default function OngletsCompetences({ competences, isLoading }: SkillsTabsProps) {
+    const { locale } = useLocale();
     const [ongletActif, setOngletActif] = useState<"technologies" | "os" | "divers">("technologies");
 
     // Logique de filtrage
@@ -75,7 +79,9 @@ export default function OngletsCompetences({ competences }: SkillsTabsProps) {
             </div>
 
             {/* Grille de Compétences */}
-            {competencesActives.length === 0 ? (
+            {isLoading ? (
+                <PortalLoader text={locale === 'en' ? "Interdimensional loading..." : "Chargement interdimensionnel..."} />
+            ) : competencesActives.length === 0 ? (
                 <div className="text-center text-neutral-600 dark:text-neutral-400 py-12">
                     <p>Aucune compétence trouvée dans cette catégorie.</p>
                 </div>

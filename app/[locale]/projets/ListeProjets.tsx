@@ -5,8 +5,9 @@ import { Projet } from "@/lib/donnees";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
+import PortalLoader from "../components/PortalLoader";
 
-export default function ListeProjets({ projets, dictionary, locale }: { projets: Projet[], dictionary: any, locale: string }) {
+export default function ListeProjets({ projets, dictionary, locale, isLoading }: { projets: Projet[], dictionary: any, locale: string, isLoading?: boolean }) {
     const [filtre, setFiltre] = useState<string>(locale === 'en' ? 'Professional' : 'Professionnel');
     const [projetSelectionne, setProjetSelectionne] = useState<Projet | null>(null);
 
@@ -238,7 +239,11 @@ export default function ListeProjets({ projets, dictionary, locale }: { projets:
             document.body
         )}
 
-            {projetsFiltres.length === 0 && (
+            {isLoading && (
+                <PortalLoader text={locale === 'en' ? "Interdimensional loading..." : "Chargement interdimensionnel..."} />
+            )}
+
+            {!isLoading && projetsFiltres.length === 0 && (
                 <div className="text-center py-20">
                     <p className="text-neutral-500 font-bangers tracking-widest text-xl">{dictionary.projects.noProjects}</p>
                 </div>
