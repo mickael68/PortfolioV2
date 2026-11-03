@@ -23,7 +23,7 @@ export default function Contact() {
         <div className="min-h-screen pt-24 pb-24 px-4 overflow-hidden">
             <div className="max-w-5xl mx-auto text-center">
                 <motion.h2 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl font-bold text-neutral-900 dark:text-white mb-4 text-center font-bangers tracking-wider">{dictionary.contact.title}</motion.h2>
-                <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} className="w-20 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.3)] mx-auto rounded-full mb-12"></motion.div>
+                <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} className="w-20 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(52, 211, 153, 0.12)] mx-auto rounded-full mb-12"></motion.div>
                 <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-neutral-600 dark:text-neutral-400 mb-12 max-w-2xl mx-auto text-lg leading-relaxed">
                     {dictionary.contact.subtitle}
                 </motion.p>

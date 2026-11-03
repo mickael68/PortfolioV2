@@ -12,6 +12,110 @@ type Persona = "rick" | "pro" | null;
 interface Message {
   role: "user" | "assistant";
   content: string;
+  animate?: boolean;
+}
+
+interface AssistantMessageProps {
+  content: string;
+  isRick: boolean;
+  animate?: boolean;
+  onComplete?: () => void;
+  onTick?: () => void;
+}
+
+function AssistantMessage({
+  content,
+  isRick,
+  animate = false,
+  onComplete,
+  onTick,
+}: AssistantMessageProps) {
+  const [displayedLength, setDisplayedLength] = useState(animate ? 0 : content.length);
+  const isDone = displayedLength >= content.length;
+  const hasCompletedRef = useRef(!animate);
+
+  useEffect(() => {
+    if (!animate || hasCompletedRef.current) {
+      setDisplayedLength(content.length);
+      return;
+    }
+
+    const totalChars = content.length;
+    if (totalChars === 0) {
+      hasCompletedRef.current = true;
+      onComplete?.();
+      return;
+    }
+
+    const intervalMs = 15;
+    const step = totalChars > 400 ? 3 : totalChars > 150 ? 2 : 1;
+
+    const timer = setInterval(() => {
+      setDisplayedLength((prev) => {
+        const next = prev + step;
+        if (next >= totalChars) {
+          clearInterval(timer);
+          hasCompletedRef.current = true;
+          return totalChars;
+        }
+        return next;
+      });
+    }, intervalMs);
+
+    return () => clearInterval(timer);
+  }, [animate, content]);
+
+  useEffect(() => {
+    if (!animate) return;
+    if (isDone) {
+      onComplete?.();
+    } else {
+      onTick?.();
+    }
+  }, [animate, displayedLength, isDone, onComplete, onTick]);
+
+  const displayedContent = content.slice(0, displayedLength);
+
+  return (
+    <div 
+      className="relative select-text"
+      title={!isDone ? "Cliquer pour afficher tout le texte" : undefined}
+      onClick={() => {
+        if (!isDone) {
+          setDisplayedLength(content.length);
+          hasCompletedRef.current = true;
+          onComplete?.();
+        }
+      }}
+    >
+      <ReactMarkdown 
+        remarkPlugins={[remarkGfm]}
+        components={{
+          strong: ({node, ...props}) => <span className={`font-bold ${isRick ? "text-portal-green dark:text-portal-green" : "text-blue-500 dark:text-blue-400"}`} {...props} />,
+          em: ({node, ...props}) => <span className="italic" {...props} />,
+          ul: ({node, ...props}) => <ul className="list-disc ml-4 mt-2 space-y-1" {...props} />,
+          ol: ({node, ...props}) => <ol className="list-decimal ml-4 mt-2 space-y-1" {...props} />,
+          li: ({node, ...props}) => <li className="leading-relaxed" {...props} />,
+          p: ({node, children, ...props}) => (
+            <p className="mb-2 last:mb-0 block last:inline" {...props}>
+              {children}
+            </p>
+          )
+        }}
+      >
+        {displayedContent}
+      </ReactMarkdown>
+      {!isDone && (
+        <span 
+          className={`inline-block w-1.5 h-3.5 ml-1 rounded-[1px] animate-pulse align-middle ${
+            isRick 
+              ? "bg-portal-green shadow-[0_0_8px_rgba(52,211,153,0.8)]" 
+              : "bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]"
+          }`} 
+        />
+      )}
+    </div>
+  );
 }
 
 export default function ChatBot() {
@@ -22,6 +126,8 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const t = {
@@ -37,6 +143,7 @@ export default function ChatBot() {
       input_placeholder: "Écris ton message...",
       loading_rick: "Portail en cours d'ouverture...",
       loading_pro: "Réponse en cours...",
+      typing: "L'assistant écrit...",
       error_msg: "Une erreur est survenue. Veuillez réessayer dans quelques instants.",
       error_rick: "Mince, une interférence dans le portail ! Réessaie dans quelques instants, Morty.",
       rick_init_msg: "**Bonjour et bienvenue !**\n\nPetit mot avant de commencer : pour pimenter ce portfolio et vous montrer ce que je sais faire avec les IA, j'ai donné à mon assistant un caractère de 'savant fou' avec un ego surdimensionné. Ne prenez pas ses remarques au sérieux, c'est 100 % fait exprès pour la démo technique ! Promis, en vrai, je suis quelqu'un de très posé et à l'écoute. Bonne visite !",
@@ -57,6 +164,7 @@ export default function ChatBot() {
       input_placeholder: "Write your message...",
       loading_rick: "Portal opening...",
       loading_pro: "Responding...",
+      typing: "Assistant is typing...",
       error_msg: "An error occurred. Please try again in a few moments.",
       error_rick: "Damn, portal interference! Try again in a few moments, Morty.",
       rick_init_msg: "**Hello and welcome!**\n\nA quick note before we start: to spice up this portfolio and show what I can do with AIs, I've given my assistant a 'mad scientist' character with an oversized ego. Don't take his remarks seriously, it's 100% intentional for the technical demo! I promise, in real life, I'm a very calm and attentive person. Enjoy your visit!",
@@ -67,13 +175,17 @@ export default function ChatBot() {
     }
   }[locale === 'en' ? 'en' : 'fr'];
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToBottom = (smooth = false) => {
+    if (smooth) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    } else if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
   };
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    scrollToBottom(true);
+  }, [messages.length, isLoading]);
 
   const handleSelectPersona = (selected: Persona) => {
     setPersona(selected);
@@ -82,27 +194,32 @@ export default function ChatBot() {
         {
           role: "assistant",
           content: t.rick_init_msg,
+          animate: true,
         },
       ]);
+      setIsTyping(true);
     } else {
       setMessages([]);
+      setIsTyping(false);
     }
   };
 
   const handleSwitchPersona = () => {
     setPersona(null);
     setMessages([]);
+    setIsTyping(false);
   };
 
   const handleClose = () => {
     setIsOpen(false);
     setPersona(null);
     setMessages([]);
+    setIsTyping(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!input.trim() || isLoading || !persona) return;
+    if (!input.trim() || isLoading || isTyping || !persona) return;
 
     const userMessage: Message = { role: "user", content: input };
     setMessages((prev) => [...prev, userMessage]);
@@ -123,18 +240,23 @@ export default function ChatBot() {
 
       const data = await response.json();
       if (data.text) {
-        setMessages((prev) => [...prev, { role: "assistant", content: data.text }]);
+        setMessages((prev) => [...prev, { role: "assistant", content: data.text, animate: true }]);
+        setIsTyping(true);
       } else {
-        setMessages((prev) => [...prev, { role: "assistant", content: persona === "rick" 
-          ? t.error_rick 
-          : t.error_msg 
+        setMessages((prev) => [...prev, { 
+          role: "assistant", 
+          content: persona === "rick" ? t.error_rick : t.error_msg,
+          animate: true
         }]);
+        setIsTyping(true);
       }
     } catch {
-      setMessages((prev) => [...prev, { role: "assistant", content: persona === "rick" 
-        ? t.error_rick 
-        : t.error_msg
+      setMessages((prev) => [...prev, { 
+        role: "assistant", 
+        content: persona === "rick" ? t.error_rick : t.error_msg,
+        animate: true
       }]);
+      setIsTyping(true);
     } finally {
       setIsLoading(false);
     }
@@ -143,7 +265,7 @@ export default function ChatBot() {
   const isRick = persona === "rick";
   const headerTitle = isRick ? (locale === 'en' ? "Portal Assistant" : "Portal Assistant") : (locale === 'en' ? "Portfolio Assistant" : "Assistant Portfolio");
   const accentColor = isRick ? "portal-green" : "blue-400";
-  const accentHex = isRick ? "rgba(0,255,26," : "rgba(96,165,250,";
+  const accentHex = isRick ? "rgba(52, 211, 153," : "rgba(96,165,250,";
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
@@ -155,8 +277,8 @@ export default function ChatBot() {
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             className={`absolute bottom-20 right-0 w-[calc(100vw-3rem)] sm:w-80 md:w-96 h-[450px] bg-background border-2 rounded-2xl flex flex-col overflow-hidden ${
               isRick || !persona
-                ? "border-portal-green shadow-[0_0_30px_rgba(0,255,26,0.3)]"
-                : "border-blue-400 shadow-[0_0_30px_rgba(96,165,250,0.3)]"
+                ? "border-portal-green shadow-[0_0_30px_rgba(52, 211, 153, 0.12)]"
+                : "border-blue-400 shadow-[0_0_30px_rgba(96, 165, 250, 0.12)]"
             }`}
           >
             {/* Header */}
@@ -231,7 +353,7 @@ export default function ChatBot() {
                   className="group w-full text-left p-4 rounded-xl border-2 border-portal-green/30 hover:border-portal-green bg-portal-green/5 hover:bg-portal-green/10 transition-all duration-300 mb-3"
                 >
                   <div className="flex items-center gap-3 mb-2">
-                    <h4 className="font-bangers text-portal-green tracking-wider text-lg uppercase group-hover:drop-shadow-[0_0_8px_rgba(0,255,26,0.5)] transition-all">
+                    <h4 className="font-bangers text-portal-green tracking-wider text-lg uppercase group-hover:drop-shadow-[0_0_8px_rgba(52, 211, 153, 0.2)] transition-all">
                       {t.mode_inter}
                     </h4>
                   </div>
@@ -244,7 +366,7 @@ export default function ChatBot() {
                   className="group w-full text-left p-4 rounded-xl border-2 border-blue-400/30 hover:border-blue-400 bg-blue-400/5 hover:bg-blue-400/10 transition-all duration-300 mb-3"
                 >
                   <div className="flex items-center gap-3 mb-2">
-                    <h4 className="font-bangers text-blue-400 tracking-wider text-lg uppercase group-hover:drop-shadow-[0_0_8px_rgba(96,165,250,0.5)] transition-all">
+                    <h4 className="font-bangers text-blue-400 tracking-wider text-lg uppercase group-hover:drop-shadow-[0_0_8px_rgba(96, 165, 250, 0.2)] transition-all">
                       {t.mode_pro}
                     </h4>
                   </div>
@@ -263,7 +385,7 @@ export default function ChatBot() {
             {/* Messages Area — only when persona is selected */}
             {persona && (
               <>
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-portal-green">
+                <div ref={messagesContainerRef} className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-portal-green">
                   {messages.length === 0 && (
                     <div className="text-center text-neutral-500 dark:text-neutral-500 mt-10">
                       <p className="text-sm italic">
@@ -280,24 +402,22 @@ export default function ChatBot() {
                         className={`max-w-[85%] p-3 rounded-2xl text-sm ${
                           msg.role === "user" 
                             ? isRick
-                              ? "bg-portal-green text-[#0a0a0a] font-medium rounded-tr-none shadow-[0_0_10px_rgba(0,255,26,0.3)]"
-                              : "bg-blue-500 text-white font-medium rounded-tr-none shadow-[0_0_10px_rgba(96,165,250,0.3)]"
+                              ? "bg-portal-green text-[#0a0a0a] font-medium rounded-tr-none shadow-[0_0_10px_rgba(52, 211, 153, 0.12)]"
+                              : "bg-blue-500 text-white font-medium rounded-tr-none shadow-[0_0_10px_rgba(96, 165, 250, 0.12)]"
                             : "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700 rounded-tl-none"
                         }`}
                       >
-                        <ReactMarkdown 
-                          remarkPlugins={[remarkGfm]}
-                          components={{
-                            strong: ({node, ...props}) => <span className={`font-bold ${isRick ? "text-portal-green dark:text-portal-green" : "text-blue-500 dark:text-blue-400"}`} {...props} />,
-                            em: ({node, ...props}) => <span className="italic" {...props} />,
-                            ul: ({node, ...props}) => <ul className="list-disc ml-4 mt-2 space-y-1" {...props} />,
-                            ol: ({node, ...props}) => <ol className="list-decimal ml-4 mt-2 space-y-1" {...props} />,
-                            li: ({node, ...props}) => <li className="leading-relaxed" {...props} />,
-                            p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />
-                          }}
-                        >
-                          {msg.content}
-                        </ReactMarkdown>
+                        {msg.role === "assistant" ? (
+                          <AssistantMessage
+                            content={msg.content}
+                            isRick={isRick}
+                            animate={msg.animate}
+                            onComplete={() => setIsTyping(false)}
+                            onTick={() => scrollToBottom(false)}
+                          />
+                        ) : (
+                          <p className="whitespace-pre-wrap">{msg.content}</p>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -322,9 +442,11 @@ export default function ChatBot() {
                       type="text"
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
-                      disabled={isLoading}
+                      disabled={isLoading || isTyping}
                       placeholder={isLoading 
                         ? (isRick ? t.loading_rick : t.loading_pro) 
+                        : isTyping
+                        ? t.typing
                         : t.input_placeholder
                       }
                       className={`w-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full py-2.5 px-5 pr-12 text-sm focus:outline-none transition-colors text-neutral-800 dark:text-neutral-200 disabled:opacity-50 ${
@@ -333,7 +455,7 @@ export default function ChatBot() {
                     />
                     <button 
                       type="submit"
-                      disabled={isLoading}
+                      disabled={isLoading || isTyping}
                       className={`absolute right-2 top-1/2 -translate-y-1/2 hover:scale-110 transition-transform disabled:opacity-50 p-2 ${
                         isRick ? "text-portal-green" : "text-blue-400"
                       }`}
@@ -355,9 +477,9 @@ export default function ChatBot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="relative group w-14 h-14 bg-portal-green rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,255,26,0.5)] z-50 overflow-hidden"
+        className="relative group w-14 h-14 bg-portal-green rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(52, 211, 153, 0.2)] z-50 overflow-hidden"
       >
-        <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,rgba(0,255,26,0.2)_30%,rgba(0,255,26,0.8)_50%,rgba(151,206,76,0.8)_70%,transparent_100%)] animate-portal-spin opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,rgba(52, 211, 153, 0.08)_30%,rgba(52, 211, 153, 0.32)_50%,rgba(163, 230, 53, 0.32)_70%,transparent_100%)] animate-portal-spin opacity-0 group-hover:opacity-100 transition-opacity"></div>
         
         <div className="relative z-10 text-[#0a0a0a]">
           {isOpen ? (

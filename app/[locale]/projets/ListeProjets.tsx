@@ -47,7 +47,7 @@ export default function ListeProjets({ projets, dictionary, locale, isLoading }:
                         key={f.value}
                         onClick={() => setFiltre(f.value)}
                         className={`px-6 py-2 text-sm rounded-full font-bold transition-all duration-300 ${filtre === f.value
-                            ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
+                            ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(52, 211, 153, 0.16)] scale-105"
                             : "bg-black/5 dark:bg-white/5 text-neutral-600 dark:text-neutral-400 hover:bg-black/10 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-white"
                             }`}
                     >
@@ -67,7 +67,7 @@ export default function ListeProjets({ projets, dictionary, locale, isLoading }:
                         transition={{ duration: 0.4, delay: index * 0.05 }}
                         whileHover={{ y: -5, scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="group relative overflow-hidden rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 hover:border-portal-green/40 hover:shadow-[0_0_30px_rgba(0,255,26,0.15)] transition-[border-color,box-shadow] duration-300 cursor-pointer flex flex-col"
+                        className="group relative overflow-hidden rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 hover:border-portal-green/40 hover:shadow-[0_0_30px_rgba(52, 211, 153, 0.06)] transition-[border-color,box-shadow] duration-300 cursor-pointer flex flex-col"
                     >
                         <div className="aspect-video bg-neutral-200 dark:bg-neutral-800 relative overflow-hidden">
                             {projet.urlImage ? (
@@ -139,13 +139,13 @@ export default function ListeProjets({ projets, dictionary, locale, isLoading }:
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.9, y: 30 }}
                                 transition={{ type: "spring", damping: 25, stiffness: 220 }}
-                                className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-3xl shadow-[0_0_80px_rgba(0,255,26,0.15)] scrollbar-thin scrollbar-thumb-portal-green"
+                                className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-3xl shadow-[0_0_80px_rgba(52, 211, 153, 0.06)] scrollbar-thin scrollbar-thumb-portal-green"
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 {/* Portal effect background */}
                                 <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
-                                    <div className="absolute -inset-[50%] bg-[radial-gradient(circle_at_center,rgba(0,255,26,0.06)_0%,transparent_60%)] animate-[pulseGlow_2s_ease-in-out_infinite]"></div>
-                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[conic-gradient(from_0deg,transparent_0%,rgba(0,255,26,0.03)_30%,rgba(0,255,26,0.08)_50%,rgba(151,206,76,0.08)_70%,transparent_100%)] animate-[portalSpin_10s_linear_infinite] rounded-full opacity-60"></div>
+                                    <div className="absolute -inset-[50%] bg-[radial-gradient(circle_at_center,rgba(52, 211, 153, 0.024)_0%,transparent_60%)] animate-[pulseGlow_2s_ease-in-out_infinite]"></div>
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[conic-gradient(from_0deg,transparent_0%,rgba(52, 211, 153, 0.012)_30%,rgba(52, 211, 153, 0.032)_50%,rgba(163, 230, 53, 0.032)_70%,transparent_100%)] animate-[portalSpin_10s_linear_infinite] rounded-full opacity-60"></div>
                                 </div>
                             {/* Bouton de fermeture */}
                             <button
@@ -222,7 +222,7 @@ export default function ListeProjets({ projets, dictionary, locale, isLoading }:
                                             href={projetSelectionne.lien}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="px-10 py-4 rounded-2xl bg-portal-green text-space-dark font-bold hover:bg-rick-green transition-all shadow-[0_0_30px_rgba(0,255,26,0.3)] hover:scale-105 font-bangers tracking-widest flex items-center gap-3"
+                                            className="px-10 py-4 rounded-2xl bg-portal-green text-space-dark font-bold hover:bg-rick-green transition-all shadow-[0_0_30px_rgba(52, 211, 153, 0.12)] hover:scale-105 font-bangers tracking-widest flex items-center gap-3"
                                         >
                                             {dictionary.projects.viewOnGithub}
                                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

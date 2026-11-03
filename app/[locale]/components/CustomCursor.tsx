@@ -7,6 +7,7 @@ export default function CustomCursor() {
   const [isMounted, setIsMounted] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -17,10 +18,14 @@ export default function CustomCursor() {
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX - 12);
       cursorY.set(e.clientY - 12);
+      setIsVisible(true);
     };
 
     const handleMouseDown = () => setIsClicking(true);
     const handleMouseUp = () => setIsClicking(false);
+
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -40,12 +45,16 @@ export default function CustomCursor() {
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
     window.addEventListener("mouseover", handleMouseOver);
+    document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
 
     return () => {
       window.removeEventListener("mousemove", moveCursor);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("mouseover", handleMouseOver);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
     };
   }, [cursorX, cursorY]);
 
@@ -58,19 +67,22 @@ export default function CustomCursor() {
         x: cursorX,
         y: cursorY,
       }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isVisible ? 1 : 0 }}
+      transition={{ duration: 0.15 }}
     >
       <motion.div
         animate={{
           scale: isClicking ? 0.8 : isHovering ? 1.4 : 1,
-          backgroundColor: isHovering ? "rgba(0, 255, 26, 0.2)" : "rgba(0, 255, 26, 1)",
-          borderColor: "rgba(0, 255, 26, 1)",
+          backgroundColor: isHovering ? "rgba(52, 211, 153, 0.08)" : "rgba(52, 211, 153, 1)",
+          borderColor: "rgba(52, 211, 153, 1)",
         }}
         transition={{ duration: 0.15 }}
-        className="w-6 h-6 rounded-full border-[1.5px] flex items-center justify-center shadow-[0_0_10px_rgba(0,255,26,0.5)] relative"
+        className="w-6 h-6 rounded-full border-[1.5px] flex items-center justify-center shadow-[0_0_10px_rgba(52, 211, 153, 0.2)] relative"
       >
         <motion.div 
           animate={{ opacity: 1 }}
-          className="w-1.5 h-1.5 bg-portal-green rounded-full shadow-[0_0_5px_rgba(0,255,26,1)]"
+          className="w-1.5 h-1.5 bg-portal-green rounded-full shadow-[0_0_5px_rgba(52, 211, 153,1)]"
         />
       </motion.div>
     </motion.div>

@@ -30,7 +30,7 @@ export default function APropos() {
                 {/* En-tête */}
                 <div className="text-center mb-16">
                     <h2 className="text-5xl font-bold text-neutral-900 dark:text-white mb-4 font-bangers tracking-wider">{dictionary.about.title}</h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(0,255,26,0.3)] mx-auto rounded-full"></div>
+                    <div className="w-24 h-1 bg-gradient-to-r from-rick-green via-portal-green to-teal-400 drop-shadow-[0_0_10px_rgba(52, 211, 153, 0.12)] mx-auto rounded-full"></div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -39,7 +39,7 @@ export default function APropos() {
                     <div className="lg:col-span-8 space-y-12">
                         
                         {/* Section Présentation */}
-                        <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="bg-black/5 dark:bg-white/10 rounded-3xl p-8 border border-black/10 dark:border-white/20 backdrop-blur-md relative overflow-hidden group shadow-[0_0_40px_rgba(0,0,0,0.1)] dark:shadow-[0_0_40px_rgba(0,0,0,0.3)]">
+                        <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="bg-black/5 dark:bg-white/10 rounded-3xl p-8 border border-black/10 dark:border-white/20 backdrop-blur-md relative overflow-hidden group shadow-[0_0_40px_rgba(0, 0, 0, 0.04)] dark:shadow-[0_0_40px_rgba(0, 0, 0, 0.12)]">
                             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-24 h-24 bg-portal-green/10 rounded-full blur-2xl group-hover:bg-portal-green/20 transition-colors"></div>
                             <h3 className="text-2xl font-bold text-portal-green mb-6 font-bangers tracking-widest uppercase">{dictionary.about.whoAmI}</h3>
                             <div className="space-y-6 text-neutral-700 dark:text-neutral-300">
@@ -57,7 +57,7 @@ export default function APropos() {
                                     <a 
                                         href="/fichiers/MARCO_Mickael_CV.pdf" 
                                         download
-                                        className="inline-flex items-center gap-3 px-8 py-3 rounded-xl bg-portal-green text-space-dark font-bold font-bangers tracking-widest hover:bg-rick-green transition-all shadow-[0_0_15px_rgba(0,255,26,0.3)] hover:scale-105"
+                                        className="inline-flex items-center gap-3 px-8 py-3 rounded-xl bg-portal-green text-space-dark font-bold font-bangers tracking-widest hover:bg-rick-green transition-all shadow-[0_0_15px_rgba(52, 211, 153, 0.12)] hover:scale-105"
                                     >
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -81,7 +81,7 @@ export default function APropos() {
                                 <div className="space-y-10 border-l-2 border-neutral-300 dark:border-neutral-800 pl-8 relative ml-4">
                                     {professionnelles.map((exp) => (
                                         <div key={exp.id} className="relative group">
-                                            <span className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border-4 border-neutral-900 bg-portal-green group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(0,255,26,0.6)] transition-all duration-300"></span>
+                                            <span className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border-4 border-neutral-900 bg-portal-green group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(52, 211, 153, 0.24)] transition-all duration-300"></span>
                                             <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-2 font-mono font-bold tracking-widest bg-black/5 dark:bg-white/5 inline-block px-3 py-1 rounded-md">
                                                 {(() => {
                                                     const startYear = new Date(exp.date_debut).getFullYear();
@@ -109,7 +109,7 @@ export default function APropos() {
                                 <div className="space-y-10 border-l-2 border-neutral-300 dark:border-neutral-800 pl-8 relative ml-4">
                                     {academiques.map((exp) => (
                                         <div key={exp.id} className="relative group">
-                                            <span className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border-4 border-neutral-900 bg-rick-green group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(151,206,76,0.6)] transition-all duration-300"></span>
+                                            <span className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border-4 border-neutral-900 bg-rick-green group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(163, 230, 53, 0.24)] transition-all duration-300"></span>
                                             <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-2 font-mono font-bold tracking-widest bg-black/5 dark:bg-white/5 inline-block px-3 py-1 rounded-md">
                                                 {(() => {
                                                     const startYear = new Date(exp.date_debut).getFullYear();

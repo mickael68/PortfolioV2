@@ -52,7 +52,7 @@ export default function OngletsCompetences({ competences, isLoading }: SkillsTab
                 <button
                     onClick={() => setOngletActif("technologies")}
                     className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-bold transition-all duration-300 ${ongletActif === "technologies"
-                        ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
+                        ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(52, 211, 153, 0.16)] scale-105"
                         : "bg-black/5 dark:bg-white/5 text-neutral-600 dark:text-neutral-400 hover:bg-black/10 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-white"
                         }`}
                 >
@@ -61,7 +61,7 @@ export default function OngletsCompetences({ competences, isLoading }: SkillsTab
                 <button
                     onClick={() => setOngletActif("os")}
                     className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-bold transition-all duration-300 ${ongletActif === "os"
-                        ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
+                        ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(52, 211, 153, 0.16)] scale-105"
                         : "bg-black/5 dark:bg-white/5 text-neutral-600 dark:text-neutral-400 hover:bg-black/10 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-white"
                         }`}
                 >
@@ -70,7 +70,7 @@ export default function OngletsCompetences({ competences, isLoading }: SkillsTab
                 <button
                     onClick={() => setOngletActif("divers")}
                     className={`px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full font-bold transition-all duration-300 ${ongletActif === "divers"
-                        ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(0,255,26,0.4)] scale-105"
+                        ? "bg-portal-green text-space-dark shadow-[0_0_20px_rgba(52, 211, 153, 0.16)] scale-105"
                         : "bg-black/5 dark:bg-white/5 text-neutral-600 dark:text-neutral-400 hover:bg-black/10 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-white"
                         }`}
                 >
@@ -113,7 +113,7 @@ export default function OngletsCompetences({ competences, isLoading }: SkillsTab
                                         src={`/${c.icone}`}
                                         alt={c.nom}
                                         fill
-                                        className="object-contain group-hover:drop-shadow-[0_0_8px_rgba(0,255,26,0.6)]"
+                                        className="object-contain group-hover:drop-shadow-[0_0_8px_rgba(52, 211, 153, 0.24)]"
                                     />
                                 </div>
                             )}

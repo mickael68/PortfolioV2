@@ -12,9 +12,9 @@ html {
   --scrollbar-track: #e2e8f0;
   --scrollbar-border: #f8fafc;
   --star-color: #000000;
-  --portal-green: #059669;
-  --portal-glow: #10b981;
-  --rick-green: #65a30d;
+  --portal-green: #047857;
+  --portal-glow: #059669;
+  --rick-green: #4d7c0f;
 }
 
 .dark {
@@ -22,9 +22,9 @@ html {
   --foreground: #f0f4f8;
   --scrollbar-track: #1a1f26;
   --scrollbar-border: #1a1f26;
-  --star-color: rgba(255, 255, 255, 0.8);
-  --portal-green: #22c55e;
-  --portal-glow: #4ade80;
+  --star-color: rgba(255, 255, 255, 0.32);
+  --portal-green: #34d399;
+  --portal-glow: #6ee7b7;
   --rick-green: #a3e635;
 }
 
