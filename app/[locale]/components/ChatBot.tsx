@@ -12,7 +12,6 @@ type Persona = "rick" | "pro" | null;
 interface Message {
   role: "user" | "assistant";
   content: string;
-  animate?: boolean;
 }
 
 interface AssistantMessageProps {
@@ -127,6 +126,7 @@ export default function ChatBot() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [typingMessageIndex, setTypingMessageIndex] = useState<number | null>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -189,18 +189,17 @@ export default function ChatBot() {
 
   const handleSelectPersona = (selected: Persona) => {
     setPersona(selected);
+    setTypingMessageIndex(null);
+    setIsTyping(false);
     if (selected === "rick") {
       setMessages([
         {
           role: "assistant",
           content: t.rick_init_msg,
-          animate: true,
         },
       ]);
-      setIsTyping(true);
     } else {
       setMessages([]);
-      setIsTyping(false);
     }
   };
 
@@ -208,6 +207,7 @@ export default function ChatBot() {
     setPersona(null);
     setMessages([]);
     setIsTyping(false);
+    setTypingMessageIndex(null);
   };
 
   const handleClose = () => {
@@ -215,6 +215,15 @@ export default function ChatBot() {
     setPersona(null);
     setMessages([]);
     setIsTyping(false);
+    setTypingMessageIndex(null);
+  };
+
+  const handleToggle = () => {
+    if (isOpen) {
+      setTypingMessageIndex(null);
+      setIsTyping(false);
+    }
+    setIsOpen(!isOpen);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -240,22 +249,25 @@ export default function ChatBot() {
 
       const data = await response.json();
       if (data.text) {
-        setMessages((prev) => [...prev, { role: "assistant", content: data.text, animate: true }]);
+        setMessages((prev) => {
+          setTypingMessageIndex(prev.length);
+          return [...prev, { role: "assistant", content: data.text }];
+        });
         setIsTyping(true);
       } else {
-        setMessages((prev) => [...prev, { 
-          role: "assistant", 
-          content: persona === "rick" ? t.error_rick : t.error_msg,
-          animate: true
-        }]);
+        const errorContent = persona === "rick" ? t.error_rick : t.error_msg;
+        setMessages((prev) => {
+          setTypingMessageIndex(prev.length);
+          return [...prev, { role: "assistant", content: errorContent }];
+        });
         setIsTyping(true);
       }
     } catch {
-      setMessages((prev) => [...prev, { 
-        role: "assistant", 
-        content: persona === "rick" ? t.error_rick : t.error_msg,
-        animate: true
-      }]);
+      const errorContent = persona === "rick" ? t.error_rick : t.error_msg;
+      setMessages((prev) => {
+        setTypingMessageIndex(prev.length);
+        return [...prev, { role: "assistant", content: errorContent }];
+      });
       setIsTyping(true);
     } finally {
       setIsLoading(false);
@@ -411,8 +423,11 @@ export default function ChatBot() {
                           <AssistantMessage
                             content={msg.content}
                             isRick={isRick}
-                            animate={msg.animate}
-                            onComplete={() => setIsTyping(false)}
+                            animate={i === typingMessageIndex}
+                            onComplete={() => {
+                              setTypingMessageIndex(null);
+                              setIsTyping(false);
+                            }}
                             onTick={() => scrollToBottom(false)}
                           />
                         ) : (
@@ -476,7 +491,7 @@ export default function ChatBot() {
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggle}
         className="relative group w-14 h-14 bg-portal-green rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(52, 211, 153, 0.2)] z-50 overflow-hidden"
       >
         <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,rgba(52, 211, 153, 0.08)_30%,rgba(52, 211, 153, 0.32)_50%,rgba(163, 230, 53, 0.32)_70%,transparent_100%)] animate-portal-spin opacity-0 group-hover:opacity-100 transition-opacity"></div>
